@@ -1,5 +1,6 @@
 package es.dit.upm.socialTV.socialTVbs.beans;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Map;
  * @author Naomi
  *
  */
-public class EstadisticasPais {
+public class EstadisticasPais implements Serializable {
 	
 	// Pais al que pertenecen las estadisticas
 	private PaisEnum pais;

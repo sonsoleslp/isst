@@ -1,5 +1,7 @@
 package es.dit.upm.socialTV.socialTVbs.beans;
 
-public enum PaisEnum {
+import java.io.Serializable;
+
+public enum PaisEnum implements Serializable {
 	SPAIN, EEUU, GERMANY
 }
