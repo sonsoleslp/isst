@@ -7,8 +7,8 @@
 <title>SocialTV</title>
 </head>
 <body>
-
-<p>Hola</p>
+<p>Estas en mapa</p>
+<p>${estadistica}</p>
 
 </body>
 </html>
