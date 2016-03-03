@@ -2,19 +2,21 @@ package es.dit.upm.socialTV.socialTVbs;
 
 import es.dit.upm.socialTV.socialTVbs.beans.Trend;
 import es.dit.upm.socialTV.socialTVbs.servicesBS.ConsultaAPITwitter;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 /**
  * Conjunto de pruebas JUnit que prueban los metodos que consultan a la API
  * de Twitter
  */
-public class ConsultaAPITwitterTest extends TestCase {
+public class ConsultaAPITwitterTest {
 	
 	/**
 	 * Test estupido (aunque conviene tener un test para cada cosa)
 	 */
+	@Test
 	public void consultaMundialHashtagTest() {
 		ConsultaAPITwitter consultaAPITwitter = new ConsultaAPITwitter();
 		try {
