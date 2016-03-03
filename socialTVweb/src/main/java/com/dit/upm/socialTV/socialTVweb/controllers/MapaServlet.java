@@ -1,10 +1,12 @@
 package com.dit.upm.socialTV.socialTVweb.controllers;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import es.dit.upm.socialTV.socialTVbs.beans.EstadisticasPais;
 import es.dit.upm.socialTV.socialTVbs.beans.PaisEnum;
@@ -31,8 +33,19 @@ public class MapaServlet extends HttpServlet {
 		// Suponiendo que recogemos de la web de alguna forma el hashtag y el pais
 		EstadisticasPais estadisticas = calculoImpactoMapa.calculoImpactoMapa(PaisEnum.SPAIN, "Soy un hashtag");
 		
-		// Añadimos el resultado a la respuesta
-		response.getWriter().append("El porcentaje de tweets en España es: ").append(estadisticas.getImpactoPorPais().get("Soy un hashtag").toString()).append("%.");
+		// Recuperamos la sesión y añadimos el resultado a la respuesta
+		HttpSession session = request.getSession();
+		
+		// La string que se define es el nombre de la variable en la jsp
+        session.setAttribute("estadistica", estadisticas);
+		
+		// Redirigimos a la jsp deseada
+		try {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/views/mapa.jsp");
+            rd.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 	/**
