@@ -2,9 +2,12 @@ package es.dit.upm.socialTV.socialTVbs.programatv;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import twitter4j.Status;
 
 @Entity
 public class ProgramaTV implements Serializable {
@@ -16,14 +19,16 @@ public class ProgramaTV implements Serializable {
 	private Date fechainicio;
 	private Date fechafin;
 	private String hashtag;
+	private List<Status> tweets;
 	private String monitorizacion;
 	
-	public ProgramaTV(String titulo, Date fechainicio, Date fechafin, String hashtag){
+	public ProgramaTV(String titulo, Date fechainicio, Date fechafin, List<Status> tweets, String hashtag){
 		super();
 		this.titulo = titulo;
 		this.fechainicio = fechainicio;
 		this.fechafin = fechafin;
 		this.hashtag = hashtag;
+		this.tweets = tweets;
 	}
 
 	@Override
@@ -56,11 +61,19 @@ public class ProgramaTV implements Serializable {
 		this.fechafin = fechafin;
 	}
 
-	public String getHashtag() {
-		return hashtag;
+	public List<Status> getTweets() {
+		return tweets;
 	}
 
-	public void setHashtag(String hashtag) {
+	public void setTweets(List<Status> tweets) {
+		this.tweets = tweets;
+	}
+	
+	public String getHashtag(){
+		return this.hashtag;
+	}
+	
+	public void setHashtag(String hashtag){
 		this.hashtag = hashtag;
 	}
 

@@ -7,6 +7,10 @@ import java.util.TimerTask;
 
 import es.dit.upm.socialTV.socialTVbs.beans.PaisEnum;
 import es.dit.upm.socialTV.socialTVbs.beans.Trend;
+import es.dit.upm.socialTV.socialTVbs.programatv.ProgramaTV;
+import es.dit.upm.socialTV.socialTVbs.programatv.ProgramaTVDAO;
+import es.dit.upm.socialTV.socialTVbs.programatv.ProgramaTVImpl;
+
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -33,11 +37,14 @@ public class ConsultaAPITwitter {
 		this.twitter = TwitterFactory.getSingleton();
 	}
 
-	/**
-	 * API de búsqueda en Twitter. Últimos 7 días
-	 * @param text
-	 * @return Lista de tweets
-	 */
+	public void crearConsulta(String titulo, Date fechaInicio, Date fechaFin, String hashtag){
+		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
+		ProgramaTV prog = new ProgramaTV(titulo, fechaInicio, fechaFin, null, hashtag);
+		dao.crearMonitorizacion(prog);
+		iniciarConsulta(prog, MAX_SEARCH);
+	}
+
+	// API de búsqueda en Twitter. Últimos 7 días
 	public List<Status> search(String text, String date){
 		Query query = new Query(text);
 		// Solo tweets recientes
@@ -59,35 +66,30 @@ public class ConsultaAPITwitter {
 		return result.getTweets();
 	}
 
-	/**
-	 * 
-	 * @param hashtag
-	 * @param inicio Fecha de inicio del programa
-	 * @param periodo Periodo de la peticion en ms
-	 */
-	public void setTimer(String hashtag, Date inicio, int periodo){
-		TimerExec timer = new TimerExec();
-		timer.setTimer(hashtag, inicio, periodo);
+	// periodo en peticiones por minuto
+	public void iniciarConsulta(ProgramaTV prog, int periodo){
+		Timer timer = new Timer();
+		timer.schedule(new TimerExec( prog ), prog.getFechainicio(), 1/periodo*1000*60);
 	}
-	
+
 	/**
 	 * Clase que desarrolla la tarea periódica
 	 * @author Antonio
 	 *
 	 */
-	private class TimerExec{
-		public void setTimer(String hashtag, Date inicio, int periodo){
-			Timer timer;
-			timer = new Timer();
-			TimerTask task = new TimerTask() {
-				@Override
-				public void run()
-				{
-					//search(hashtag, inicio);
-					//TODO: Guardar en base de datos
-				}
-			};
-			timer.schedule(task, inicio, periodo);
+	private class TimerExec extends TimerTask{
+
+		private ProgramaTV prog;
+
+		private TimerExec (ProgramaTV prog){
+			this.prog = prog;
+		}
+
+		@Override
+		public void run() {
+			List <Status> tweets = search(prog.getHashtag(),prog.getFechainicio().toString());
+			ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
+			dao.updateProgramaTV(prog);
 		}
 	}
 
@@ -102,11 +104,11 @@ public class ConsultaAPITwitter {
 	public Trend consultarHashtag(String hashtag) {
 		// TODO: llamar a la API de twitter, mapear la respuesta, etc.
 		String respuestaJSON = llamarAPITwitter(hashtag, null);
-		return mapearJSON2Trend(respuestaJSON);	
+		return mapearJSON2Trend(respuestaJSON);
 	}
 
 	/**
-	 * Realiza una consulta a partir de un hashtag dado y en un determinado 
+	 * Realiza una consulta a partir de un hashtag dado y en un determinado
 	 * pais
 	 * @param hashtag
 	 * @return
@@ -114,7 +116,7 @@ public class ConsultaAPITwitter {
 	public Trend consultarHashtag(String hashtag, PaisEnum pais) {
 		// TODO: llamar a la API de twitter, mapear la respuesta, etc.
 		String respuestaJSON = llamarAPITwitter(hashtag, pais);
-		return mapearJSON2Trend(respuestaJSON);	
+		return mapearJSON2Trend(respuestaJSON);
 	}
 
 	private String llamarAPITwitter(String hashtag, PaisEnum pais) {

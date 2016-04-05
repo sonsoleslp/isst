@@ -13,4 +13,12 @@
   	<servlet-name>MapaServlet</servlet-name>
   	<url-pattern>/Mapa</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>APIServlet</servlet-name>
+  	<servlet-class>com.dit.upm.socialTV.socialTVweb.controllers.APIServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>APIServlet</servlet-name>
+  	<url-pattern>/api</url-pattern>
+  </servlet-mapping>
 </web-app>
