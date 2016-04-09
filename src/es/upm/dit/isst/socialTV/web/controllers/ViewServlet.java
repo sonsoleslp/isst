@@ -18,7 +18,9 @@ public class ViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ProgramaTV temp = dao.ProgramaPorTitulo("Antonio");
-		req.setAttribute("tweet", temp.getLastTweet());
+		if (temp != null){
+			req.setAttribute("tweet", temp.getLastTweet());
+		}
 		try {
 			// Problemas con url tipo /api/view
 			RequestDispatcher view = req.getRequestDispatcher("views/mostrarTest.jsp");
