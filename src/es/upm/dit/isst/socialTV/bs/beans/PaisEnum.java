@@ -1,4 +1,4 @@
-package es.upm.dit.isst.socialTVbs.beans;
+package es.upm.dit.isst.socialTV.bs.beans;
 
 import java.io.Serializable;
 

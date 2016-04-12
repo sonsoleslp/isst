@@ -2,4 +2,5 @@
 /bin/
 *.class
 *.war
-war/WEB-INF/appengine-generated/
+war/WEB-INF/appengine-generated
+war/WEB-INF/classes
