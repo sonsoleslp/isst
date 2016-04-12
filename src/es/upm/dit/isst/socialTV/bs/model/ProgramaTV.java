@@ -9,6 +9,12 @@ import javax.persistence.Id;
 
 import twitter4j.Status;
 
+/**
+ * Definición de la Tabla ProgramaTV
+ * 
+ * @author Paco
+ *
+ */
 @Entity
 public class ProgramaTV implements Serializable {
 
@@ -16,16 +22,28 @@ public class ProgramaTV implements Serializable {
 	
 	@Id
 	private String titulo;
+	private String episodeCode;
 	private String fechainicio;
+	private String horaInicio;
 	private long duracion;
 	private String hashtag;
 	private int count;
 	private long lastId;
 	private String lastTweet;
 	
-	public ProgramaTV(String titulo, String fechainicio, long duracion, String hashtag){
+	/**
+	 * Constructor
+	 * 
+	 * @param titulo
+	 * @param fechainicio
+	 * @param duracion
+	 * @param hashtag
+	 */
+	public ProgramaTV(String titulo, String episodeCode, String fechainicio, String horaInicio, long duracion, String hashtag){
 		this.titulo = titulo;
+		this.episodeCode = episodeCode;
 		this.fechainicio = fechainicio;
+		this.horaInicio = horaInicio;
 		this.duracion = duracion;
 		this.hashtag = hashtag;
 		this.count = 0;
@@ -93,5 +111,20 @@ public class ProgramaTV implements Serializable {
 	public void setHashtag(String hashtag){
 		this.hashtag = hashtag;
 	}
+	public String getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+	public String getEpisodeCode() {
+		return episodeCode;
+	}
+
+	public void setEpisodeCode(String episodeCode) {
+		this.episodeCode = episodeCode;
+	}
+
 
 }

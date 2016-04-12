@@ -47,7 +47,8 @@ public class ApiTestServlet extends HttpServlet {
 		String duracion = req.getParameter("duracion");
 		Long dur = Long.parseLong(duracion);
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
-		consulta.crearConsulta(titulo, begin, dur, hash);
+		// ProgramaTV(titulo, episodeCode, fechaInicio, horaInicio, duracion, hashtag);
+		consulta.crearConsulta(titulo, "episodeCode", begin, "horaInicio", dur, hash);
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");

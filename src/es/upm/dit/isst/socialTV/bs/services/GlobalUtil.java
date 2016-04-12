@@ -48,4 +48,23 @@ public class GlobalUtil {
 
 	    return result;
 	}
+	
+	/**
+	 * Arreglo del anterior para imprimir array de ints
+	 * 
+	 * @param items
+	 * @return result
+	 */
+	public static String getArrayInt(int[] items){
+	    String result = "[";
+	    for(int i = 0; i < items.length; i++) {
+	        result += items[i];
+	        if(i < items.length - 1) {
+	            result += ", ";
+	        }
+	    }
+	    result += "]";
+
+	    return result;
+	}
 }

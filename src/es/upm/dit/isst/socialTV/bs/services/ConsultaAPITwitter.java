@@ -48,9 +48,9 @@ public class ConsultaAPITwitter {
 		this.twitter = TwitterFactory.getSingleton();
 	}
 
-	public void crearConsulta(String titulo, String fechaInicio, long duracion, String hashtag){
+	public void crearConsulta(String titulo, String episodeCode, String fechaInicio, String horaInicio, long duracion, String hashtag){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		ProgramaTV prog = new ProgramaTV(titulo, fechaInicio, duracion, hashtag);
+		ProgramaTV prog = new ProgramaTV(titulo, episodeCode, fechaInicio, horaInicio, duracion, hashtag);
 		dao.crearMonitorizacion(prog);
 	}
 	
