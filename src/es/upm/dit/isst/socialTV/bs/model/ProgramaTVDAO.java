@@ -11,6 +11,7 @@ public interface ProgramaTVDAO {
 	public ProgramaTV ProgramaPorTitulo(String titulo);
 	public List<ProgramaTV> ProgramasPorFecha(String fechainicio);
 	public List<ProgramaTV> todosLosProgramas();
+	public ProgramaTV[] programasTop5();
 
 	//PUT
 	public void updateProgramaTV(ProgramaTV prog);

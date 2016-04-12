@@ -9,6 +9,9 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 
+//ESTE BEAN ESTÁ MEJOR IMPLEMENTADO (CREO) EN SpainMapBean. ¿PODEMOS BORRARLO?
+
+
 /**
  * Bean que sirve para transmitir datos entre el proyecto business y el web
  * (puede haber mas de uno)

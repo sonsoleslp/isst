@@ -1,0 +1,51 @@
+package es.upm.dit.isst.socialTV.bs.services;
+
+/**
+ * @author Paco
+ *
+ * Clase para definir variables y métodos estáticos, útiles para todo el proyecto.
+ */
+public class GlobalUtil {
+	
+	/**
+	 * Igual te sirve para el Mapa, Naomi.
+	 * Se puede hacer que el SpainMapBean tenga este valor siempre.
+	 */
+	public static final String[] SPAIN_PROVINCES_ARRAY= {
+			"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
+			 "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+			 "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+			 "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
+	};
+	
+	/**	NOMBRES PARA DECLARACIONES DE BEANS EN JSP **/
+	public static final String TOP_5_BEAN = "top5Bean";
+	public static final String GRAPH_BEAN = "graphBean";
+	public static final String SPAIN_MAP_BEAN = "spainMapBean";
+	
+	//Esto puede ser útil por si nos da por cambiar el nombre a alguna tabla, 
+	//y así sólo tener que cambiarlo aquí
+	/**	NOMBRES DE LAS TABLAS DE BASES DE DATOS **/
+	public static final String TABLE_PROGRAMA_TV = "ProgramaTV"; 
+	public static final String TABLE_USERS = "Users";
+	
+	/**
+	 * Método para imprimir arrays de la forma "[a, b, c... ]"
+	 * 
+	 * @param items
+	 * @return result
+	 */
+	public static String getArrayString(String[] items){
+	    String result = "[";
+	    for(int i = 0; i < items.length; i++) {
+	        result += "\"" + items[i] + "\"";
+	        if(i < items.length - 1) {
+	            result += ", ";
+	        }
+	    }
+	    result += "]";
+
+	    return result;
+	}
+}
