@@ -30,6 +30,9 @@ public class GlobalUtil {
 	public static final String TABLE_PROGRAMA_TV = "ProgramaTV"; 
 	public static final String TABLE_USERS = "Users";
 	
+	/** CONSTANTES DE LA APLICACION **/
+	public static final int NUM_PROGRAMAS_TOP = 5;
+	
 	/**
 	 * Método para imprimir arrays de la forma "[a, b, c... ]"
 	 * 

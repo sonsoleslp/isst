@@ -47,14 +47,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>Cada5min</servlet-name>
         <url-pattern>/cron/5min</url-pattern>
     </servlet-mapping>
-<!--     <servlet>
+    <servlet>
         <servlet-name>Top5</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.Top5Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Top5</servlet-name>
         <url-pattern>/top</url-pattern>
-    </servlet-mapping> -->
+    </servlet-mapping>
     <servlet>
         <servlet-name>Grafica</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.GraphServlet</servlet-class>
