@@ -17,26 +17,34 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     </servlet-mapping>
     <servlet>
         <servlet-name>API</servlet-name>
-        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.APIServlet</servlet-class>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.ApiTestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>API</servlet-name>
-        <url-pattern>/api</url-pattern>
+        <url-pattern>/apitest</url-pattern>
     </servlet-mapping>
 	<servlet>
-        <servlet-name>Cron</servlet-name>
-        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CronServlet</servlet-class>
+        <servlet-name>CronTest</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CronTestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Cron</servlet-name>
-        <url-pattern>/cron/consulta</url-pattern>
+        <servlet-name>CronTest</servlet-name>
+        <url-pattern>/cron/test</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>Mostrar</servlet-name>
-        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.ViewServlet</servlet-class>
+        <servlet-name>MostrarTest</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.ViewTestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Mostrar</servlet-name>
-        <url-pattern>/view</url-pattern>
+        <servlet-name>MostrarTest</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Cada5min</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.Cron5MinServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cada5min</servlet-name>
+        <url-pattern>/cron/5min</url-pattern>
     </servlet-mapping>
 </web-app>

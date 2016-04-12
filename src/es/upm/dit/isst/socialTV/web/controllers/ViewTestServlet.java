@@ -1,6 +1,7 @@
 package es.upm.dit.isst.socialTV.web.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,18 +13,18 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 
-public class ViewServlet extends HttpServlet {
+public class ViewTestServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		ProgramaTV temp = dao.ProgramaPorTitulo("Antonio");
-		if (temp != null){
-			req.setAttribute("tweet", temp.getLastTweet());
+		ArrayList <ProgramaTV> progs = new ArrayList(dao.todosLosProgramas());
+		if (progs != null){
+			req.setAttribute("tweet", progs);
 		}
 		try {
-			// Problemas con url tipo /api/view
-			RequestDispatcher view = req.getRequestDispatcher("views/mostrarTest.jsp");
+			// Problemas con url tipo /api/view, jsp not found
+			RequestDispatcher view = req.getRequestDispatcher("views/insertProgTest.jsp");
 			view.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,9 +1,11 @@
 package es.upm.dit.isst.socialTV.web.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -13,17 +15,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 
-public class APIServlet extends HttpServlet {
+public class ApiTestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
+		ArrayList <ProgramaTV> progs = new ArrayList(dao.todosLosProgramas());
+		req.setAttribute("progs", progs);
 		try {
-			RequestDispatcher view = req.getRequestDispatcher("views/api.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("views/insertProgTest.jsp");
 			view.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,6 +48,10 @@ public class APIServlet extends HttpServlet {
 		Long dur = Long.parseLong(duracion);
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
 		consulta.crearConsulta(titulo, begin, dur, hash);
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");
+		out.close();
 	}
 
 	private Date format (String date){
