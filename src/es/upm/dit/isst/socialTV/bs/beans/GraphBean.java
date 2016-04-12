@@ -1,6 +1,7 @@
 package es.upm.dit.isst.socialTV.bs.beans;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 @SuppressWarnings("serial") //pa que no salga un warning porculero
 public class GraphBean implements Serializable {
@@ -13,7 +14,7 @@ public class GraphBean implements Serializable {
 	/**
 	 * Números de tweets medidos
 	 */
-	private int[] numTweets;
+	private String[] numTweets;
 	/**
 	 * Máximo número de tweets, para escalar bien la gráfica
 	 */
@@ -39,12 +40,12 @@ public class GraphBean implements Serializable {
 		this.strHoras = strHoras;
 	}
 
-	public int[] getNumTweets() {
+	public String[] getNumTweets() {
 		return numTweets;
 	}
 
 	public void setNumTweets(int[] numTweets) {
-		this.numTweets = numTweets;
+		this.numTweets = Arrays.toString(numTweets).split("[\\[\\]]")[1].split(", ");;
 	}
 
 	public int getPtoMaximo() {
