@@ -45,7 +45,7 @@ public class GraphBean implements Serializable {
 	}
 
 	public void setNumTweets(int[] numTweets) {
-		this.numTweets = Arrays.toString(numTweets).split("[\\[\\]]")[1].split(", ");;
+		this.numTweets = Arrays.toString(numTweets).split("[\\[\\]]")[1].split(", ");
 	}
 
 	public int getPtoMaximo() {
