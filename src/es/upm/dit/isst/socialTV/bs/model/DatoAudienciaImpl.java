@@ -26,15 +26,15 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 	@Override
 	public void apuntaDato(Long foreignKey, Date fecha, Integer count) {
 		String date = format(fecha);
+		EntityManager em = EMFService.get().createEntityManager();
 		DatoAudiencia dato = new DatoAudiencia(foreignKey, date, count);
-		EntityManager em = EMFServiceData.get().createEntityManager();
 		em.persist(dato);
 		em.close();
 	}
 	@Override
 	public List<DatoAudiencia> getAudienceForEpisodeWithId(Long foreignKey) {
 		// TODO Auto-generated method stub
-		EntityManager em = EMFServiceData.get().createEntityManager();
+		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_DATO_AUDIENCIA+" m WHERE m.foreignKey = :foreignKey");
 		q.setParameter("foreignKey", foreignKey);
 		List<DatoAudiencia> datos = q.getResultList();
@@ -44,7 +44,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 	@Override
 	public void deleteDato(DatoAudiencia dato) {
 		// TODO Auto-generated method stub
-		EntityManager em = EMFServiceData.get().createEntityManager();
+		EntityManager em = EMFService.get().createEntityManager();
 		em.remove(dato);
 		em.close();
 	}

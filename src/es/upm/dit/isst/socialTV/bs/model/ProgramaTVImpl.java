@@ -65,7 +65,6 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		return programas;
 	}
 	public List<ProgramaTV> todosLosProgramas() {
-		System.out.println("todosLosProgramas");
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m");
 		List<ProgramaTV> programas = q.getResultList();
