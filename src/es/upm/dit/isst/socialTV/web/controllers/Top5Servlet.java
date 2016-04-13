@@ -34,14 +34,23 @@ public class Top5Servlet extends HttpServlet {
 		//tb.setProgramasTop5(ProgramaTVImpl.getInstance().programasTop5()); //No se si me he pegado mucho triple con cómo se usa esta clase
 		
 		// DATOS DE PRUEBA
-		Top5Bean[] programas = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
+		/*Top5Bean[] programas = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
 		programas[0] = new Top5Bean("Modern Family", "T9E12", "#MF16", "16/02/2016 | 19:00-20:00", 3453453);
 		programas[1] = new Top5Bean("Modern Family", "T9E11", "#MF16", "23/02/2016 | 19:00-20:00", 1453453);
 		programas[2] = new Top5Bean("Friends", "T5E6", "#RossAndRachel", "03/02/2016 | 15:00-16:00", 353453);
 		programas[3] = new Top5Bean("Game Of Thrones", "T3E4", "#GoT", "13/01/2016 | 21:00-22:00", 53453);
 		programas[4] = new Top5Bean("The Big Bang Theory", "T8E8", "#Shamy", "15/01/2016 | 19:00-19:30", 5353);
+		session.setAttribute(GlobalUtil.TOP_5_BEAN, programas);*/
 		
-		session.setAttribute(GlobalUtil.TOP_5_BEAN, programas);
+		//DATOS SERIOS PARA PROBAR
+		Top5Bean[] progsBean = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
+		ProgramaTV[] progs = new ProgramaTV[GlobalUtil.NUM_PROGRAMAS_TOP];
+		progs = ProgramaTVImpl.getInstance().programasTop5();
+		progsBean = obtenerTop5Beans(progs);
+		//dejar la siguiente línea y borrar lo de antes cuando funcione...
+		//Top5Bean[] progsBean = obtenerTop5Beans(ProgramaTVImpl.getInstance().programasTop5());
+		session.setAttribute(GlobalUtil.TOP_5_BEAN, progsBean);
+		
 		
 		// Devolvemos la vista del Top 5
 		 RequestDispatcher rd = request.getRequestDispatcher("views/top5.jsp");
