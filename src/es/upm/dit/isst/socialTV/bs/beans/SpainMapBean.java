@@ -2,7 +2,14 @@ package es.upm.dit.isst.socialTV.bs.beans;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial") //pa que no salga un warning porculero
+/**
+ * JavaBean contenedor de la información necesaria para ver el impacto
+ * en Twitter por provincias
+ * 
+ * @author Paco
+ *
+ */
+@SuppressWarnings("serial")
 public class SpainMapBean implements Serializable {
 
 	

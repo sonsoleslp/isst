@@ -3,23 +3,14 @@ package es.upm.dit.isst.socialTV.bs.beans;
 import java.io.Serializable;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 
-@SuppressWarnings("serial") //pa que no salga un warning porculero
+/**
+ * JavaBean que para pasar los atributos del Top 5 de programas
+ * 
+ * @author Paco
+ *
+ */
+@SuppressWarnings("serial")
 public class Top5Bean implements Serializable {
-	
-	/**
-	 * Array de filas de la base de datos de ProgramasTV
-	 */
-	// Paco: he tenido que cambiarlo pq si no no me funcionaba
-	// la jsp, lo dejo para que lo borres si le das el visto bueno
-	// a los cambios
-	//private ProgramaTV[] programasTop5;
-	//	public ProgramaTV[] getProgramasTop5() {
-	//	return programasTop5;
-	//}
-	//
-	//public void setProgramasTop5(ProgramaTV[] programasTop5) {
-	//	this.programasTop5 = programasTop5;
-	//}
 	
 	private String titulo;
 	private String episodeCode;
@@ -29,9 +20,7 @@ public class Top5Bean implements Serializable {
 	 * fecha de emision del programa con las horas
 	 * Ejemplo 16/02/2016 | 19:00-20:00
 	 * 
-	 * 
-	 * NOTA: Si es mas sencillo puedes pasarme la fecha y las horas en 
-	 * atributos diferentes y ya le doy formato desde la jsp que tb se puede
+	 * A hacer en el servlet
 	 */
 	private String emision;
 	private int numTweets;

@@ -88,13 +88,11 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 	public ProgramaTV[] programasTop5() {
 		EntityManager em = EMFService.get().createEntityManager();
 		//Obtener los 5 resultados con mayor count
-		/*String internalQuery = "SELECT m, rownum FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m ORDER BY m.count DESC";
-		Query q = em.createQuery("SELECT * IN ("+internalQuery+") WHERE rownum < 6");*/
 		//Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m WHERE m.rownum < 6 ORDER BY m.count DESC");
-		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m ORDER BY m.count").setMaxResults(5);
+		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m ORDER BY m.count")
+				.setMaxResults(GlobalUtil.NUM_PROGRAMAS_TOP);
 		List<ProgramaTV> programas = q.getResultList();
-		//ProgramaTV[] programasArray = (ProgramaTV[]) programas.toArray();
-		ProgramaTV[] programasArray = new ProgramaTV[programas.size()]; //debería ser 5 anyways
+		ProgramaTV[] programasArray = new ProgramaTV[GlobalUtil.NUM_PROGRAMAS_TOP];
 		programas.toArray(programasArray);
 		em.close();
 		return programasArray;

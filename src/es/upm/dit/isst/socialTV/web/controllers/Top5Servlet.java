@@ -56,4 +56,27 @@ public class Top5Servlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * Método auxiliar que parsea los objetos obtenidos de bases de datos a un javabean
+	 * 
+	 * @param programas ProgramaTV[] 
+	 * @return top5Bean Top5Bean[]
+	 */
+	private Top5Bean[] obtenerTop5Beans(ProgramaTV[] programas) {
+		
+		Top5Bean[] top5Bean = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
+		
+		for (int i = 0; i <= GlobalUtil.NUM_PROGRAMAS_TOP; i++) {
+			//TODO: //esto hay que construirlo en algun lado
+			top5Bean[i].setEmision(programas[i].getFechaInicio()); 
+			// fin todo
+			
+			top5Bean[i].setEpisodeCode(programas[i].getEpisodeCode());
+			top5Bean[i].setHashtag(programas[i].getHashtag());
+			top5Bean[i].setNumTweets(programas[i].getCount());
+			top5Bean[i].setTitulo(programas[i].getTitulo());	
+		}
+		
+		return top5Bean;
+	}
 }

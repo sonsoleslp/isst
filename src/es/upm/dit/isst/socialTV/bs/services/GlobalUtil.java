@@ -6,20 +6,7 @@ package es.upm.dit.isst.socialTV.bs.services;
  * Clase para definir variables y métodos estáticos, útiles para todo el proyecto.
  */
 public class GlobalUtil {
-	
-	
-	public static final String FORMAT_DATE = "yyyy-MM-dd'T'HH:mm";
-	/**
-	 * Igual te sirve para el Mapa, Naomi.
-	 * Se puede hacer que el SpainMapBean tenga este valor siempre.
-	 */
-	public static final String[] SPAIN_PROVINCES_ARRAY= {
-			"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
-			 "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
-			 "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
-			 "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
-			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
-	};
+
 	
 	/**	NOMBRES PARA DECLARACIONES DE BEANS EN JSP **/
 	public static final String TOP_5_BEAN = "top5Bean";
@@ -35,7 +22,21 @@ public class GlobalUtil {
 	
 	/** CONSTANTES DE LA APLICACION **/
 	public static final int NUM_PROGRAMAS_TOP = 5;
+	public static final String FORMAT_DATE = "yyyy-MM-dd'T'HH:mm";
 	
+	/**
+	 * Igual te sirve para el Mapa, Naomi.
+	 * Se puede hacer que el SpainMapBean tenga este valor siempre.
+	 */
+	public static final String[] SPAIN_PROVINCES_ARRAY= {
+			"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
+			 "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+			 "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+			 "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
+	};
+	
+
 	/**
 	 * Método para imprimir arrays de la forma "[a, b, c... ]"
 	 * 
