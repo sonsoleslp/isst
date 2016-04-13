@@ -19,6 +19,7 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
+import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 public class ApiTestServlet extends HttpServlet {
 
@@ -39,32 +40,27 @@ public class ApiTestServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// yyyy-MM-dd
+		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		String fechaInicio = req.getParameter("fecha_inicio");
-		String horaInicio = req.getParameter("hora_inicio");
-		String episodeCode = req.getParameter("episode");
-		//Date fechaInicio = format(begin);
-		String hash = req.getParameter("hash");
-		String titulo = req.getParameter("titulo");
-		String duracion = req.getParameter("duracion");
-		Long dur = Long.parseLong(duracion);
-		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
-		consulta.crearConsulta(titulo, episodeCode, fechaInicio, horaInicio, dur, hash);
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");
-		out.close();
-	}
-
-	private Date format (String date){
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		Date fechaInicio = null;
+		String fechaFin = req.getParameter("fecha_fin");
+		Date dateFin = null;
+		Date dateInicio = null;
 		try {
-			fechaInicio = format.parse(date);
+			dateFin = format.parse(fechaFin);
+			dateInicio = format.parse(fechaInicio);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return fechaInicio;
+		String episodeCode = req.getParameter("episode");
+		//Date fechaInicio = format(begin);
+		String hash = req.getParameter("hash");
+		String titulo = req.getParameter("titulo");
+		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
+		consulta.crearConsulta(titulo, episodeCode, dateInicio, dateFin, hash);
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");
+		out.close();
 	}
 }

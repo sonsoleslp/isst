@@ -1,5 +1,7 @@
 package es.upm.dit.isst.socialTV.bs.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,14 +19,15 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 			instance = new ProgramaTVImpl();
 		return instance;
 	}
-	public void crearMonitorizacion(ProgramaTV prog) {
-		
+	public void crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag) {
+		String init = format(fechaInicio);
+		String end = format(fechaFin);
+		ProgramaTV prog = new ProgramaTV(titulo, episodeCode, init,end, hashtag);
 		EntityManager em = EMFService.get().createEntityManager();
 		em.persist(prog);
 		em.close();
 	}
 	public ProgramaTV programaPorId(Long primaryKey) {
-		
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT t FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" t WHERE t.primaryKey = :primaryKey");
 		q.setParameter("primaryKey", primaryKey);
@@ -35,7 +38,7 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		return prog;
 	}
 	public List<ProgramaTV> ProgramasPorHashtag(String hashtag) {
-		
+
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT t FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" t WHERE t.hashtag = :hashtag");
 		q.setParameter("hashtag", hashtag);
@@ -44,7 +47,7 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		return programas;
 	}
 	public List<ProgramaTV> programasPorTitulo(String titulo) {
-		
+
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT t FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" t WHERE t.titulo = :titulo");
 		q.setParameter("titulo", titulo);
@@ -52,11 +55,11 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.close();
 		return programas;
 	}
-	public List<ProgramaTV> programasPorFecha(String fechainicio) {
-		// TODO Auto-generated method stub
+	public List<ProgramaTV> programasPorFecha(Date date) {
+		String fechaInicio = format(date);
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m WHERE m.fechainicio = :fechainicio");
-		q.setParameter("fechainicio", fechainicio);
+		q.setParameter("fechainicio", fechaInicio);
 		List<ProgramaTV> programas = q.getResultList();
 		em.close();
 		return programas;
@@ -70,18 +73,18 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		return programas;
 	}
 	public void updateProgramaTV(ProgramaTV prog) {
-		
+
 		EntityManager em = EMFService.get().createEntityManager();
 		em.merge(prog);
 		em.close();
 	}
 	public void deleteProgramaTV(ProgramaTV prog) {
-		
+
 		EntityManager em = EMFService.get().createEntityManager();
 		em.remove(prog);
 		em.close();
 	}
-	
+
 	public ProgramaTV[] programasTop5() {
 		EntityManager em = EMFService.get().createEntityManager();
 		//Obtener los 5 resultados con mayor count
@@ -95,5 +98,9 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		programas.toArray(programasArray);
 		em.close();
 		return programasArray;
+	}
+	public String format(Date date){
+		DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+		return dateFormat.format(date);
 	}
 }

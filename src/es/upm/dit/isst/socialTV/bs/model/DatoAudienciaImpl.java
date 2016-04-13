@@ -1,5 +1,8 @@
 package es.upm.dit.isst.socialTV.bs.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,10 +23,10 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 			instance = new DatoAudienciaImpl();
 		return instance;
 	}
-	//Esto no sé si va con Override
 	@Override
-	public void apuntaDato(DatoAudiencia dato) {
-		// TODO Auto-generated method stub
+	public void apuntaDato(Long foreignKey, Date fecha, Integer count) {
+		String date = format(fecha);
+		DatoAudiencia dato = new DatoAudiencia(foreignKey, date, count);
 		EntityManager em = EMFServiceData.get().createEntityManager();
 		em.persist(dato);
 		em.close();
@@ -44,6 +47,9 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		EntityManager em = EMFServiceData.get().createEntityManager();
 		em.remove(dato);
 		em.close();
-		
+	}
+	public String format(Date date){
+		DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+		return dateFormat.format(date);
 	}
 }

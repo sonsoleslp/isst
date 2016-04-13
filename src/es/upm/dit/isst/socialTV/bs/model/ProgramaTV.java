@@ -22,9 +22,8 @@ public class ProgramaTV implements Serializable {
 	private Long primaryKey;
 	private String titulo;
 	private String episodeCode;
-	private String fechainicio;
-	private String horaInicio;
-	private long duracion;
+	private String fechaInicio;
+	private String fechaFin;
 	private String hashtag;
 	private int count;
 	private long lastId;
@@ -39,21 +38,37 @@ public class ProgramaTV implements Serializable {
 	 * @param duracion
 	 * @param hashtag
 	 */
-	public ProgramaTV(String titulo, String episodeCode, String fechainicio, String horaInicio, long duracion, String hashtag){
+	public ProgramaTV(String titulo, String episodeCode, String fechaInicio, String fechaFin, String hashtag){
 		this.titulo = titulo;
 		this.episodeCode = episodeCode;
-		this.fechainicio = fechainicio;
-		this.horaInicio = horaInicio;
-		this.duracion = duracion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
 		this.hashtag = hashtag;
 		this.count = 0;
 		this.lastId = -1;
+		this.lastTweet = "";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
 	public Long getPrimaryKey() {
@@ -88,28 +103,12 @@ public class ProgramaTV implements Serializable {
 		this.count = count;
 	}
 
-	public long getDuracion() {
-		return duracion;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public void setDuracion(long duracion) {
-		this.duracion = duracion;
-	}
-
-	public String getFechainicio() {
-		return fechainicio;
-	}
-
-	public void setFechainicio(String fechainicio) {
-		this.fechainicio = fechainicio;
 	}
 	
 	public String getHashtag(){
@@ -119,13 +118,7 @@ public class ProgramaTV implements Serializable {
 	public void setHashtag(String hashtag){
 		this.hashtag = hashtag;
 	}
-	public String getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraInicio(String horaInicio) {
-		this.horaInicio = horaInicio;
-	}
+	
 	public String getEpisodeCode() {
 		return episodeCode;
 	}

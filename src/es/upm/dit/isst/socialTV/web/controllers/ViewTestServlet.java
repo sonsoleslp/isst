@@ -36,7 +36,7 @@ public class ViewTestServlet extends HttpServlet {
 		}
 		try {
 			// Problemas con url tipo /api/view, jsp not found
-			RequestDispatcher view = req.getRequestDispatcher("views/mostrarTest.jsp");
+			RequestDispatcher view = req.getRequestDispatcher(req.getContextPath()+"/views/mostrarTest.jsp");
 			view.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();

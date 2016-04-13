@@ -7,6 +7,8 @@ package es.upm.dit.isst.socialTV.bs.services;
  */
 public class GlobalUtil {
 	
+	
+	public static final String FORMAT_DATE = "yyyy-MM-dd'T'HH:mm";
 	/**
 	 * Igual te sirve para el Mapa, Naomi.
 	 * Se puede hacer que el SpainMapBean tenga este valor siempre.

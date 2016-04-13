@@ -26,7 +26,7 @@ public class DatoAudiencia implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long primaryKey;
 	private Long foreignKey;
-	private String hora;
+	private String fecha;
 	private int count;
 	
 	/**
@@ -36,8 +36,8 @@ public class DatoAudiencia implements Serializable {
 	 * @param count
 	 */
 
-	public DatoAudiencia(Long foreignKey, String hora, Integer count){
-		this.hora= hora;
+	public DatoAudiencia(Long foreignKey, String fecha, Integer count){
+		this.fecha= fecha;
 		this.foreignKey = foreignKey;
 		this.count= count;
 	}
@@ -58,12 +58,12 @@ public class DatoAudiencia implements Serializable {
 		this.foreignKey = foreignKey;
 	}
 
-	public String getHora() {
-		return hora;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setHora(String hora) {
-		this.hora = hora;
+	public void setHora(String fecha) {
+		this.fecha = fecha;
 	}
 
 	public int getCount() {
@@ -73,11 +73,4 @@ public class DatoAudiencia implements Serializable {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
-	@Override
-	public String toString() {
-		return "DatosAudiencia [primaryKey=" + primaryKey + ", foreignKey=" + foreignKey + ", hora=" + hora + ", count=" + count + "]";
-	}
-
-
 }

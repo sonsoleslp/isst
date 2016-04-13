@@ -1,16 +1,17 @@
 package es.upm.dit.isst.socialTV.bs.model;
+import java.util.Date;
 import java.util.List;
 
 
 public interface ProgramaTVDAO {
 	//POST
-	public void crearMonitorizacion(ProgramaTV prog);
+	public void crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag);
 
 	//GET
 	public ProgramaTV programaPorId(Long primaryKey);
 	public List<ProgramaTV> ProgramasPorHashtag(String hashtag);
 	public List<ProgramaTV> programasPorTitulo(String titulo);
-	public List<ProgramaTV> programasPorFecha(String fechainicio);
+	public List<ProgramaTV> programasPorFecha(Date date);
 	public ProgramaTV[] programasTop5();
 
 	//PUT

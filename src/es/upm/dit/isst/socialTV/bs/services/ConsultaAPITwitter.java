@@ -55,16 +55,17 @@ public class ConsultaAPITwitter {
 		this.twitter = TwitterFactory.getSingleton();
 	}
 
-	public void crearConsulta(String titulo, String episodeCode, String fechaInicio, String horaInicio, long duracion, String hashtag){
+	public void crearConsulta(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		ProgramaTV prog = new ProgramaTV(titulo, episodeCode, fechaInicio, horaInicio, duracion, hashtag);
-		dao.crearMonitorizacion(prog);
-		// Se creara con la hora de la monitorización, que no tiene por qué ser el mismo día
+		dao.crearMonitorizacion(titulo, episodeCode, fechaInicio, fechaFin, hashtag);
+		
+		/*Se creara con la hora de la monitorización, que no tiene por qué ser el mismo día
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		String date = dateFormat.format(new Date());
 		DatoAudiencia dato = new DatoAudiencia(prog.getPrimaryKey(), date , 0);
 		datos.apuntaDato(dato);
+		*/
 	}
 	
 	public void updateTweets(Long id){
@@ -73,7 +74,8 @@ public class ConsultaAPITwitter {
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		
 		int count=0;
-		List <Status> list = search(prog.getHashtag(),prog.getFechainicio().toString(), prog.getLastId());
+		String a = prog.getFechaInicio();
+		List <Status> list = search(prog.getHashtag(),prog.getFechaInicio(), prog.getLastId());
 		if (!list.isEmpty()){
 			Status temp = list.get(list.size()-1);
 			prog.setLastId(temp.getId());
@@ -81,10 +83,7 @@ public class ConsultaAPITwitter {
 			count = list.size();
 			prog.setCount(prog.getCount()+count);
 		}
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		String date = dateFormat.format(new Date());
-		DatoAudiencia dato = new DatoAudiencia(prog.getPrimaryKey(), date, count);
-		datos.apuntaDato(dato);
+		datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
 		dao.updateProgramaTV(prog);
 	}
 
