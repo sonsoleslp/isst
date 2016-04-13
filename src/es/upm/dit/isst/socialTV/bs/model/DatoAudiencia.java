@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import twitter4j.Status;
@@ -19,8 +21,9 @@ import twitter4j.Status;
 public class DatoAudiencia implements Serializable {
 
 	private static final long serialVersionUID = 01L;
-	public static long counter = 1;
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long primaryKey;
 	private Long foreignKey;
 	private String hora;
@@ -34,7 +37,6 @@ public class DatoAudiencia implements Serializable {
 	 */
 
 	public DatoAudiencia(Long foreignKey, String hora, Integer count){
-		this.primaryKey = DatoAudiencia.counter++;
 		this.hora= hora;
 		this.foreignKey = foreignKey;
 		this.count= count;

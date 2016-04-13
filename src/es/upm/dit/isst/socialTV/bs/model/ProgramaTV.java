@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import twitter4j.Status;
@@ -19,8 +21,8 @@ import twitter4j.Status;
 public class ProgramaTV implements Serializable {
 
 	private static final long serialVersionUID = 01L;
-	private static long counter = 1;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long primaryKey;
 	private String titulo;
 	private String episodeCode;
@@ -42,7 +44,6 @@ public class ProgramaTV implements Serializable {
 	 * @param hashtag
 	 */
 	public ProgramaTV(String titulo, String episodeCode, String fechainicio, String horaInicio, long duracion, String hashtag){
-		this.primaryKey = ProgramaTV.counter++;
 		this.titulo = titulo;
 		this.episodeCode = episodeCode;
 		this.fechainicio = fechainicio;
