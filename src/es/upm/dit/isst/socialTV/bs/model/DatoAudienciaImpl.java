@@ -1,6 +1,5 @@
 package es.upm.dit.isst.socialTV.bs.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;

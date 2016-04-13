@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +18,13 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 
 public class Cron5MinServlet extends HttpServlet {
+	
+	private static final Logger logger = Logger.getLogger(Cron5MinServlet.class.getName());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("CRON Task Every 5 minutes");
+		
+		logger.info("Cron Job every 5 min");
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		

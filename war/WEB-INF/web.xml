@@ -23,14 +23,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>API</servlet-name>
         <url-pattern>/apitest</url-pattern>
     </servlet-mapping>
-	<servlet>
-        <servlet-name>CronTest</servlet-name>
-        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CronTestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CronTest</servlet-name>
-        <url-pattern>/cron/test</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>MostrarTest</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.ViewTestServlet</servlet-class>

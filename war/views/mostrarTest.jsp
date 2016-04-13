@@ -10,6 +10,13 @@
 </head>
 <body>
 	<h2>Test - Last Tweet con #AppITSS</h2>
-	<c:out value="${tweet }"/>
+	<p>Last Tweet: <c:out value="${tweet }"/></p>
+	<br>
+	<p> <b>Audiencia:</b> </p>
+	<c:forEach items="${audiencia }" var="aud">
+		<p>Hora: <c:out value="${aud.hora }"/></p>
+		<p>Count: <c:out value="${aud.count }"/></p>
+		<br>
+	</c:forEach>
 </body>
 </html>

@@ -40,15 +40,16 @@ public class ApiTestServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// yyyy-MM-dd
-		String begin = req.getParameter("fecha_inicio");
+		String fechaInicio = req.getParameter("fecha_inicio");
+		String horaInicio = req.getParameter("hora_inicio");
+		String episodeCode = req.getParameter("episode");
 		//Date fechaInicio = format(begin);
 		String hash = req.getParameter("hash");
 		String titulo = req.getParameter("titulo");
 		String duracion = req.getParameter("duracion");
 		Long dur = Long.parseLong(duracion);
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
-		// ProgramaTV(titulo, episodeCode, fechaInicio, horaInicio, duracion, hashtag);
-		consulta.crearConsulta(titulo, "episodeCode", begin, "horaInicio", dur, hash);
+		consulta.crearConsulta(titulo, episodeCode, fechaInicio, horaInicio, dur, hash);
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");

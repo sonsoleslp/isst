@@ -1,15 +1,11 @@
 package es.upm.dit.isst.socialTV.bs.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import twitter4j.Status;
 
 /**
  * Definición de la Tabla ProgramaTV
