@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
 warSrcDir=war
 warSrcDirIsOutput=true
-lastWarOutDir=war/WEB-INF/classes
+lastWarOutDir=/SocialTV/war/WEB-INF/classes
