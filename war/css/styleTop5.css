@@ -1,0 +1,40 @@
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.row {
+	margin: auto;
+}
+
+* {
+	font-family: 'Source Sans Pro';
+}
+
+table#top5 {
+	font-family: 'Source Sans Pro';
+	font-size: 15px;
+	background-color: white;
+	border-radius: 15px;
+	/*border: 5px solid grey;*/
+}
+
+#top5 tr td:nth-child(3) {
+	color: #0077B1;
+}
+
+#top5 tr td:nth-child(1) {
+	font-weight: bold;
+}
+
+#top5 tr td:nth-child(5) {
+	font-weight: bold;
+	color: #0077B1;
+}

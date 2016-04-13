@@ -31,6 +31,9 @@ public class GlobalUtil {
 	public static final String TABLE_DATO_AUDIENCIA = "DatoAudiencia"; 
 	public static final String TABLE_USERS = "Users";
 	
+	/** CONSTANTES DE LA APLICACION **/
+	public static final int NUM_PROGRAMAS_TOP = 5;
+	
 	/**
 	 * Método para imprimir arrays de la forma "[a, b, c... ]"
 	 * 
