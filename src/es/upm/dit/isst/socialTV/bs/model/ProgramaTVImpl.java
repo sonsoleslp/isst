@@ -23,7 +23,17 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.persist(prog);
 		em.close();
 	}
-	
+	public ProgramaTV programaPorId(Long primaryKey) {
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT t FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" t WHERE t.primaryKey = :primaryKey");
+		q.setParameter("primaryKey", primaryKey);
+		List<ProgramaTV> programas = q.getResultList();
+		ProgramaTV prog = null;
+		if (programas.size() > 0) prog = (ProgramaTV) programas.get(0);
+		em.close();
+		return prog;
+	}
 	public List<ProgramaTV> ProgramasPorHashtag(String hashtag) {
 		
 		EntityManager em = EMFService.get().createEntityManager();
@@ -33,18 +43,16 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.close();
 		return programas;
 	}
-	public ProgramaTV ProgramaPorTitulo(String titulo) {
+	public List<ProgramaTV> programasPorTitulo(String titulo) {
 		
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT t FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" t WHERE t.titulo = :titulo");
 		q.setParameter("titulo", titulo);
 		List<ProgramaTV> programas = q.getResultList();
-		ProgramaTV prog = null;
-		if (programas.size() > 0) prog = (ProgramaTV) programas.get(0);
 		em.close();
-		return prog;
+		return programas;
 	}
-	public List<ProgramaTV> ProgramasPorFecha(String fechainicio) {
+	public List<ProgramaTV> programasPorFecha(String fechainicio) {
 		// TODO Auto-generated method stub
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m WHERE m.fechainicio = :fechainicio");
@@ -54,7 +62,7 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		return programas;
 	}
 	public List<ProgramaTV> todosLosProgramas() {
-		
+		System.out.println("todosLosProgramas");
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m");
 		List<ProgramaTV> programas = q.getResultList();

@@ -28,6 +28,7 @@ public class GlobalUtil {
 	//y así sólo tener que cambiarlo aquí
 	/**	NOMBRES DE LAS TABLAS DE BASES DE DATOS **/
 	public static final String TABLE_PROGRAMA_TV = "ProgramaTV"; 
+	public static final String TABLE_DATO_AUDIENCIA = "DatoAudiencia"; 
 	public static final String TABLE_USERS = "Users";
 	
 	/**

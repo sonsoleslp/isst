@@ -32,9 +32,9 @@ public class CronTestServlet extends HttpServlet {
 		String datestr = dateFormat.format(date);
 		
 		// Programas que se emitan hoy
-		List <ProgramaTV> list = dao.ProgramasPorFecha(datestr);
+		List <ProgramaTV> list = dao.programasPorFecha(datestr);
 		for (ProgramaTV prog : list) {
-			consulta.updateTweets(prog.getTitulo());
+			consulta.updateTweets(prog.getPrimaryKey());
 		}
 	}
 

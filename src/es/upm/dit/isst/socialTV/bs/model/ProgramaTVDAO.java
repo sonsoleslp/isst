@@ -7,10 +7,10 @@ public interface ProgramaTVDAO {
 	public void crearMonitorizacion(ProgramaTV prog);
 
 	//GET
+	public ProgramaTV programaPorId(Long primaryKey);
 	public List<ProgramaTV> ProgramasPorHashtag(String hashtag);
-	public ProgramaTV ProgramaPorTitulo(String titulo);
-	public List<ProgramaTV> ProgramasPorFecha(String fechainicio);
-	public List<ProgramaTV> todosLosProgramas();
+	public List<ProgramaTV> programasPorTitulo(String titulo);
+	public List<ProgramaTV> programasPorFecha(String fechainicio);
 	public ProgramaTV[] programasTop5();
 
 	//PUT
@@ -19,5 +19,7 @@ public interface ProgramaTVDAO {
 	
 	//DELETE
 	public void deleteProgramaTV(ProgramaTV prog);
+
+	public List<ProgramaTV> todosLosProgramas();
 
 	}

@@ -3,6 +3,9 @@ package es.upm.dit.isst.socialTV.bs.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
@@ -18,12 +21,13 @@ public class Trend implements Serializable {
 	private int numTweets;
 	// Nombre del hashtag asociado
 	private String hashtag;
-	
+	private Long programaId;
 	// TODO: Añadir lo que querais necesiteis
 	
 	public int getNumTweets() {
-		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		ArrayList<ProgramaTV> prog = (ArrayList<ProgramaTV>) dao.todosLosProgramas();
+		DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
+		//Devuelve uuna lista con todas las entradas recogidas
+		dao.getAudienceForEpisodeWithId(programaId);
 		
 		return numTweets;
 	}

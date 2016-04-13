@@ -1,7 +1,10 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,9 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
+import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
@@ -52,18 +58,31 @@ public class ConsultaAPITwitter {
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ProgramaTV prog = new ProgramaTV(titulo, episodeCode, fechaInicio, horaInicio, duracion, hashtag);
 		dao.crearMonitorizacion(prog);
+		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		String date = dateFormat.format(new Date());
+		DatoAudiencia dato = new DatoAudiencia(prog.getPrimaryKey(), date , 0);
+		datos.apuntaDato(dato);
 	}
 	
-	public void updateTweets(String titulo){
+	public void updateTweets(Long id){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		ProgramaTV prog = dao.ProgramaPorTitulo(titulo);
+		ProgramaTV prog = dao.programaPorId(id);
+		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
+		
 		List <Status> list = search(prog.getHashtag(),prog.getFechainicio().toString(), prog.getLastId());
 		if (!list.isEmpty()){
 			Status temp = list.get(list.size()-1);
 			prog.setLastId(temp.getId());
 			prog.setLastTweet(temp.getText());
-			prog.setCount(prog.getCount()+list.size());
+			int number = list.size();
+			prog.setCount(prog.getCount()+number);
 			dao.updateProgramaTV(prog);
+			DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			String date = dateFormat.format(new Date());
+			DatoAudiencia dato = new DatoAudiencia(prog.getPrimaryKey(), date , number);
+			datos.apuntaDato(dato);
+			
 		}
 	}
 

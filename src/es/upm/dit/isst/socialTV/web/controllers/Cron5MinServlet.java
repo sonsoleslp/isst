@@ -32,7 +32,7 @@ public class Cron5MinServlet extends HttpServlet {
 		// Todos los programas
 		List <ProgramaTV> list = dao.todosLosProgramas();
 		for (ProgramaTV prog : list) {
-			consulta.updateTweets(prog.getTitulo());
+			consulta.updateTweets(prog.getPrimaryKey());
 		}
 	}
 

@@ -21,12 +21,16 @@
 	<h2>Lista</h2>
 	<table>
 	<tr>
+		<td><b>#</b></td>
 		<td><b>Titulo</b></td>
 		<td><b>Hashtag</b></td>
 	</tr>
 	<c:forEach items="${progs }" var="prog">
+	<tr>
+		<td><c:out value="${prog.primaryKey }"/></td>
 		<td><c:out value="${prog.titulo }"/></td>
 		<td><c:out value="${prog.hashtag }"/></td>
+	</tr>
 	</c:forEach>
 	</table>
 </body>

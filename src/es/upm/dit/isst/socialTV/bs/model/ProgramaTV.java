@@ -19,8 +19,9 @@ import twitter4j.Status;
 public class ProgramaTV implements Serializable {
 
 	private static final long serialVersionUID = 01L;
-	
+	private static long counter = 1;
 	@Id
+	private Long primaryKey;
 	private String titulo;
 	private String episodeCode;
 	private String fechainicio;
@@ -33,13 +34,15 @@ public class ProgramaTV implements Serializable {
 	
 	/**
 	 * Constructor
-	 * 
 	 * @param titulo
+	 * @param episodeCode
 	 * @param fechainicio
+	 * @param horaInicio
 	 * @param duracion
 	 * @param hashtag
 	 */
 	public ProgramaTV(String titulo, String episodeCode, String fechainicio, String horaInicio, long duracion, String hashtag){
+		this.primaryKey = ProgramaTV.counter++;
 		this.titulo = titulo;
 		this.episodeCode = episodeCode;
 		this.fechainicio = fechainicio;
@@ -54,6 +57,14 @@ public class ProgramaTV implements Serializable {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+
+	public Long getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(Long primaryKey) {
+		this.primaryKey = primaryKey;
 	}
 
 	public String getLastTweet() {
