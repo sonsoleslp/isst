@@ -58,9 +58,8 @@ public class ApiTestServlet extends HttpServlet {
 		String titulo = req.getParameter("titulo");
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
 		consulta.crearConsulta(titulo, episodeCode, dateInicio, dateFin, hash);
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("<html><body><h2>Hashtag actualizado</h2><a href='apitest'>Volver</a></body></head>");
-		out.close();
+		
+		resp.sendRedirect("/apitest");
+		
 	}
 }
