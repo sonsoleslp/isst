@@ -30,9 +30,6 @@ public class Top5Servlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		//Top5Bean tb = new Top5Bean();
-		//tb.setProgramasTop5(ProgramaTVImpl.getInstance().programasTop5()); //No se si me he pegado mucho triple con cómo se usa esta clase
-		
 		// DATOS DE PRUEBA
 		/*Top5Bean[] programas = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
 		programas[0] = new Top5Bean("Modern Family", "T9E12", "#MF16", "16/02/2016 | 19:00-20:00", 3453453);
@@ -47,10 +44,8 @@ public class Top5Servlet extends HttpServlet {
 		ProgramaTV[] progs = new ProgramaTV[GlobalUtil.NUM_PROGRAMAS_TOP];
 		progs = ProgramaTVImpl.getInstance().programasTop5();
 		progsBean = obtenerTop5Beans(progs);
-		//dejar la siguiente línea y borrar lo de antes cuando funcione...
-		//Top5Bean[] progsBean = obtenerTop5Beans(ProgramaTVImpl.getInstance().programasTop5());
+
 		session.setAttribute(GlobalUtil.TOP_5_BEAN, progsBean);
-		
 		
 		// Devolvemos la vista del Top 5
 		 RequestDispatcher rd = request.getRequestDispatcher("views/top5.jsp");
@@ -75,17 +70,40 @@ public class Top5Servlet extends HttpServlet {
 		
 		Top5Bean[] top5Bean = new Top5Bean[GlobalUtil.NUM_PROGRAMAS_TOP];
 		
-		for (int i = 0; i <= GlobalUtil.NUM_PROGRAMAS_TOP; i++) {
-			//TODO: //esto hay que construirlo en algun lado
-			top5Bean[i].setEmision(programas[i].getFechaInicio()); 
-			// fin todo
-			
-			top5Bean[i].setEpisodeCode(programas[i].getEpisodeCode());
-			top5Bean[i].setHashtag(programas[i].getHashtag());
-			top5Bean[i].setNumTweets(programas[i].getCount());
-			top5Bean[i].setTitulo(programas[i].getTitulo());	
+		for (int i = 0; i < GlobalUtil.NUM_PROGRAMAS_TOP; i++) {
+			if (null != programas[i]) {
+				top5Bean[i] = new Top5Bean(
+						programas[i].getTitulo(),
+						programas[i].getEpisodeCode(), 
+						programas[i].getHashtag(), 
+						//programas[i].getFechaInicio(), //TODO: //esto hay que construirlo en algun lado
+						construirStringEmision(programas[i].getFechaInicio(), programas[i].getFechaFin()),
+						programas[i].getCount());
+			}
 		}
 		
 		return top5Bean;
+	}
+	
+	/**
+	 * Método auxiliar que devuelve la emisión de un programa en un String
+	 * 
+	 * @param fechaInicio
+	 * @param fechaFin
+	 * @return concatenación emisión
+	 */
+	private String construirStringEmision(String fechaInicio, String fechaFin) {
+		//Obtener XX/XX/XXXX en string de fechaInicio
+		String strFechaInicio = fechaInicio
+				.substring(0, fechaInicio.indexOf("T"))
+				.replace('-', '/');
+		//Obtener hora de fechaInicio
+		String strHoraInicio = fechaInicio
+				.substring(fechaInicio.indexOf("T") + 1, fechaInicio.length());
+		//Obtener hora de fechaFin
+		String strHoraFin = fechaFin
+				.substring(fechaFin.indexOf("T") + 1, fechaFin.length());
+		
+		return strFechaInicio + " | " + strHoraInicio + "-" + strHoraFin;
 	}
 }
