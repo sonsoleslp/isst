@@ -6,21 +6,21 @@
 <head>
 <meta charset='utf-8' />
 
-<link href='css/fonts.css' rel='stylesheet' type='text/css'>
+<link href='../css/fonts.css' rel='stylesheet' type='text/css'>
 
-<script src="js/jquery.min.js"></script>
-<!-- <link rel="stylesheet" href="css/style.css"> -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
-<link href='css/fullcalendar.css' rel='stylesheet' />
-<link href='css/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src="js/moment.min.js"></script>
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/style.css"> 
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/default.css" />
+<link rel="stylesheet" type="text/css" href="../css/component.css" />
+<script src="../js/modernizr.custom.js"></script>
+<link href='../css/fullcalendar.css' rel='stylesheet' />
+<link href='../css/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src="../js/moment.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 
-<link href="css/chartist.css" rel="stylesheet">
-<link rel="stylesheet" href="css/animate.css">
+<link href="../css/chartist.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/animate.css">
 
 
 </head>
@@ -34,7 +34,7 @@
 		<a href="top5.html"><b>TOP 5</b></a> <a href="#">Modern Family</a> <a
 			href="#">HIMYM</a> <a href="#">Friends</a> <a href="#">TBBT</a> <a
 			href="#">New Girl</a> <a style="border-bottom: none;"
-			href="calendar.html">All</a>
+			href="/calendar.html">All</a>
 
 		<h3>Otros</h3>
 		<a href="#">Settings</a> <a href="#">Logout</a>
@@ -54,7 +54,7 @@
 	</button>
 
 	<div class="logotype">
-		<img class="branding" src="img/logo.png" height="40px"> <a
+		<img class="branding" src="../img/logo.png" height="40px"> <a
 			class="branding" href="index.html">SocialTV</a>
 	</div>
 
@@ -75,13 +75,13 @@
 			</div>
 
 			<img style="width: 200px; float: right;"
-				class="mediafoto wow slideInRight" src="img/fat.jpg"> <br
+				class="mediafoto wow slideInRight" src="../img/fat.jpg"> <br
 				style="clear: both;">
 			<hr style="background-color: grey; height: 2px;">
 			<div class="ct-chart ct-golden-section" id="chart1"></div>
 		</div>
 	</div>
-	<script src="js/classie.js"></script>
+	<script src="../js/classie.js"></script>
 	<script>
       var 
         menuRight = document.getElementById( 'cbp-spmenu-s2' ),
@@ -108,7 +108,7 @@
         
       }
     </script>
-	<script src="js/classie.js"></script>
+	<script src="../js/classie.js"></script>
 	<script>
       var 
         menuRight = document.getElementById( 'cbp-spmenu-s2' ),
@@ -135,9 +135,9 @@
         
       }
     </script>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chartist.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/chartist.min.js"></script>
 	<script>
       
       var chart = new Chartist.Line('.ct-chart', {
@@ -170,14 +170,14 @@
        
 
        </script>
-	<script src="js/wow.min.js"></script>
+	<script src="../js/wow.min.js"></script>
 	<script>
             new WOW().init();
             </script>
 
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/underscore-min.js"></script>
-	<script src="js/moment.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/underscore.min.js"></script>
+	<script src="../js/moment.min.js"></script>
 
 </body>
 </html>

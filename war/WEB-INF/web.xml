@@ -53,6 +53,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     </servlet>
     <servlet-mapping>
         <servlet-name>Grafica</servlet-name>
-        <url-pattern>/grafica</url-pattern>
+        <url-pattern>/grafica/*</url-pattern>
     </servlet-mapping>
 </web-app>
