@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.CalculoImpactoMapa;
 
 
@@ -22,9 +25,35 @@ public class MapaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO llamar a los servicios business para recuperar la informacion deseada y pasarla al jsp correspondiente
-
-		CalculoImpactoMapa calculoImpactoMapa = new CalculoImpactoMapa();
+		HttpSession session = request.getSession();
+		//Separo la URL por /
+		String[] params = request.getRequestURL().toString().split("/"); 
+		Long num = (long) 0;	
+		//Compruebo si el último trozo es una cadena numérica
+		try {
+			num = Long.parseLong(params[params.length-1]);
+		} catch(Exception e){
+			return;
+		}
 		
+		ProgramaTVDAO ptv = ProgramaTVImpl.getInstance();
+		ProgramaTV prog = ptv.programaPorId(num);
+		// Compruebo que existe ese programa
+		if( prog!=null){
+			
+		CalculoImpactoMapa calculoImpactoMapa = new CalculoImpactoMapa();
+		//TODO @Naomi
+		
+		
+		
+		/****
+		 * AQUI LÓGICA MAPA
+		 */
+		
+		
+		}else{
+			response.sendRedirect("/");
+		}
 
 	}
 
