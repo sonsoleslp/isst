@@ -12,7 +12,8 @@ public class GlobalUtil {
 	public static final String TOP_5_BEAN = "top5Bean";
 	public static final String GRAPH_BEAN = "graphBean";
 	public static final String SPAIN_MAP_BEAN = "spainMapBean";
-	
+	public static final String ALL_PROGS_BEAN = "allProgramsBean";
+
 	//Esto puede ser útil por si nos da por cambiar el nombre a alguna tabla, 
 	//y así sólo tener que cambiarlo aquí
 	/**	NOMBRES DE LAS TABLAS DE BASES DE DATOS **/

@@ -1,3 +1,4 @@
+<%@page import="es.upm.dit.isst.socialTV.bs.beans.AllProgramsBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -148,7 +149,7 @@ pageEncoding="ISO-8859-1"%>
       <td><b>Count</b></td>
       <td><b>LastTweet</b></td>
     </tr>
-    <c:forEach items="${progs }" var="prog">
+    <c:forEach items="${allProgramsBean.progs}" var="prog">
     <tr>
       <td><a href="/grafica/<c:out value="${prog.primaryKey }"/>">Ver</a></td>
       <td><c:out value="${prog.titulo }"/></td>

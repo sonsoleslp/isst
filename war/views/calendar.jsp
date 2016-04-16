@@ -1,3 +1,4 @@
+<%@page import="es.upm.dit.isst.socialTV.bs.beans.AllProgramsBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -38,7 +39,7 @@
 			eventLimit: true, // allow "more" link when too many events
 			events: [
 
-				<c:forEach items="${progs}" var="prog" varStatus="status">  
+				<c:forEach items="${allProgramsBean.progs}" var="prog" varStatus="status">  
 				{title: '${prog.titulo}',
 				 start:  '${prog.fechaInicio}',
 				 end: '${prog.fechaFin}',
