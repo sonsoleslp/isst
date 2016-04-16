@@ -21,7 +21,7 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
-public class ApiTestServlet extends HttpServlet {
+public class ConfigServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class ApiTestServlet extends HttpServlet {
 		ArrayList <ProgramaTV> progs = new ArrayList(dao.todosLosProgramas());
 		req.setAttribute("progs", progs);
 		try {
-			RequestDispatcher view = req.getRequestDispatcher("views/insertProgTest.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("views/insertProg.jsp");
 			view.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
