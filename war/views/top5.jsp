@@ -8,55 +8,49 @@
 <link href='css/fonts.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="css/styleTop5.css" />
 <script src="js/jquery.min.js"></script>
-<!-- <link rel="stylesheet" href="css/style.css"> -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <link rel="stylesheet" type="text/css" href="css/component.css" />
 <script src="js/modernizr.custom.js"></script>
 <script src='js/jquery.min.js'></script>
 <link rel="stylesheet" href="css/animate.css">
+ <link rel="stylesheet" href="css/style.css"> 
+
 </head>
 <body>
 
-	<nav style="overflow-y: auto;"
-		class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right"
-		id="cbp-spmenu-s2">
-
-		<h3>Programas</h3>
-		<a href="top5"><b>TOP 5</b></a> 
-		<a href="#">Modern Family</a> 
-		<a href="#">HIMYM</a> 
-		<a href="#">Friends</a> 
-		<a href="#">TBBT</a> 
-		<a href="#">New Girl</a> <a style="border-bottom: none;" href="calendar.html">All</a>
-
-		<h3>Otros</h3>
-		<a href="#">Settings</a> <a href="#">Logout</a>
-
-	</nav>
+ <nav class="navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+     <a class="navbar-brand" href="#" style="margin:2px; padding:0;"><img src="img/logo.png" height="40px"></a>
+      <a class="navbar-brand" href="index.html">SocialTV</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+       <li><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
+        <li class="active"><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
+        <li><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
+ 
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
 	
-	<div class="container ">
-		<BR>
-		<div class="cal1 "></div>
-	</div>
-
-	<button id="showRight">
-		<span id="menuicon" style="color: #777; font-size: 40px;"
-			class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-		<span id="closeicon" style="color: #777; font-size: 40px;"
-			class="invisible glyphicon glyphicon-remove" aria-hidden="true"></span>
-	</button>
-
-	<div class="logotype">
-		<img class="branding" src="img/logo.png" height="40px"> 
-		<a class="branding" href="index.html">SocialTV</a>
-	</div>
-	
-	<div>
+<br><br>
 		<div class="row">
 			<div class=" col-xs-12 col-lg-8 col-lg-push-2">
-				<h1 class="wow slideInLeft">TOP 5</h1>
-				<table cellspacing="10" id='top5' class="wow slideInDown table ">
+				<h2 class="wow slideInLeft">TOP 5</h2>
+				<table style="border:none; border-radius:15px !important;" cellspacing="10" id='top5' class="wow slideInDown table ">
 					<thead>
 						<tr>
 							<th>
@@ -127,6 +121,7 @@
 			}
 		}
 	</script>
+	
 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/wow.min.js"></script>

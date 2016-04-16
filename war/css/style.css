@@ -392,6 +392,7 @@ blockquote.twitter-tweet a:focus {
   font-size:  20px;
     font-variant: small-caps;
     font-weight: bold;
+    line-height: 25px;
  }
 
 .navbar-brand{

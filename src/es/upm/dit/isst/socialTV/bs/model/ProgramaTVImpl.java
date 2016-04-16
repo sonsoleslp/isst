@@ -88,7 +88,7 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		//Obtener los 5 resultados con mayor count
 		//Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m WHERE m.rownum < 6 ORDER BY m.count DESC");
-		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m ORDER BY m.count")
+		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m ORDER BY m.count DESC")
 				.setMaxResults(GlobalUtil.NUM_PROGRAMAS_TOP);
 		List<ProgramaTV> programas = q.getResultList();
 		ProgramaTV[] programasArray = new ProgramaTV[GlobalUtil.NUM_PROGRAMAS_TOP];

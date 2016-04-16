@@ -55,4 +55,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>Grafica</servlet-name>
         <url-pattern>/grafica/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Calendar</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CalendarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Calendar</servlet-name>
+        <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
 </web-app>

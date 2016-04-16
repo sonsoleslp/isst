@@ -38,3 +38,7 @@ table#top5 {
 	font-weight: bold;
 	color: #0077B1;
 }
+
+#top5 tr{
+	background-color: transparent;
+}

@@ -10,7 +10,6 @@
 <link href='../css/fonts.css' rel='stylesheet' type='text/css'>
 
 <script src="../js/jquery.min.js"></script>
-<link rel="stylesheet" href="../css/style.css"> 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/default.css" />
 <link rel="stylesheet" type="text/css" href="../css/component.css" />
@@ -22,50 +21,45 @@
 
 <link href="../css/chartist.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/animate.css">
+<link rel="stylesheet" href="../css/style.css"> 
 
 
 </head>
 <body id="graphbody">
 
-	<nav style="overflow-y: auto;"
-		class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right"
-		id="cbp-spmenu-s2">
 
-		<h3>Programas</h3>
-		<a href="top5.html"><b>TOP 5</b></a> <a href="#">Modern Family</a> <a
-			href="#">HIMYM</a> <a href="#">Friends</a> <a href="#">TBBT</a> <a
-			href="#">New Girl</a> <a style="border-bottom: none;"
-			href="/calendar.html">All</a>
-
-		<h3>Otros</h3>
-		<a href="#">Settings</a> <a href="#">Logout</a>
-
-	</nav>
+ <nav class="navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+     <a class="navbar-brand" href="#" style="margin:2px; padding:0;"><img src="/img/logo.png" height="40px"></a>
+      <a class="navbar-brand" href="index.html">SocialTV</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+       <li class="active"><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
+   		<li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
+        <li><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li>  
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
 	<div class="container ">
-		<BR>
-		<div class="cal1 "></div>
-
-	</div>
-
-	<button id="showRight">
-		<span id="menuicon" style="color: #777; font-size: 40px;"
-			class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-		<span id="closeicon" style="color: #777; font-size: 40px;"
-			class="invisible glyphicon glyphicon-remove" aria-hidden="true"></span>
-	</button>
-
-	<div class="logotype">
-		<img class="branding" src="../img/logo.png" height="40px"> <a
-			class="branding" href="index.html">SocialTV</a>
-	</div>
-
 
 	<div class="row">
 		<div class="col-xs-12 col-lg-8 col-lg-push-2 ">
 			<div class="wow slideInLeft" style="float: left;">
-				<h1>
-					<c:out value="${graphBean.title}"/>(<c:out value="${graphBean.episodeCode}"/>
-					)
+				<h1 style="font-size:36px;">
+					<c:out value="${graphBean.title}"/><span style="font-family:'Source Sans Pro';">(<c:out value="${graphBean.episodeCode}"/>)</span>
 				</h1>
 				<h2 style="color: #1685CD;">
 					<c:out value="${graphBean.hashtag}"/>
@@ -79,11 +73,12 @@
 			</div>
 
 			<img style="width: 200px; float: right;"
-				class="mediafoto wow slideInRight" src="../img/fat.jpg"> <br
+				class="mediafoto wow slideInRight" src="/img/bird.png"> <br
 				style="clear: both;">
 			<hr style="background-color: grey; height: 2px;">
 			<div class="ct-chart ct-golden-section" id="chart1"></div>
 		</div>
+	</div>
 	</div>
 	<script src="../js/classie.js"></script>
 	<script>
