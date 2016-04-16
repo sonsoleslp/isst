@@ -47,26 +47,27 @@ pageEncoding="ISO-8859-1"%>
 
 
 
-      <nav class="navbar-default navbar-fixed-top wow slideInDown">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span> 
-            </button>
-            <a class="navbar-brand" href="#" style="margin:2px; padding:0;"><img src="img/logo.png" height="40px"></a>
-            <a class="navbar-brand" href="index.html">SocialTV</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="top5.html"><i class="fa fa-star-o"></i> Top 5</a></li>
-        <li><a href="evolution.html"><i class="fa fa-line-chart"></i> History</a></li> 
-      -->
-    </ul>
+ <nav class="navbar-default navbar-fixed-top wow slideInDown">
+   <div class="container-fluid">
+     <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span> 
+       </button>
+       <a class="navbar-brand" href="#" style="margin:2px; padding:0;"><img src="img/logo.png" height="40px"></a>
+       <a class="navbar-brand" href="index.html">SocialTV</a>
+     </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+       <ul class="nav navbar-nav">
+     <li><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
+     <li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
+     <li><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
+     <li class="active"><a href="/apitest"><i class="fa fa-wrench"></i> Config</a></li>
+
+	</ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    <!--  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> --> 
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>

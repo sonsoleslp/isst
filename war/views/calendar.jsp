@@ -10,7 +10,7 @@
 
 <link href='css/fonts.css' rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
-<!-- <link rel="stylesheet" href="css/style.css"> -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <link rel="stylesheet" type="text/css" href="css/component.css" />
@@ -78,10 +78,11 @@
        <li><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
         <li class="active"><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
+         <li><a href="/apitest"><i class="fa fa-wrench"></i> Config</a></li> 
  
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> --> 
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
