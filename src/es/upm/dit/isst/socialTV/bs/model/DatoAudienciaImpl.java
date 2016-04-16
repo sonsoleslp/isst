@@ -1,7 +1,9 @@
 package es.upm.dit.isst.socialTV.bs.model;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		q.setParameter("foreignKey", foreignKey);
 		List<DatoAudiencia> datos = q.getResultList();
 		em.close();
-		return datos;
+		return orderByDate(datos);
 	}
 	@Override
 	public void deleteDato(DatoAudiencia dato) {
@@ -51,5 +53,36 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 	public String format(Date date){
 		DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		return dateFormat.format(date);
+	}
+	public List<DatoAudiencia> orderByDate(List<DatoAudiencia> datos){
+		List<DatoAudiencia> ordered = new ArrayList <DatoAudiencia>();
+		if (datos == null || datos.isEmpty()){
+			return datos;
+		}
+		ordered.add(datos.get(0));
+		datos.remove(0);
+		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+		Date meter = null;
+		Date listado = null;
+		for (DatoAudiencia dato : datos){
+			try {
+				meter = format.parse(dato.getFecha());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			for (DatoAudiencia push : ordered){
+				try {
+					listado = format.parse(push.getFecha());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				if (meter.before(listado)){
+					ordered.add(ordered.indexOf(push),dato);
+					break;
+				}
+			}
+			ordered.add(dato);
+		}
+		return ordered;
 	}
 }
