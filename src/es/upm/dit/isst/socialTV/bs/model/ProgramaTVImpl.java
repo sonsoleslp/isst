@@ -55,15 +55,6 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.close();
 		return programas;
 	}
-	public List<ProgramaTV> programasPorFecha(Date date) {
-		String fechaInicio = format(date);
-		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m WHERE m.fechainicio = :fechainicio");
-		q.setParameter("fechainicio", fechaInicio);
-		List<ProgramaTV> programas = q.getResultList();
-		em.close();
-		return programas;
-	}
 	public List<ProgramaTV> todosLosProgramas() {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_PROGRAMA_TV+" m");
