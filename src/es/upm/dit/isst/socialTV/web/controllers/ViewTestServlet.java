@@ -19,6 +19,8 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 
 public class ViewTestServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
@@ -26,7 +28,7 @@ public class ViewTestServlet extends HttpServlet {
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		if (!progs.isEmpty()){
 			ProgramaTV prog = progs.get(0);
-			ArrayList<DatoAudiencia> dato = new ArrayList(datos.getAudienceForEpisodeWithId(prog.getPrimaryKey()));
+			ArrayList<DatoAudiencia> dato = new ArrayList<DatoAudiencia>(datos.getAudienceForEpisodeWithId(prog.getPrimaryKey()));
 			if ( !dato.isEmpty()){
 				req.setAttribute("tweet", progs.get(0).getLastTweet());
 				req.setAttribute("audiencia", dato);

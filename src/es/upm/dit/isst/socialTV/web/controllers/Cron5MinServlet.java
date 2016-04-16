@@ -1,7 +1,7 @@
 package es.upm.dit.isst.socialTV.web.controllers;
 
 import java.io.IOException;
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +16,7 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
+import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 public class Cron5MinServlet extends HttpServlet {
 	
@@ -28,15 +29,26 @@ public class Cron5MinServlet extends HttpServlet {
 		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		
-		// Get fecha actual
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String datestr = dateFormat.format(date);
-		
 		// Todos los programas
 		List <ProgramaTV> list = dao.todosLosProgramas();
+		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+		Date ahora = new Date();
 		for (ProgramaTV prog : list) {
-			consulta.updateTweets(prog.getPrimaryKey());
+			String fechaInicio = prog.getFechaInicio();
+			String fechaFin = prog.getFechaFin();
+			Date init = null;
+			Date end = null;
+			try {
+				init = format.parse(fechaInicio);
+				end = format.parse(fechaFin);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			System.out.println(ahora.after(end));
+			System.out.println(ahora.before(init));
+			if (ahora.after(end) && ahora.before(init)){
+				consulta.updateTweets(prog.getPrimaryKey());
+			}
 		}
 	}
 
