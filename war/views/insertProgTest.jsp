@@ -149,7 +149,7 @@ pageEncoding="ISO-8859-1"%>
     </tr>
     <c:forEach items="${progs }" var="prog">
     <tr>
-      <td><c:out value="${prog.primaryKey }"/></td>
+      <td><a href="/grafica/<c:out value="${prog.primaryKey }"/>">Ver</a></td>
       <td><c:out value="${prog.titulo }"/></td>
       <td><c:out value="${prog.hashtag }"/></td>
       <td><c:out value="${prog.count }"/></td>

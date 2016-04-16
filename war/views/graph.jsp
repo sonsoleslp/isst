@@ -1,3 +1,4 @@
+<%@page import="es.upm.dit.isst.socialTV.bs.beans.GraphBean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -63,14 +64,17 @@
 		<div class="col-xs-12 col-lg-8 col-lg-push-2 ">
 			<div class="wow slideInLeft" style="float: left;">
 				<h1>
-					Modern Family
-					<h1>
-						<h2 style="color: #1685CD;">#MF2016</h2>
-						<h3>
-							Jueves, 10 de Marzo - 20.00-20.30<br>
-							<br>
-						</h3>
-						<a href="co.html"><button class="btn btn-default">Datos
+					<c:out value="${graphBean.title}"/>(<c:out value="${graphBean.episodeCode}"/>
+					)
+				</h1>
+				<h2 style="color: #1685CD;">
+					<c:out value="${graphBean.hashtag}"/>
+				</h2>
+				<h3>
+				<c:out value="${graphBean.dateStart}"/> - <c:out value="${graphBean.dateEnd}"/>
+				<br><br>
+				</h3>
+				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default">Datos
 								regionales</button></a>
 			</div>
 

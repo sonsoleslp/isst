@@ -1,6 +1,10 @@
 package es.upm.dit.isst.socialTV.web.controllers;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import es.upm.dit.isst.socialTV.bs.beans.GraphBean;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
@@ -34,68 +41,65 @@ public class GraphServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO: Obtener el titulo del programa que se ha seleccionado...
-		String tituloPrograma = "Modern Family";
-			//el jsp debería tener el parámetro "título" o algo en el request
-		Logger.getLogger(this.getClass().getName()).log(Level.WARNING, request.getRequestURL().toString());
-		System.out.println(request.getRequestURL().toString());
 		HttpSession session = request.getSession();
+		//Separo la URL por /
 		String[] params = request.getRequestURL().toString().split("/"); 
-		Long num = (long) 0;
+		Long num = (long) 0;	
+		//Compruebo si el último trozo es una cadena numérica
 		try {
-			System.out.println(request.getRequestURL().toString());
-			System.out.println(num);
-			Logger.getLogger(this.getClass().getName()).log(Level.WARNING, num.toString());
-
-			System.out.println(params.toString());
 			num = Long.parseLong(params[params.length-1]);
-			Logger.getLogger(this.getClass().getName()).log(Level.WARNING, num.toString());
 
 		} catch(Exception e){
-//			response.sendRedirect("/");
 			return;
 		}
 		
-		
-		//TODO: Consulta SQL para obtener los tweets cada 5 min, y las horas dependiendo de cuando ha sido su emisión
-			//Obtenemos el Bean a pasarle a la gráfica, que será un graphBean
+		ProgramaTVDAO ptv = ProgramaTVImpl.getInstance();
+		ProgramaTV prog = ptv.programaPorId(num);
+		// Compruebo que existe ese programa
+		if( prog!=null){
+
 			DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
+			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);
-			
-			String[] horas = new String[list.size()];
-			int[] numTweets = new int[list.size()];
-			Logger.getLogger(this.getClass().getName()).log(Level.WARNING,numTweets.toString());
-
+			int size = list.size();
+			//Array de minutos de medición
+			String[] horas = new String[size];
+			//Array de medidas
+			int[] numTweets = new int[size];
 			int index = 0;
+			// Recorro los resultados para rellenar los arrays
 			for(DatoAudiencia dato : list){
+				// TODO Ordenar por fecha
 				String date = dato.getFecha();
-				System.out.println(date);
-				horas[index] =  date.length() > 5? date.substring(date.length() - 5) : date;
+				horas[size -1 - index] =  date.length() > 5? date.substring(date.toString().length() - 5) : date;
 				int cuenta = dato.getCount();
-				
-				numTweets[index]= cuenta;
-				
-				System.out.println(cuenta);
-				Logger.getLogger(this.getClass().getName()).log(Level.WARNING, ""+cuenta);
-				Logger.getLogger(this.getClass().getName()).log(Level.WARNING,dato.toString());
-
+				numTweets[size-1-index]= cuenta;
 				index++;
-				System.out.println(dato);
 			}
-			String[] horas3 = {"20:00","20:05","20:10","20:15","20:20","20:25","20:30"};
-			int[] numTweets3 = {2000, 10000, 2000, 2341, 13452, 14345, 16445};
-			//GraphBean gb = new GraphBean(horas, numTweets, 20000);
-			
+
+		// Paso todos los valores al Bean	
 		GraphBean gb = new GraphBean();
+			// Monitorización
 			gb.setNumTweets(numTweets);
 			gb.setStrHoras(horas);
-			gb.setPtoMaximo(20000);
+			gb.setPtoMaximo(100); // Calcular dinamicamente???
+			// Datos del programa
+			gb.setTitle(prog.getTitulo());
+			gb.setHashtag(prog.getHashtag());
+			gb.setId(num);
+			gb.setEpisodeCode(prog.getEpisodeCode());
+			gb.setDateStart(prog.getFechaInicio());
+			gb.setDateEnd(prog.getFechaFin());
+
 		
 		session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
 		
 		// Devolvemos la vista de la gráfica
 		 RequestDispatcher rd = request.getRequestDispatcher("/views/graph.jsp");
          rd.forward(request, response);	
+		} else {
+			response.sendRedirect("/");
+		}
 	}
 
 	/**
