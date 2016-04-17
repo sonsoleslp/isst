@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -21,8 +22,10 @@ import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
+import es.upm.dit.isst.socialTV.web.controllers.Cron5MinServlet;
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.RateLimitStatus;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -48,6 +51,10 @@ public class ConsultaAPITwitter {
 	private static final int MAX_CALLS = 12;
 	// WOEID Spain
 	private static final int SPAIN = 23424950;
+	private static final String RATE_SEARCH = "/search/tweets";
+	private static final String RATE_APP = "/application/rate_limit_status";
+	
+	private static final Logger logger = Logger.getLogger(ConsultaAPITwitter.class.getName());
 
 	private Twitter twitter;
 
@@ -74,7 +81,6 @@ public class ConsultaAPITwitter {
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		
 		int count=0;
-		String a = prog.getFechaInicio();
 		List <Status> list = search(prog.getHashtag(),prog.getFechaInicio(), prog.getLastId());
 		if (!list.isEmpty()){
 			Status temp = list.get(list.size()-1);
@@ -111,6 +117,14 @@ public class ConsultaAPITwitter {
 			System.out.println("Error en search(): "+e.getMessage());
 			e.printStackTrace();
 		}
+		Map<String, RateLimitStatus> req = null;
+		try {
+			req = twitter.getRateLimitStatus();
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
+		logger.info(RATE_APP+": "+req.get(RATE_APP).getLimit()+", "+req.get(RATE_APP).getRemaining());
+		logger.info(RATE_SEARCH+": "+req.get(RATE_SEARCH).getLimit()+", "+req.get(RATE_SEARCH).getRemaining());
 		return result.getTweets();
 	}
 	

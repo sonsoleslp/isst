@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
@@ -44,9 +47,14 @@ public class Cron5MinServlet extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			System.out.println(ahora.after(end));
-			System.out.println(ahora.before(init));
-			if (ahora.after(end) && ahora.before(init)){
+			// Check audiencia
+			DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
+			List<DatoAudiencia> aa = datos.getAudienceForEpisodeWithId(prog.getPrimaryKey());
+			for (DatoAudiencia dato: aa){
+				System.out.println(dato.getFecha());
+				System.out.println(dato.getCount());
+			}
+			if (ahora.after(init) && ahora.before(end)){
 				consulta.updateTweets(prog.getPrimaryKey());
 			}
 		}
