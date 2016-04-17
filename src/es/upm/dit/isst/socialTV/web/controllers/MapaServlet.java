@@ -60,7 +60,7 @@ public class MapaServlet extends HttpServlet {
 			
 			// DATOS DE PRUEBA
 			// TODO : @PacoArd
-			for(int i=0; i<tweets.length-1; i++) {
+			for(int i=0; i<tweets.length; i++) {
 				tweets[i] = 3*i;
 			}
 			spainMapBean.setProvinceTweets(tweets);

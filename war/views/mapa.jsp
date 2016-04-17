@@ -5,27 +5,27 @@
 	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-<meta charset='utf-8' />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href='../css/fonts.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-<script src="../js/jquery.min.js"></script>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/default.css" />
-<link rel="stylesheet" type="text/css" href="../css/component.css" />
-<script src="../js/modernizr.custom.js"></script>
-<link href='../css/fullcalendar.css' rel='stylesheet' />
-<link href='../css/fullcalendar.print.css' rel='stylesheet'
-	media='print' />
-<script src="../js/moment.min.js"></script>
-<script src="../js/jquery.min.js"></script>
-
-<link href="../css/chartist.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/animate.css">
-<link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript" src="../js/raphael-min.js"></script>
-<script type="text/javascript" src="../js/spain-map.js"></script>
+	<!-- <meta charset='utf-8' /> -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='../css/fonts.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/default.css" />
+	<link rel="stylesheet" type="text/css" href="../css/component.css" />
+	<script src="../js/modernizr.custom.js"></script>
+	<link href='../css/fullcalendar.css' rel='stylesheet' />
+	<link href='../css/fullcalendar.print.css' rel='stylesheet'
+		media='print' />
+	<script src="../js/moment.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	
+	<link href="../css/chartist.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../js/raphael-min.js"></script>
+	<script type="text/javascript" src="../js/spain-map.js"></script>
 
 </head>
 

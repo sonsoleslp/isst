@@ -31,9 +31,9 @@ public class GlobalUtil {
 	 */
 	public static final String[] SPAIN_PROVINCES_ARRAY= {
 			"Alava","Albacete","Alicante","Almeria","Asturias","Avila","Badajoz","Barcelona","Burgos","Caceres",
-			 "Cadiz","Cantabria","Castellon","Ciudad Real","Cordoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
-			 "Guipuzcoa","Huelva","Huesca","Islas Baleares","Jaen","Leon","Lerida","Lugo","Madrid","Malaga","Murcia","Navarra",
-			 "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+			 "Cadiz","Cantabria","Castellon","Ciudad Real","Cordoba","A Coruna","Cuenca","Girona","Granada","Guadalajara",
+			 "Guipuzcoa","Huelva","Huesca","Baleares","Jaen","Leon","Lleida","Lugo","Madrid","Malaga","Murcia","Navarra",
+			 "Palencia","Las Palmas","Pontevedra", "Ourense", "La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
 			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
 	};
 	
