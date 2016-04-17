@@ -102,12 +102,5 @@ public class GraphBean implements Serializable {
 
 	public void setDateEnd(String dateEnd) {
 		this.dateEnd = dateEnd.replace('T', ' ');
-	}
-
-	public void setNumTweets(String[] numTweets) {
-		this.numTweets = numTweets;
-	}
-
-	
-	
+	}	
 }

@@ -30,9 +30,9 @@ public class GlobalUtil {
 	 * Se puede hacer que el SpainMapBean tenga este valor siempre.
 	 */
 	public static final String[] SPAIN_PROVINCES_ARRAY= {
-			"Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres",
-			 "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
-			 "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+			"Alava","Albacete","Alicante","Almeria","Asturias","Avila","Badajoz","Barcelona","Burgos","Caceres",
+			 "Cadiz","Cantabria","Castellon","Ciudad Real","Cordoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+			 "Guipuzcoa","Huelva","Huesca","Islas Baleares","Jaen","Leon","Lerida","Lugo","Madrid","Malaga","Murcia","Navarra",
 			 "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
 			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
 	};

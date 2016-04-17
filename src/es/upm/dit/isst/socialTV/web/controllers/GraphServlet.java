@@ -62,6 +62,7 @@ public class GraphServlet extends HttpServlet {
 			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);
 			int size = list.size();
+
 			//Array de minutos de medición
 			String[] horas = new String[size];
 			//Array de medidas
@@ -79,19 +80,21 @@ public class GraphServlet extends HttpServlet {
 
 		// Paso todos los valores al Bean	
 		GraphBean gb = new GraphBean();
+		if(size != 0) {
 			// Monitorización
 			gb.setNumTweets(numTweets);
 			gb.setStrHoras(horas);
 			gb.setPtoMaximo(100); // Calcular dinamicamente???
-			// Datos del programa
-			gb.setTitle(prog.getTitulo());
-			gb.setHashtag(prog.getHashtag());
-			gb.setId(num);
-			gb.setEpisodeCode(prog.getEpisodeCode());
-			gb.setDateStart(prog.getFechaInicio());
-			gb.setDateEnd(prog.getFechaFin());
-
+		}
 		
+		// Datos del programa
+		gb.setTitle(prog.getTitulo());
+		gb.setHashtag(prog.getHashtag());
+		gb.setId(num);
+		gb.setEpisodeCode(prog.getEpisodeCode());
+		gb.setDateStart(prog.getFechaInicio());
+		gb.setDateEnd(prog.getFechaFin());
+			
 		session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
 		
 		// Devolvemos la vista de la gráfica
