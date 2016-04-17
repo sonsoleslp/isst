@@ -41,7 +41,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		q.setParameter("foreignKey", foreignKey);
 		List<DatoAudiencia> datos = q.getResultList();
 		em.close();
-		return orderByDate(datos);
+		return orderByDate(new ArrayList <DatoAudiencia>(datos));
 	}
 	@Override
 	public void deleteDato(DatoAudiencia dato) {
@@ -56,7 +56,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 	}
 	public List<DatoAudiencia> orderByDate(List<DatoAudiencia> datos){
 		List<DatoAudiencia> ordered = new ArrayList <DatoAudiencia>();
-		if (datos == null || datos.isEmpty()){
+		if (datos == null || datos.isEmpty() || datos.size()==-1){
 			return datos;
 		}
 		ordered.add(datos.get(0));
