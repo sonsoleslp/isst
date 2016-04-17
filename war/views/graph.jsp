@@ -42,7 +42,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-       <li class="active"><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
+       	<li><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
    		<li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
         <li><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
         <li><a href="/apitest"><i class="fa fa-wrench"></i> Config</a></li> 
