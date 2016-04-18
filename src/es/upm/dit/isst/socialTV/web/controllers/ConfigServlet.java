@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +28,8 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 public class ConfigServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = Logger.getLogger(Cron5MinServlet.class.getName());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,6 +56,7 @@ public class ConfigServlet extends HttpServlet {
 		try {
 			dateFin = format.parse(fechaFin);
 			dateInicio = format.parse(fechaInicio);
+			logger.severe(dateInicio.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

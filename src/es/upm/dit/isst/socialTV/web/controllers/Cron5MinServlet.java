@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 public class Cron5MinServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(Cron5MinServlet.class.getName());
 
 	@Override
@@ -35,7 +37,18 @@ public class Cron5MinServlet extends HttpServlet {
 		// Todos los programas
 		List <ProgramaTV> list = dao.todosLosProgramas();
 		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
-		Date ahora = new Date();
+		// UTC en Google
+		format.setTimeZone(TimeZone.getTimeZone("Etc/GMT+2"));
+		Date ahora = null;
+		try {
+			String temp = format.format(new Date());
+			logger.severe(temp);
+			ahora = new SimpleDateFormat(GlobalUtil.FORMAT_DATE).parse(temp);
+			logger.severe(ahora.toString());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		for (ProgramaTV prog : list) {
 			String fechaInicio = prog.getFechaInicio();
 			String fechaFin = prog.getFechaFin();
@@ -47,13 +60,16 @@ public class Cron5MinServlet extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+			
 			// Check audiencia
 			DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 			List<DatoAudiencia> aa = datos.getAudienceForEpisodeWithId(prog.getPrimaryKey());
 			for (DatoAudiencia dato: aa){
-				System.out.println(dato.getFecha());
-				System.out.println(dato.getCount());
+				//System.out.println(prog.getTitulo()+", "+dato.getFecha() +", "+dato.getCount());
 			}
+			logger.severe(String.valueOf(ahora.after(init)));
+			logger.severe(String.valueOf(ahora.before(end)));
+			
 			if (ahora.after(init) && ahora.before(end)){
 				consulta.updateTweets(prog.getPrimaryKey());
 			}

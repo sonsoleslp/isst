@@ -2,13 +2,16 @@ package es.upm.dit.isst.socialTV.bs.services;
 
 import java.io.StringReader;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.json.Json;
@@ -80,14 +83,21 @@ public class ConsultaAPITwitter {
 		ProgramaTV prog = dao.programaPorId(id);
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		
-		int count=0;
-		List <Status> list = search(prog.getHashtag(),prog.getFechaInicio(), prog.getLastId());
+		int count=prog.getCount();
+		Date fecha = null;
+		try {
+			fecha = new SimpleDateFormat(GlobalUtil.FORMAT_DATE).parse(prog.getFechaInicio());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
 		if (!list.isEmpty()){
-			Status temp = list.get(list.size()-1);
+			// El primero es el último cronológicamente
+			Status temp = list.get(0);
 			prog.setLastId(temp.getId());
 			prog.setLastTweet(temp.getText());
-			count = list.size();
-			prog.setCount(prog.getCount()+count);
+			count += list.size();
+			prog.setCount(count);
 		}
 		datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
 		dao.updateProgramaTV(prog);
@@ -95,7 +105,7 @@ public class ConsultaAPITwitter {
 
 	// API de busqueda en Twitter. Ultimos 4 dias
 	// Permite query operators
-	public List<Status> search(String text, String date, long sinceId){
+	public List<Status> search(String text, Date date, long sinceId){
 		Query query = new Query(text);
 		// Solo tweets recientes
 		query.setResultType(Query.RECENT);
@@ -104,7 +114,10 @@ public class ConsultaAPITwitter {
 		query.setCount(MAX_SEARCH);
 
 		//Fecha de inicio
-		query.setSince(date);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		formatter.setTimeZone(TimeZone.getTimeZone("Etc/GMT"));
+		String fecha = formatter.format(date);
+		query.setSince(fecha);
 		
 		if (sinceId != FIRST_ID){
 			query.sinceId(sinceId);
