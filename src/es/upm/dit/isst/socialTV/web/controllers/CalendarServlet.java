@@ -32,7 +32,7 @@ public class CalendarServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ArrayList <ProgramaTV> progs = new ArrayList<ProgramaTV>(dao.todosLosProgramas());
-		AllProgramsBean apb = new AllProgramsBean(progs);
+		AllProgramsBean apb = new AllProgramsBean(progs,"");
 		session.setAttribute(GlobalUtil.ALL_PROGS_BEAN, apb);
 
 		try {

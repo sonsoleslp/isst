@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 
 public class AllProgramsBean implements Serializable {
-	
-	public AllProgramsBean(ArrayList<ProgramaTV> progs) {
-		super();
-		this.progs = progs;
-	}
 
 	ArrayList <ProgramaTV> progs;
+	String error;
+	
+	public AllProgramsBean(ArrayList<ProgramaTV> progs, String error) {
+		super();
+		this.progs = progs;
+		this.error = error;
+	}
 
 	public ArrayList<ProgramaTV> getProgs() {
 		return progs;
@@ -21,5 +23,16 @@ public class AllProgramsBean implements Serializable {
 	public void setProgs(ArrayList<ProgramaTV> progs) {
 		this.progs = progs;
 	}
+	
+	public String getError() {
+		if(error=="")
+			return "0";
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
 	
 }

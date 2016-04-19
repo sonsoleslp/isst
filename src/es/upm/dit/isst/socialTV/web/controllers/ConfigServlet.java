@@ -33,10 +33,67 @@ public class ConfigServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			render(req,resp, "");
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+		if (req.getParameter("fecha_inicio").isEmpty()){
+			render(req,resp,"Error. La fecha de inicio está vacía.");
+			return;
+		}
+		if (req.getParameter("fecha_fin").isEmpty()){
+			render(req,resp,"Error. La fecha de finalización está vacía.");
+			return;
+		}
+		String fechaInicio = req.getParameter("fecha_inicio");
+		String fechaFin = req.getParameter("fecha_fin");
+		Date dateFin = null;
+		Date dateInicio = null;
+		try {
+			
+			dateFin = format.parse(fechaFin);
+			dateInicio = format.parse(fechaInicio);
+			if(dateFin.before(dateInicio)){
+				render(req,resp,"Error. La fecha de inicio es posterior a la de fin.");
+				return;
+			}
+			logger.severe(dateInicio.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			render(req,resp,"Error. La fecha introducida es incorrecta.");
+			return;
+		}
+		String episodeCode = req.getParameter("episode");
+		if (episodeCode == "") {
+			render(req,resp,"Error. Debes introducir un código de episodio.");
+			return;
+		}		
+		String hash = req.getParameter("hash");
+		if (hash == "") {
+			render(req,resp,"Error. Debes introducir un hashtag.");
+			return;
+		}
+		String titulo = req.getParameter("titulo");
+		if (titulo == "") {
+			render(req,resp,"Error. Debes introducir un título.");
+			return;
+		}
+		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
+		consulta.crearConsulta(titulo, episodeCode, dateInicio, dateFin, hash);
+		
+		render(req,resp,"");
+		
+	}
+	
+	private void render( HttpServletRequest req, HttpServletResponse resp, String error) throws ServletException, IOException {
+		System.out.println(error);
 		HttpSession session = req.getSession();
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ArrayList <ProgramaTV> progs = new ArrayList<ProgramaTV>(dao.todosLosProgramas());
-		AllProgramsBean apb = new AllProgramsBean(progs);
+		AllProgramsBean apb = new AllProgramsBean(progs,error);
 		session.setAttribute(GlobalUtil.ALL_PROGS_BEAN, apb);
 		try {
 			RequestDispatcher view = req.getRequestDispatcher("views/insertProg.jsp");
@@ -44,31 +101,5 @@ public class ConfigServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
-		String fechaInicio = req.getParameter("fecha_inicio");
-		String fechaFin = req.getParameter("fecha_fin");
-		Date dateFin = null;
-		Date dateInicio = null;
-		try {
-			dateFin = format.parse(fechaFin);
-			dateInicio = format.parse(fechaInicio);
-			logger.severe(dateInicio.toString());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String episodeCode = req.getParameter("episode");
-		//Date fechaInicio = format(begin);
-		String hash = req.getParameter("hash");
-		String titulo = req.getParameter("titulo");
-		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
-		consulta.crearConsulta(titulo, episodeCode, dateInicio, dateFin, hash);
-		
-		resp.sendRedirect("/apitest");
-		
 	}
 }
