@@ -5,7 +5,7 @@
 pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html class="signinhtml" style="background-position:top;">
+<html class="signinhtml" style="height:100%; background-position:top;">
 
 <head>
 
@@ -82,14 +82,14 @@ pageEncoding="ISO-8859-1"%>
     <div  class="text-center col-xs-12 col-md-6  col-lg-6 "><br><br><br>
      <div  class="login-panel panel panel-default wow zoomIn">
       <div class="panel-heading">
-       <h3 class="panel-title" style="font-family:'Pacifico'; font-size:16px;" >Crear monitorización</h3>
+       <h3 class="panel-title" style="font-family:'Pacifico'; font-size:16px;" >Crear monitorizaciÃ³n</h3>
       </div>
       <div class="panel-body">
 
         <form action="/apitest" style="text-align:left;" method="post" role="form" accept-charset="utf-8">
            <div class="form-group">
-                Título
-                <input class="form-control" required type="text" name="titulo" placeholder="Título" autofocus>
+                TÃ­tulo
+                <input class="form-control" required type="text" name="titulo" placeholder="TÃ­tulo" autofocus>
            </div>
           <div class="row">
             <div class="col-xs-12 col-lg-6">
