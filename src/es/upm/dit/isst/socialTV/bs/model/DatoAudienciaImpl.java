@@ -41,7 +41,6 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		q.setParameter("foreignKey", foreignKey);
 		List<DatoAudiencia> datos = new ArrayList <DatoAudiencia>(q.getResultList());
 		em.close();
-		if (datos != null || datos.size() > 1) datos.remove(0);
 		return orderByDate(datos);
 	}
 	@Override
