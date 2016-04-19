@@ -111,17 +111,8 @@ public class ConsultaAPITwitter {
 		// 100 tweets MAX_SEARCH
 		query.setCount(MAX_SEARCH);
 
-		// Fecha de inicio en GMT +2, pasar a UTC para la api
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar cal = Calendar.getInstance();
-	    cal.setTime(date);
-	    // GMT+2 from Spain to UTC Api Twitter
-	    cal.add(Calendar.HOUR_OF_DAY, -2);
-	    //logger.info(date.toString());
-	    date = cal.getTime();
-	    //logger.info(date.toString());
 		String fecha = formatter.format(date);
-		//logger.info(fecha);
 		query.setSince(fecha);
 		
 		if (sinceId != FIRST_ID){
