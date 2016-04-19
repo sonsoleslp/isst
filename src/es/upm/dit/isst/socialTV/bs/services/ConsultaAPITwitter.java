@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.json.Json;
@@ -46,7 +47,7 @@ public class ConsultaAPITwitter {
 	private static final String VOLUME_FIELD = "tweet_volume";
 	private static final int MAX_SEARCH = 100;
 	private static final int FIRST_ID = -1;
-	// 180 peticiones cada 15 minutos para search
+	// 180 peticiones cada 15 minutos para search = 12 por minuto
 	private static final int MAX_CALLS = 12;
 	// WOEID Spain
 	private static final int SPAIN = 23424950;
@@ -87,12 +88,16 @@ public class ConsultaAPITwitter {
 			count += list.size();
 			prog.setCount(count);
 		}
-		/*
-		Calendar cal = Calendar.getInstance();
-	    cal.setTime(new Date());
-	    cal.add(Calendar.HOUR_OF_DAY, +2);
-	    */
-		datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
+		// Asignar hora al dato de audiencia
+		if (TimeZone.getDefault().getID().equals("UTC")){
+			Calendar cal = Calendar.getInstance();
+		    cal.setTime(new Date());
+		    cal.add(Calendar.HOUR_OF_DAY, +2);
+			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), count);
+		}else{
+			datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
+		}
+		
 		dao.updateProgramaTV(prog);
 	}
 
@@ -106,7 +111,7 @@ public class ConsultaAPITwitter {
 		// 100 tweets MAX_SEARCH
 		query.setCount(MAX_SEARCH);
 
-		//Fecha de inicio
+		// Fecha de inicio en GMT +2, pasar a UTC para la api
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 	    cal.setTime(date);

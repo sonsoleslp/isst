@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -38,13 +39,19 @@ public class Cron5MinServlet extends HttpServlet {
 		List <ProgramaTV> list = dao.todosLosProgramas();
 		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 
-		// UTC from Google to GMT+2
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		//logger.info(new Date().toString());
-		cal.add(Calendar.HOUR_OF_DAY, +2);
-		Date ahora = cal.getTime();
-		//logger.info(ahora.toString());
+		// Comprobar la hora de monitorizacion del programa
+		Date ahora = null;
+		if (TimeZone.getDefault().getID().equals("UTC")){
+			// UTC from Google to GMT+2
+			logger.info("Google UTC");
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			cal.add(Calendar.HOUR_OF_DAY, +2);
+			ahora = cal.getTime();
+		}else{
+			logger.info("Spain TimeZone");
+			ahora = new Date();
+		}
 
 		for (ProgramaTV prog : list) {
 			String fechaInicio = prog.getFechaInicio();
