@@ -39,9 +39,10 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_DATO_AUDIENCIA+" m WHERE m.foreignKey = :foreignKey");
 		q.setParameter("foreignKey", foreignKey);
-		List<DatoAudiencia> datos = q.getResultList();
+		List<DatoAudiencia> datos = new ArrayList <DatoAudiencia>(q.getResultList());
 		em.close();
-		return orderByDate(new ArrayList <DatoAudiencia>(datos));
+		if (datos != null || datos.size() > 1) datos.remove(0);
+		return orderByDate(datos);
 	}
 	@Override
 	public void deleteDato(DatoAudiencia dato) {
@@ -88,6 +89,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		}
 		return ordered;
 	}
+	
 	@Override
 	public void deleteAll(){
 		EntityManager em = EMFService.get().createEntityManager();

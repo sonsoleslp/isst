@@ -80,13 +80,11 @@ public class ConsultaAPITwitter {
 			e.printStackTrace();
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
-		int listsize = 0;
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
 			Status temp = list.get(0);
 			prog.setLastId(temp.getId());
 			prog.setLastTweet(temp.getText());
-			listsize = list.size();
 			count += list.size();
 			prog.setCount(count);
 		}
@@ -95,9 +93,9 @@ public class ConsultaAPITwitter {
 			Calendar cal = Calendar.getInstance();
 		    cal.setTime(new Date());
 		    cal.add(Calendar.HOUR_OF_DAY, +2);
-			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), listsize);
+			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), list.size());
 		}else{
-			datos.apuntaDato(prog.getPrimaryKey(), new Date(), listsize);
+			datos.apuntaDato(prog.getPrimaryKey(), new Date(), list.size());
 		}
 		
 		dao.updateProgramaTV(prog);
@@ -113,17 +111,8 @@ public class ConsultaAPITwitter {
 		// 100 tweets MAX_SEARCH
 		query.setCount(MAX_SEARCH);
 
-		// Fecha de inicio en GMT +2, pasar a UTC para la api
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar cal = Calendar.getInstance();
-	    cal.setTime(date);
-	    // GMT+2 from Spain to UTC Api Twitter
-	    cal.add(Calendar.HOUR_OF_DAY, -2);
-	    //logger.info(date.toString());
-	    date = cal.getTime();
-	    //logger.info(date.toString());
 		String fecha = formatter.format(date);
-		//logger.info(fecha);
 		query.setSince(fecha);
 		
 		if (sinceId != FIRST_ID){

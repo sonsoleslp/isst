@@ -66,7 +66,7 @@ public class Cron5MinServlet extends HttpServlet {
 			}
 
 			if (ahora.after(init) && ahora.before(end)){
-				logger.info("Updating tweets");
+				logger.info("Updating tweets for "+prog.getTitulo());
 				consulta.updateTweets(prog.getPrimaryKey());
 			}
 		}
