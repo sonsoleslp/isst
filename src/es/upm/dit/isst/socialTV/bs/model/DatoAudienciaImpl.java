@@ -88,4 +88,19 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		}
 		return ordered;
 	}
-}
+	@Override
+	public int getMaxValueForEpisodeWithId(Long primaryKey) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT m FROM "+GlobalUtil.TABLE_DATO_AUDIENCIA+" m WHERE m.foreignKey = :foreignKey ORDER BY m.count DESC")
+		.setMaxResults(GlobalUtil.NUM_PROGRAMAS_TOP);
+		q.setParameter("foreignKey", primaryKey);
+		List<DatoAudiencia> datos = q.getResultList();
+		em.close();
+		if(datos.size()>0){
+			return datos.get(0).getCount();
+		} else {
+			return 0;
+		}
+	}
+	
+}	

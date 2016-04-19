@@ -62,12 +62,14 @@ public class GraphServlet extends HttpServlet {
 			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);
 			int size = list.size();
-
+			//Máximo valor para representar en la gráfica
+			int max = dao.getMaxValueForEpisodeWithId(num);
 			//Array de minutos de medición
 			String[] horas = new String[size];
 			//Array de medidas
 			int[] numTweets = new int[size];
 			int index = 0;
+			
 			// Recorro los resultados para rellenar los arrays
 			for(DatoAudiencia dato : list){
 				// TODO Ordenar por fecha
@@ -80,11 +82,12 @@ public class GraphServlet extends HttpServlet {
 
 		// Paso todos los valores al Bean	
 		GraphBean gb = new GraphBean();
+		System.out.println(max);
 		if(size != 0) {
 			// Monitorización
 			gb.setNumTweets(numTweets);
 			gb.setStrHoras(horas);
-			gb.setPtoMaximo(100); // Calcular dinamicamente???
+			gb.setPtoMaximo(max); 
 		}
 		
 		// Datos del programa

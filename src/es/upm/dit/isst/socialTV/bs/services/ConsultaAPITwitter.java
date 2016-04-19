@@ -80,11 +80,13 @@ public class ConsultaAPITwitter {
 			e.printStackTrace();
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
+		int listsize = 0;
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
 			Status temp = list.get(0);
 			prog.setLastId(temp.getId());
 			prog.setLastTweet(temp.getText());
+			listsize = list.size();
 			count += list.size();
 			prog.setCount(count);
 		}
@@ -93,9 +95,9 @@ public class ConsultaAPITwitter {
 			Calendar cal = Calendar.getInstance();
 		    cal.setTime(new Date());
 		    cal.add(Calendar.HOUR_OF_DAY, +2);
-			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), count);
+			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), listsize);
 		}else{
-			datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
+			datos.apuntaDato(prog.getPrimaryKey(), new Date(), listsize);
 		}
 		
 		dao.updateProgramaTV(prog);

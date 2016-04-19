@@ -13,4 +13,6 @@ public interface DatoAudienciaDAO {
 	//DELETE
 	public void deleteDato(DatoAudiencia dato);
 
-	}
+	//MAX
+	public int getMaxValueForEpisodeWithId(Long primaryKey);
+}
