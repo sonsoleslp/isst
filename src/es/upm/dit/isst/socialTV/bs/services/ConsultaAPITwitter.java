@@ -1,7 +1,6 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
 import java.io.StringReader;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,9 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.json.Json;
@@ -19,13 +16,12 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
-import es.upm.dit.isst.socialTV.web.controllers.Cron5MinServlet;
+
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.RateLimitStatus;
@@ -68,14 +64,6 @@ public class ConsultaAPITwitter {
 	public void crearConsulta(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		dao.crearMonitorizacion(titulo, episodeCode, fechaInicio, fechaFin, hashtag);
-		
-		/*Se creara con la hora de la monitorización, que no tiene por qué ser el mismo día
-		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		String date = dateFormat.format(new Date());
-		DatoAudiencia dato = new DatoAudiencia(prog.getPrimaryKey(), date , 0);
-		datos.apuntaDato(dato);
-		*/
 	}
 	
 	public void updateTweets(Long id){
@@ -99,6 +87,11 @@ public class ConsultaAPITwitter {
 			count += list.size();
 			prog.setCount(count);
 		}
+		/*
+		Calendar cal = Calendar.getInstance();
+	    cal.setTime(new Date());
+	    cal.add(Calendar.HOUR_OF_DAY, +2);
+	    */
 		datos.apuntaDato(prog.getPrimaryKey(), new Date(), count);
 		dao.updateProgramaTV(prog);
 	}
@@ -115,8 +108,15 @@ public class ConsultaAPITwitter {
 
 		//Fecha de inicio
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		formatter.setTimeZone(TimeZone.getTimeZone("Etc/GMT"));
+		Calendar cal = Calendar.getInstance();
+	    cal.setTime(date);
+	    // GMT+2 from Spain to UTC Api Twitter
+	    cal.add(Calendar.HOUR_OF_DAY, -2);
+	    //logger.info(date.toString());
+	    date = cal.getTime();
+	    //logger.info(date.toString());
 		String fecha = formatter.format(date);
+		//logger.info(fecha);
 		query.setSince(fecha);
 		
 		if (sinceId != FIRST_ID){
@@ -130,6 +130,7 @@ public class ConsultaAPITwitter {
 			System.out.println("Error en search(): "+e.getMessage());
 			e.printStackTrace();
 		}
+		// Check api limits
 		Map<String, RateLimitStatus> req = null;
 		try {
 			req = twitter.getRateLimitStatus();

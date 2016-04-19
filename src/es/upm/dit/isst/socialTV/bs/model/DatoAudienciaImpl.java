@@ -64,6 +64,7 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		Date meter = null;
 		Date listado = null;
+		boolean added = false;
 		for (DatoAudiencia dato : datos){
 			try {
 				meter = format.parse(dato.getFecha());
@@ -76,12 +77,14 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				if (meter.before(listado)){
+				if (meter.after(listado)){
 					ordered.add(ordered.indexOf(push),dato);
+					added = true;
 					break;
 				}
 			}
-			ordered.add(dato);
+			if (!added) ordered.add(dato);
+			added = false;
 		}
 		return ordered;
 	}
