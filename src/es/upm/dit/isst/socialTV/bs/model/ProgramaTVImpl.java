@@ -91,4 +91,10 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		return dateFormat.format(date);
 	}
+	@Override
+	public void deleteAll(){
+		EntityManager em = EMFService.get().createEntityManager();
+		em.createQuery("DELETE FROM ProgramaTV e").executeUpdate();
+		em.close();
+	}
 }

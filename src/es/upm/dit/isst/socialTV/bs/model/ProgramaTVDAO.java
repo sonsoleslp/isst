@@ -11,7 +11,9 @@ public interface ProgramaTVDAO {
 	public ProgramaTV programaPorId(Long primaryKey);
 	public List<ProgramaTV> ProgramasPorHashtag(String hashtag);
 	public List<ProgramaTV> programasPorTitulo(String titulo);
+	public List<ProgramaTV> todosLosProgramas();
 	public ProgramaTV[] programasTop5();
+	
 
 	//PUT
 	public void updateProgramaTV(ProgramaTV prog);
@@ -19,7 +21,9 @@ public interface ProgramaTVDAO {
 	
 	//DELETE
 	public void deleteProgramaTV(ProgramaTV prog);
+	public void deleteAll();
+	
 
-	public List<ProgramaTV> todosLosProgramas();
+	
 
 	}

@@ -63,4 +63,20 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>Calendar</servlet-name>
         <url-pattern>/calendar</url-pattern>
     </servlet-mapping>
+        <servlet>
+        <servlet-name>BorraProgs</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.DeleteProgramsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BorraProgs</servlet-name>
+        <url-pattern>/borraprogs</url-pattern>
+    </servlet-mapping>   
+    <servlet>
+        <servlet-name>BorraDatos</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.DeleteDatosAudiencia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BorraDatos</servlet-name>
+        <url-pattern>/borradatos</url-pattern>
+    </servlet-mapping>
 </web-app>

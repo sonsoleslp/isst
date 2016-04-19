@@ -145,7 +145,7 @@ pageEncoding="utf-8"%>
         	labels: ['${fn:join(graphBean.strHoras, "', '")}'],
           series: [['${fn:join(graphBean.numTweets, "', '")}']]
         }, {
-          high: ${graphBean.ptoMaximo},
+         
           low: 0,
           fullWidth: true,
           showArea: true,
