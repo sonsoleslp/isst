@@ -87,8 +87,8 @@
 			<div class="wow slideInLeft" style="float: left;">
 				<h1 style="font-size: 36px;">
 					<c:out value="${spainMapBean.title}" />
-					<span style="font-family: 'Source Sans Pro';">(<c:out
-							value="${spainMapBean.episodeCode}" />)
+					<span style="font-family: 'Source Sans Pro';">
+					(<c:out	value="${spainMapBean.episodeCode}" />)
 					</span>
 				</h1>
 				<h2 style="color: #1685CD;">

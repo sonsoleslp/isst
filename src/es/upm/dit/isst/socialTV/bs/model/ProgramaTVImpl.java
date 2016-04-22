@@ -87,6 +87,7 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.close();
 		return programasArray;
 	}
+	
 	public String format(Date date){
 		DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		return dateFormat.format(date);

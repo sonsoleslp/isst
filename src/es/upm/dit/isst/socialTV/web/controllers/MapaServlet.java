@@ -29,6 +29,8 @@ public class MapaServlet extends HttpServlet {
 		// Recuperamos la sesion
 		HttpSession session = request.getSession();
 		
+		CalculoImpactoMapa cim = new CalculoImpactoMapa();
+		
 		//Separo la URL por /
 		String[] params = request.getRequestURL().toString().split("/"); 
 		Long num = (long) 0;

@@ -7,6 +7,8 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 
 public class AllProgramsBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	ArrayList <ProgramaTV> progs;
 	String error;
 	

@@ -1,5 +1,7 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,16 @@ public class CalculoImpactoMapa {
 	public CalculoImpactoMapa() {
 		super();
 		this.consultaAPITwitter = new ConsultaAPITwitter();
+    	
+			Spain spain = Spain.getInstance();
+			
+			System.out.println( spain.whichProvince( -6.6630487, 38.1303432));
+			System.out.println( spain.whichProvince( -4.321606, 42.064189));
+			System.out.println( spain.whichProvince( -3.2902537, 41.820583));
+			System.out.println( spain.whichProvince( -5.046704, 40.328340));
+			
 	}
+	
 }
 	/*
 	public EstadisticasPais calculoImpactoMapa(PaisEnum pais, String hashtag) {

@@ -80,6 +80,12 @@ public class ConsultaAPITwitter {
 			e.printStackTrace();
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
+		Spain spain = Spain.getInstance();
+			// TODO	 
+		
+			//Rellenar con coordenadas de verdad
+			prog.setProvince(spain.whichProvince( -6.6630487, 38.1303432));
+		
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
 			Status temp = list.get(0);
