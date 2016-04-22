@@ -1,22 +1,26 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/javax.json-api-1.0.jar"/>
-	<classpathentry kind="lib" path="libs/json-20080701.jar" sourcepath="C:/Users/Sonsoles/.m2/repository/org/json/json/20080701/json-20080701-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="libs/json-20080701.jar"/>
 	<classpathentry kind="lib" path="libs/jts-1.13.jar"/>
 	<classpathentry kind="lib" path="libs/geojson-jackson-1.0.jar"/>
-	<classpathentry kind="lib" path="libs/jts2geojson-0.3.1.jar"/>
 	<classpathentry kind="lib" path="libs/mapfish-geo-lib-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/jts2geojson-0.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/itextpdf-5.5.9-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/itextpdf-5.5.9.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-core-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-databind-2.6.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="libs/javassist-3.19.0-GA.jar"/>
+	<classpathentry kind="lib" path="libs/jtidy-r938.jar"/>
+	<classpathentry kind="lib" path="libs/libs.zip"/>
+	<classpathentry kind="lib" path="libs/mockito-all-1.10.19.jar"/>
+	<classpathentry kind="lib" path="libs/powermock-api-mockito-1.6.2.jar"/>
 	<classpathentry kind="lib" path="libs/twitter4j-core-4.0.4.jar"/>
-	<classpathentry kind="lib" path="libs/itextpdf-5.5.9.jar">
-	<classpathentry kind="lib" path="C:/Users/Sonsoles/.p2/pool/plugins/com.google.appengine.eclipse.sdkbundle_1.9.34/appengine-java-sdk-1.9.34/lib/opt/user/appengine-api-labs/v1/appengine-api-labs.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/Sonsoles/.p2/pool/plugins/com.google.appengine.eclipse.sdkbundle_1.9.34/appengine-java-sdk-1.9.34/docs/javadoc/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="libs/xmlworker-5.5.9-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/xmlworker-5.5.9.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
