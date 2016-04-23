@@ -177,7 +177,7 @@ pageEncoding="utf-8"%>
 	<script>
       
       var chart = new Chartist.Line('.ct-chart', {
-    	  <c:if test="${fn:length(graphBean.numTweets)<20}">    labels: ['${fn:join(graphBean.strHoras, "', '")}'],</c:if>
+    	  <c:if test="${fn:length(graphBean.numTweets)<25}">    labels: ['${fn:join(graphBean.strHoras, "', '")}'],</c:if>
           series: [[
         			<c:forEach items="${graphBean.numTweets}"  varStatus="loop">  
     				{meta: 'Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',

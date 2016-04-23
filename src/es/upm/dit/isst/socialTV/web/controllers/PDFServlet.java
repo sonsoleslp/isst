@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -22,6 +23,7 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPatternPainter;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
@@ -149,28 +151,70 @@ public class PDFServlet extends HttpServlet {
 			PdfContentByte canvas = writer.getDirectContent();
 	        CMYKColor magentaColor = new CMYKColor((float)0.643,(float) 0.227, 0.f,(float) 0.067);
 	        CMYKColor black = new CMYKColor(0f,0.f,0.f,1.f); 
-	        
-	        canvas.setColorStroke(magentaColor);
-	        canvas.moveTo(46,100);
+	        CMYKColor grey = new CMYKColor(0f,0.f,0.f,(float) 0.5); 
+	        float canvasHeight = 300;
+	        float canvasTop = 400;
+	        float canvasBottom = 100;
+	        float canvasLeft = 46;
+	        float canvasRight=559;
+	       
 	        System.out.println(numTweets.length);
 	        int numero = numTweets.length-2;
 	        if (numero==0) numero = 1;
-	        float xSpacing=(559-46)/(numero);
-	        float xCumulative = 46;
-	        Font helvetica = new Font(FontFamily.HELVETICA, 12);
-	        BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
-	        canvas.setFontAndSize(bf_helv, 12);
+	        float xSpacing= (canvasRight-canvasLeft+1)/(numero);
+	        Logger.getLogger(PDFServlet.class.getName()).info(""+xSpacing);;
 	        
-	        //Find max value
+	        float xCumulative =canvasLeft; //MARGIN FOR TEXT
+	        canvas.setLineDash(4,4);
+	        canvas.setColorStroke(grey);
+	        
+	        //Find max value and paint x grid
 	        int max = numTweets[1];
 	        for (int i = 1; i < numTweets.length; i++){
+	            canvas.moveTo(xCumulative,canvasBottom);
+	        	canvas.lineTo(xCumulative,canvasTop);
+	 	        canvas.closePathStroke();
 	        	if(numTweets[i]>max)max=numTweets[i];
+	        	xCumulative += xSpacing;
 	        }
-	        for (int i = 1; i < numTweets.length; i++){
-				canvas.lineTo(xCumulative, 100+ numTweets[i]*300/max);
+	        int precision = 1;
+	        if(max>10) precision = 2;
+	        if(max>30) precision = 5;
+	        if(max>50) precision = 10;
+	        float spacing =300/max;
+		
+	        //Y-Axis
+	        Font helvetica = new Font(FontFamily.HELVETICA, 12);
+	        BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
+	        canvas.setFontAndSize(bf_helv, 12); 
+	     
+	        canvas.resetCMYKColorFill();
+			canvas.showTextAligned(Element.ALIGN_RIGHT, "0", 46, 100, 0);
+			
+
+			
+			 for (int i = 0; i <=max; i= i+precision){
 				canvas.beginText();
-				 canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], xCumulative+4, 70, 90);
-				 canvas.endText();
+				canvas.showTextAligned(Element.ALIGN_RIGHT, ""+i, (float)canvasLeft, canvasBottom+spacing*(i), 0);
+				canvas.endText();
+				if(i!=0){
+				canvas.moveTo(canvasLeft,canvasBottom+spacing*(i));
+	        	canvas.lineTo(canvasRight,canvasBottom+spacing*(i));
+	 	        canvas.closePathStroke();}
+	     
+		     }
+			
+	        xCumulative = canvasLeft;
+	       
+	        canvas.setLineDash(0);
+	        canvas.setColorStroke(magentaColor);
+	        canvas.moveTo(canvasLeft,canvasBottom);
+	        for (int i = 1; i < numTweets.length; i++){
+	        	
+				canvas.lineTo(xCumulative, canvasBottom+ numTweets[i]*canvasHeight/max);
+				canvas.beginText();
+				canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], 4 + xCumulative, 70, 90);//Height text :70, Rotation:90
+				canvas.endText();
 				xCumulative += xSpacing;
 			}
 	        
@@ -181,14 +225,9 @@ public class PDFServlet extends HttpServlet {
 	        canvas.fill();
 	        canvas.closePathStroke();
 	        
-	        //Y-Axis
-	        
-	        canvas.beginText();
-	        canvas.resetCMYKColorFill();
-			canvas.showTextAligned(Element.ALIGN_RIGHT, "0", 46, 100, 0);
-			canvas.showTextAligned(Element.ALIGN_RIGHT, String.format("%.2f", ((float)max/2)), 46, 250, 0);
-			canvas.showTextAligned(Element.ALIGN_RIGHT, ""+max, 46, 400, 0);
-			canvas.endText();
+
+
+			
 			// Chart Area
 	        canvas.setColorStroke(black);
 	        canvas.moveTo(46, 400);
@@ -198,7 +237,6 @@ public class PDFServlet extends HttpServlet {
 	        canvas.closePathStroke();
 	        
 			// Generate Page 2      
-			
 		    document.newPage();
 		      
 			try {
@@ -209,10 +247,8 @@ public class PDFServlet extends HttpServlet {
 			output.reset();
 			
 			 document.newPage();
+			 
 			// Generate Page 3     
-
-			
-		   
 		      
 			try {
 				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc3, output));
@@ -240,6 +276,9 @@ public class PDFServlet extends HttpServlet {
 		
 		
 	}
+	
+	
+	
 
 	public ByteArrayInputStream parseHTML(String file, ByteArrayOutputStream output){
 		ByteArrayInputStream input = new ByteArrayInputStream(file.getBytes());
