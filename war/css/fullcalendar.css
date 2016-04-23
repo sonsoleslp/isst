@@ -11,6 +11,10 @@
 	font-family: "Source Sans Pro";
 }
 
+#calendar table  {
+	background-color:#ddd ;
+}
+
 
 .fc {
 	direction: ltr;
@@ -441,7 +445,7 @@ hr.fc-divider {
 
 .fc-row .fc-highlight-skeleton td,
 .fc-row .fc-bgevent-skeleton td {
-	border-color: transparent;
+	/*border-color: transparent;*/
 }
 
 .fc-row .fc-bgevent-skeleton {
@@ -472,7 +476,7 @@ temporary rendered events).
 .fc-row .fc-helper-skeleton td {
 	/* see-through to the background below */
 	background: none; /* in case <td>s are globally styled */
-	border-color: transparent;
+	/*border-color: transparent;*/
 
 	/* don't put a border between events and/or the day number */
 	border-bottom: 0;
@@ -1120,4 +1124,20 @@ be a descendant of the grid when it is being dragged.
 	border-width: 5px 6px 5px 0;
 	border-top-color: transparent;
 	border-bottom-color: transparent;
+}
+tr,td,tbody, .fc {
+	background-color: transparent !important;
+}
+
+
+.fc-unthemed .fc-today {
+   background-color: none !important;
+   font-size:22px;
+   font-weight:bold;
+}
+.fc-state-highlight{
+	
+}
+.fc-view-container, .fc-content-skeleton{
+	background-color: transparent !important;
 }
