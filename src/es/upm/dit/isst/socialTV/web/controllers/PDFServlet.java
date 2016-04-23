@@ -24,9 +24,12 @@ import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -101,26 +104,33 @@ public class PDFServlet extends HttpServlet {
 			String doc1 = "";
 			doc1 += "<h1 style=\"text-align: center; font-size:50px; font-variant:small-caps; \" >Informe de audiencia</h1>";
 			doc1 += "<h2 style=\"text-align: center; font-size:40px; font-style: italic; \" >SocialTV</h2><hr>";
-			doc1 += "<h3>Nombre: "+prog.getTitulo()+"</h3>";
-			doc1 += "<p><b>Episodio: </b>  "+prog.getEpisodeCode()+"</p>";
-			doc1 += "<p><b>Hashtag: </b>  "+prog.getHashtag()+"</p>";
-			doc1 += "<p><b>Fecha: </b>  "+prog.getFechaInicio()+" :: "+prog.getFechaFin()+"</p>";
-			
+			doc1 += "<h3>Nombre:   "+prog.getTitulo()+"</h3>";
+			doc1 += "<p><b>Episodio:   </b>  "+prog.getEpisodeCode()+"</p>";
+			doc1 += "<p><b>Hashtag:   </b>  "+prog.getHashtag()+"</p>";
+			doc1 += "<p><b>Fecha:   </b>  "+prog.getFechaInicio()+" :: "+prog.getFechaFin()+"</p>";
+			doc1 += "<p><b>Menciones en total:   </b>  "+prog.getCount()+"</p>";
+
 			//Page 2
-			String content = "<h2>Impacto provincial</h2>";
-			content += "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Provincia</th><th>Menciones</th></tr>";
+			
+			String doc2 = "<h2>Evolucion temporal</h2>";
+			doc2+= "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Hora</th><th>Menciones</th></tr>";
+			for (int i = 0; i < numTweets.length; i++){
+				doc2+="<tr><td>"+horas[i]+"</td><td>"+numTweets[i]+"</td></tr>";
+			}
+			doc2 +=  "</table></div>";
+			
+			
+			//Page 3
+			String doc3 = "<h2>Impacto provincial</h2>";
+			doc3 += "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Provincia</th><th>Menciones</th></tr>";
 			for (int i = 0; i < GlobalUtil.SPAIN_PROVINCES_ARRAY.length ; i++){
 				String province = GlobalUtil.SPAIN_PROVINCES_ARRAY[i];
-				content += "<tr><td>"+province+"</td><td>"+prog.getProvince(province)+"</td></tr>";
+				doc3 += "<tr><td>"+province+"</td><td>"+prog.getProvince(province)+"</td></tr>";
 			}
-			content += "</table></div>";
+			doc3 += "</table></div>";
 			
-			/*
-			//Page 3
-						
-			String file = "<h1>AAAA</h1><h2>AAA</h2><h3>AAA</h3>";
-			*/
 			
+
 			
 
 			// Generate PDF
@@ -146,6 +156,59 @@ public class PDFServlet extends HttpServlet {
 			} 
 			
 			output.reset();
+			PdfContentByte canvas = writer.getDirectContent();
+	        CMYKColor magentaColor = new CMYKColor(0.f, 1.f, 0.f, 0.f);
+	        CMYKColor black = new CMYKColor(0f,0.f,0.f,1.f); 
+	        canvas.setColorStroke(black);
+	        canvas.moveTo(46, 400);
+	        canvas.lineTo(46, 100);
+	        canvas.lineTo(559, 100);
+	        canvas.lineTo(559, 400);
+	        canvas.closePathStroke();
+	        canvas.setColorStroke(magentaColor);
+	        canvas.moveTo(46,100);
+	        System.out.println(numTweets.length);
+	        int numero = numTweets.length-2;
+	        if (numero==0) numero = 1;
+	        float xSpacing=(559-46)/(numero);
+	        float xCumulative = 46;
+	        Font helvetica = new Font(FontFamily.HELVETICA, 12);
+	        BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
+	        canvas.setFontAndSize(bf_helv, 12);
+	        
+	       
+	        int max = numTweets[1];
+	        for (int i = 1; i < numTweets.length; i++){
+	        	if(numTweets[i]>max)max=numTweets[i];
+	        }
+	        for (int i = 1; i < numTweets.length; i++){
+				canvas.lineTo(xCumulative, 100+ numTweets[i]*300/max);
+				canvas.beginText();
+				 canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], xCumulative+4, 70, 90);
+				 canvas.endText();
+				xCumulative += xSpacing;
+				
+				
+			}
+	        
+	        canvas.beginText();
+			canvas.showTextAligned(Element.ALIGN_RIGHT, "0", 46, 100, 0);
+			
+
+			canvas.showTextAligned(Element.ALIGN_RIGHT, String.format("%.2f", ((float)max/2)), 46, 250, 0);
+	
+			canvas.showTextAligned(Element.ALIGN_RIGHT, ""+max, 46, 400, 0);
+			canvas.endText();
+	        canvas.lineTo(559, 100);
+	        canvas.lineTo(46, 100);
+	        canvas.setRGBColorFill(255, 0, 0);
+	        canvas.fill();
+	        canvas.closePathStroke();
+			
+			
+			
+			
+			
 			
 			// Generate Page 2      
 
@@ -153,32 +216,26 @@ public class PDFServlet extends HttpServlet {
 		    document.newPage();
 		      
 			try {
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(content, output));
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc2, output));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
 			output.reset();
 			
 			 document.newPage();
-			/*// Generate Page 3     
+			// Generate Page 3     
 
 			
 		   
 		      
 			try {
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(file, output));
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc3, output));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
-			output.reset();*/
-			PdfContentByte canvas = writer.getDirectContent();
-	        CMYKColor magentaColor = new CMYKColor(0.f, 1.f, 0.f, 0.f);
-	        canvas.setColorStroke(magentaColor);
-	        canvas.moveTo(36, 36);
-	        canvas.lineTo(36, 806);
-	        canvas.lineTo(559, 36);
-	        canvas.lineTo(559, 806);
-	        canvas.closePathStroke();
+			output.reset();
+	
+
 			document.close();
 
 			ServletOutputStream outputStream = resp.getOutputStream();

@@ -80,11 +80,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <url-pattern>/borradatos</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>PDFTest</servlet-name>
+        <servlet-name>PDFReport</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.PDFServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PDFTest</servlet-name>
-        <url-pattern>/upload/*</url-pattern>
+        <servlet-name>PDFReport</servlet-name>
+        <url-pattern>/report/*</url-pattern>
     </servlet-mapping>
 </web-app>
