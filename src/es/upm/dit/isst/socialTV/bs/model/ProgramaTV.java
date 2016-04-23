@@ -289,6 +289,13 @@ public class ProgramaTV implements Serializable {
 	
 	}
 	public void setProvince(String province){
+		// Quitar acentos
+		String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇñÑ";
+	    String ascii = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcCnN";
+	    for (int i=0; i<original.length(); i++) {
+	        province = province.replace(original.charAt(i), ascii.charAt(i));
+	    }
+	    
 		switch(province){
 		case "Alava":
 			this.Alava++; break;
@@ -321,28 +328,34 @@ public class ProgramaTV implements Serializable {
 		case "Cordoba":
 			this.Cordoba++; break;
 		case "Coruna":
+		case "A Coruna":
 			this.Coruna++; break;
 		case "Cuenca":
 			this.Cuenca++; break;
 		case "Girona":
+		case "Gerona":
 			this.Girona++; break;
 		case "Granada":
 			this.Granada++; break;
 		case "Guadalajara":
 			this.Guadalajara++; break;
 		case "Guipuzcoa":
+		case "Gipuzkoa":
 			this.Guipuzcoa++; break;
 		case "Huelva":
 			this.Huelva++; break;
 		case "Huesca":
 			this.Huesca++; break;
 		case "Baleares":
+		case "Islas Baleares":
+		case "Illes Balears":
 			this.Baleares++; break;
 		case "Jaen":
 			this.Jaen++; break;
 		case "Leon":
 			this.Leon++; break;
 		case "Lleida":
+		case "Lerida":
 			this.Lleida++; break;
 		case "Lugo":
 			this.Lugo++; break;
@@ -361,6 +374,7 @@ public class ProgramaTV implements Serializable {
 		case "Pontevedra":
 			this.Pontevedra++; break;
 		case "Ourense":
+		case "Orense":
 			this.Ourense++; break;
 		case "La Rioja":
 			this.LaRioja++; break;
@@ -385,6 +399,7 @@ public class ProgramaTV implements Serializable {
 		case "Valladolid":
 			this.Valladolid++; break;
 		case "Vizcaya":
+		case "Bizkaia":
 			this.Vizcaya++; break;
 		case "Zamora":
 			this.Zamora++; break;
