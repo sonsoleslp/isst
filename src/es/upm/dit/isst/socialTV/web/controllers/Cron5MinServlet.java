@@ -78,6 +78,8 @@ public class Cron5MinServlet extends HttpServlet {
 			List<DatoAudiencia> audList = datos.getAudienceForEpisodeWithId(prog.getPrimaryKey());
 			for (DatoAudiencia dato: audList){
 				System.out.println(prog.getTitulo()+", "+dato.getFecha() +", "+dato.getCount());
+				System.out.println("Lerida" + prog.getProvince("Lleida"));
+				System.out.println("Lerida" + prog.getProvince("Lleida"));
 			}
 		}
 	}
