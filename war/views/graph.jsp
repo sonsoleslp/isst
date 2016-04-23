@@ -70,11 +70,12 @@ pageEncoding="utf-8"%>
 				<c:out value="${graphBean.dateStart}"/> - <c:out value="${graphBean.dateEnd}"/>
 				<br><br>
 				</h3>
-				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default">Datos
+				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-map-marker"></i>  Datos
 								regionales</button></a>
+				<a href="/report/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i  style="color:#1685D0;"  class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
 			</div>
 
-			<img style="width: 200px; float: right;"
+			<img style="width: 150px; float: right;"
 				class="mediafoto wow slideInRight" src="/img/bird.png"> <br
 				style="clear: both;">
 			<hr style="background-color: grey; height: 2px;">
@@ -139,15 +140,61 @@ pageEncoding="utf-8"%>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/chartist.min.js"></script>
+	<script src="../js/chartist-plugin-tooltip.js"></script>
+	<style>
+	.chartist-tooltip {
+  position: absolute;
+
+  display: inline-block;
+  opacity: 0;
+  width: 6em;
+  padding: .5em;
+  background: white;
+  color: #453D3F;
+  font-family: Oxygen,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+ 
+  -webkit-transition: opacity .2s linear;
+  -moz-transition: opacity .2s linear;
+  -o-transition: opacity .2s linear;
+  transition: opacity .2s linear; }
+ /*  .chartist-tooltip:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-top-color: white; } */
+  .chartist-tooltip.tooltip-show {
+    opacity: 1; }
+    </style>
 	<script>
       
       var chart = new Chartist.Line('.ct-chart', {
-        	labels: ['${fn:join(graphBean.strHoras, "', '")}'],
-          series: [['${fn:join(graphBean.numTweets, "', '")}']]
+    	  <c:if test="${fn:length(graphBean.numTweets)<20}">    labels: ['${fn:join(graphBean.strHoras, "', '")}'],</c:if>
+          series: [[
+        			<c:forEach items="${graphBean.numTweets}"  varStatus="loop">  
+    				{meta: 'Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',
+    				 value: '${graphBean.numTweets[loop.index]}'
+    				}
+    				<c:if test="${!status.last}">    
+    				  ,    
+    				</c:if>  
+    				</c:forEach> 
+			]]
         }, {
          
           low: 0,
           fullWidth: true,
+          plugins: [
+            Chartist.plugins.tooltip()
+          ],
           showArea: true,
           showPoint: true,
           height:'300px'

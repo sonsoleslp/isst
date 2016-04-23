@@ -99,22 +99,27 @@ public class PDFServlet extends HttpServlet {
 			String header = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>";
 			String footer = "</body></html>";
 			
+			String fechaInicio = prog.getFechaInicio();
+			String fechaFin = prog.getFechaFin();
+			fechaInicio = prog.getFechaInicio().substring(0,fechaInicio.length()-6)+' '+prog.getFechaInicio().substring(fechaInicio.length()-5);
+			fechaFin = prog.getFechaFin().substring(0,fechaFin.length()-6)+' '+prog.getFechaFin().substring(fechaFin.length()-5);
 			
 			//Page 1
 			String doc1 = "";
 			doc1 += "<h1 style=\"text-align: center; font-size:50px; font-variant:small-caps; \" >Informe de audiencia</h1>";
-			doc1 += "<h2 style=\"text-align: center; font-size:40px; font-style: italic; \" >SocialTV</h2><hr>";
+			doc1 += "<h2 style=\"text-align: center; color:#55ACEE; font-size:40px; font-style: italic; \" >SocialTV</h2><hr>";
 			doc1 += "<h3>Nombre:   "+prog.getTitulo()+"</h3>";
 			doc1 += "<p><b>Episodio:   </b>  "+prog.getEpisodeCode()+"</p>";
 			doc1 += "<p><b>Hashtag:   </b>  "+prog.getHashtag()+"</p>";
-			doc1 += "<p><b>Fecha:   </b>  "+prog.getFechaInicio()+" :: "+prog.getFechaFin()+"</p>";
+			doc1 += "<p><b>Inicio:   </b>  "+fechaInicio + " </p>";
+			doc1 += "<p><b>Fin:   </b>   "+fechaFin + "</p>";
 			doc1 += "<p><b>Menciones en total:   </b>  "+prog.getCount()+"</p>";
 
 			//Page 2
 			
 			String doc2 = "<h2>Evolucion temporal</h2>";
 			doc2+= "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Hora</th><th>Menciones</th></tr>";
-			for (int i = 0; i < numTweets.length; i++){
+			for (int i = 1; i < numTweets.length; i++){
 				doc2+="<tr><td>"+horas[i]+"</td><td>"+numTweets[i]+"</td></tr>";
 			}
 			doc2 +=  "</table></div>";
@@ -157,14 +162,9 @@ public class PDFServlet extends HttpServlet {
 			
 			output.reset();
 			PdfContentByte canvas = writer.getDirectContent();
-	        CMYKColor magentaColor = new CMYKColor(0.f, 1.f, 0.f, 0.f);
+	        CMYKColor magentaColor = new CMYKColor((float)0.643,(float) 0.227, 0.f,(float) 0.067);
 	        CMYKColor black = new CMYKColor(0f,0.f,0.f,1.f); 
-	        canvas.setColorStroke(black);
-	        canvas.moveTo(46, 400);
-	        canvas.lineTo(46, 100);
-	        canvas.lineTo(559, 100);
-	        canvas.lineTo(559, 400);
-	        canvas.closePathStroke();
+	        
 	        canvas.setColorStroke(magentaColor);
 	        canvas.moveTo(46,100);
 	        System.out.println(numTweets.length);
@@ -176,7 +176,7 @@ public class PDFServlet extends HttpServlet {
 	        BaseFont bf_helv = helvetica.getCalculatedBaseFont(false);
 	        canvas.setFontAndSize(bf_helv, 12);
 	        
-	       
+	        //Find max value
 	        int max = numTweets[1];
 	        for (int i = 1; i < numTweets.length; i++){
 	        	if(numTweets[i]>max)max=numTweets[i];
@@ -187,31 +187,32 @@ public class PDFServlet extends HttpServlet {
 				 canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], xCumulative+4, 70, 90);
 				 canvas.endText();
 				xCumulative += xSpacing;
-				
-				
 			}
 	        
-	        canvas.beginText();
-			canvas.showTextAligned(Element.ALIGN_RIGHT, "0", 46, 100, 0);
-			
 
-			canvas.showTextAligned(Element.ALIGN_RIGHT, String.format("%.2f", ((float)max/2)), 46, 250, 0);
-	
-			canvas.showTextAligned(Element.ALIGN_RIGHT, ""+max, 46, 400, 0);
-			canvas.endText();
 	        canvas.lineTo(559, 100);
 	        canvas.lineTo(46, 100);
-	        canvas.setRGBColorFill(255, 0, 0);
+	        canvas.setRGBColorFill(85, 172, 238);
 	        canvas.fill();
 	        canvas.closePathStroke();
-			
-			
-			
-			
-			
-			
+	        
+	        //Y-Axis
+	        
+	        canvas.beginText();
+	        canvas.resetCMYKColorFill();
+			canvas.showTextAligned(Element.ALIGN_RIGHT, "0", 46, 100, 0);
+			canvas.showTextAligned(Element.ALIGN_RIGHT, String.format("%.2f", ((float)max/2)), 46, 250, 0);
+			canvas.showTextAligned(Element.ALIGN_RIGHT, ""+max, 46, 400, 0);
+			canvas.endText();
+			// Chart Area
+	        canvas.setColorStroke(black);
+	        canvas.moveTo(46, 400);
+	        canvas.lineTo(46, 100);
+	        canvas.lineTo(559, 100);
+	        canvas.lineTo(559, 400);
+	        canvas.closePathStroke();
+	        
 			// Generate Page 2      
-
 			
 		    document.newPage();
 		      

@@ -101,11 +101,14 @@
 					<br>
 					<br>
 				</h3>
-				<a href="/grafica/<c:out value="${spainMapBean.id}"/>"><button
-						class="btn btn-default">Evoluci&oacute;n Temporal</button></a>
+				<a href="/grafica/<c:out value="${spainMapBean.id}"/>">
+				<button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-area-chart"></i>  Evoluci&oacute;n Temporal</button></a>
+				<a href="/report/<c:out value="${graphBean.id}"/>">
+				<button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
+				
 			</div>
-
-			<img style="width: 200px; float: right;"
+			
+			<img style="width: 150px; float: right;"
 					class="mediafoto wow slideInRight" src="/img/bird.png"> <br
 					style="clear: both;">
 				<hr style="background-color: grey; height: 2px;">

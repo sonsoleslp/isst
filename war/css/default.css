@@ -264,6 +264,9 @@ html{
 	.ct-series-a .ct-area{
       fill: #1685CD !important;
     }
+    .ct-area{
+    	fill-opacity:0.5 !important;
+    }
     .ct-series-a, .ct-line {
     stroke: #1685CD !important;
     /* stroke: #00B7FF !important; */
