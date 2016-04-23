@@ -22,7 +22,8 @@ import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
-
+import twitter4j.GeoLocation;
+import twitter4j.Place;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.RateLimitStatus;
@@ -53,7 +54,7 @@ public class ConsultaAPITwitter {
 	private static final int SPAIN = 23424950;
 	private static final String RATE_SEARCH = "/search/tweets";
 	private static final String RATE_APP = "/application/rate_limit_status";
-	
+
 	private static final Logger logger = Logger.getLogger(ConsultaAPITwitter.class.getName());
 
 	private Twitter twitter;
@@ -66,12 +67,13 @@ public class ConsultaAPITwitter {
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		dao.crearMonitorizacion(titulo, episodeCode, fechaInicio, fechaFin, hashtag);
 	}
-	
+
 	public void updateTweets(Long id){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ProgramaTV prog = dao.programaPorId(id);
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
-		
+		Spain spain = Spain.getInstance();
+
 		int count=prog.getCount();
 		Date fecha = null;
 		try {
@@ -80,12 +82,7 @@ public class ConsultaAPITwitter {
 			e.printStackTrace();
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
-		Spain spain = Spain.getInstance();
-			// TODO	 
-		
-			//Rellenar con coordenadas de verdad
-			prog.setProvince(spain.whichProvince( -6.6630487, 38.1303432));
-		
+
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
 			Status temp = list.get(0);
@@ -94,16 +91,31 @@ public class ConsultaAPITwitter {
 			count += list.size();
 			prog.setCount(count);
 		}
+
+		for(Status tweet : list){
+			
+			Place place = tweet.getPlace();
+			if (place != null){
+				prog.setProvince(place.getName());
+				continue;
+			}
+			GeoLocation geo = tweet.getGeoLocation();
+			if (geo != null){
+				prog.setProvince(spain.whichProvince(geo.getLongitude(), geo.getLatitude()));
+				continue;
+			}
+		}
+
 		// Asignar hora al dato de audiencia
 		if (TimeZone.getDefault().getID().equals("UTC")){
 			Calendar cal = Calendar.getInstance();
-		    cal.setTime(new Date());
-		    cal.add(Calendar.HOUR_OF_DAY, +2);
+			cal.setTime(new Date());
+			cal.add(Calendar.HOUR_OF_DAY, +2);
 			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), list.size());
 		}else{
 			datos.apuntaDato(prog.getPrimaryKey(), new Date(), list.size());
 		}
-		
+
 		dao.updateProgramaTV(prog);
 	}
 
@@ -120,7 +132,7 @@ public class ConsultaAPITwitter {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fecha = formatter.format(date);
 		query.setSince(fecha);
-		
+
 		if (sinceId != FIRST_ID){
 			query.sinceId(sinceId);
 		}
@@ -143,7 +155,7 @@ public class ConsultaAPITwitter {
 		logger.info(RATE_SEARCH+": "+req.get(RATE_SEARCH).getLimit()+", "+req.get(RATE_SEARCH).getRemaining());
 		return result.getTweets();
 	}
-	
+
 	// Una peticion por minuto
 	public Map<String, Integer> getTrends(int place){
 		Map<String, Integer> result = new HashMap<String, Integer>();
@@ -179,7 +191,7 @@ public class ConsultaAPITwitter {
 				int index = insertOrder(volume, json.getInt(VOLUME_FIELD));
 				trends_name.add(index,json.getString(NAME_FIELD));
 				volume.add(index, json.getInt(VOLUME_FIELD));
-				*/
+				 */
 				result.put(json.getString(NAME_FIELD), json.getInt(VOLUME_FIELD));
 			}
 		}

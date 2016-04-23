@@ -53,7 +53,7 @@ public class Spain {
 	}
 	
 	public void fill(){
-		System.out.println("filling");
+		System.out.println("Filling");
 		try {
 			InputStreamReader inReader = new InputStreamReader(new FileInputStream(new File(pais)), "UTF-8");
 			String geojson = null;
@@ -89,10 +89,7 @@ public class Spain {
             		multiPolygonList.add(multipolygon);
             		provincias[ind++]=name;
             	}
-            	System.out.println(multiPolygonList.size());
             	Spain.mp = multiPolygonList;
-	        	
-				
 	        }
 	        catch (Exception e)
 	        {

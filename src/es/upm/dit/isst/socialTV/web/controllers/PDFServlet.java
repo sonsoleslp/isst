@@ -1,14 +1,10 @@
 package es.upm.dit.isst.socialTV.web.controllers;
 
-import java.awt.Graphics2D;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -18,26 +14,17 @@ import javax.servlet.http.HttpSession;
 
 import org.w3c.tidy.Tidy;
 
-import com.google.appengine.api.images.Image;
-import com.itextpdf.awt.PdfGraphics2D;
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
-import es.upm.dit.isst.socialTV.bs.beans.GraphBean;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
@@ -48,13 +35,11 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 public class PDFServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
-		
-		
-		HttpSession session = req.getSession();
 		//Separo la URL por /
 		String[] params = req.getRequestURL().toString().split("/"); 
 		Long num = (long) 0;	
