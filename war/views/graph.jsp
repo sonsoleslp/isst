@@ -84,59 +84,9 @@ pageEncoding="utf-8"%>
 	</div>
 	</div>
 	<script src="../js/classie.js"></script>
-	<script>
-      var 
-        menuRight = document.getElementById( 'cbp-spmenu-s2' ),
-      
-        showRight = document.getElementById( 'showRight' ),
 
-        body = document.body;
-
-  
-      showRight.onclick = function() {
-        classie.toggle( this, 'active' );
-        classie.toggle( menuRight, 'cbp-spmenu-open' );
-        disableOther( 'showRight' );
-        $( '#menuicon' ).toggleClass('invisible')
-        $( '#closeicon' ).toggleClass('invisible')
-
-      };
-
-      function disableOther( button ) {
-      
-        if( button !== 'showRight' ) {
-          classie.toggle( showRight, 'disabled' );
-        }
-        
-      }
-    </script>
 	<script src="../js/classie.js"></script>
-	<script>
-      var 
-        menuRight = document.getElementById( 'cbp-spmenu-s2' ),
-      
-        showRight = document.getElementById( 'showRight' ),
-
-        body = document.body;
-
-  
-      showRight.onclick = function() {
-        classie.toggle( this, 'active' );
-        classie.toggle( menuRight, 'cbp-spmenu-open' );
-        disableOther( 'showRight' );
-        $( '#menuicon' ).toggleClass('invisible')
-        $( '#closeicon' ).toggleClass('invisible')
-
-      };
-
-      function disableOther( button ) {
-      
-        if( button !== 'showRight' ) {
-          classie.toggle( showRight, 'disabled' );
-        }
-        
-      }
-    </script>
+	
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/chartist.min.js"></script>

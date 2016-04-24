@@ -50,6 +50,7 @@ public class PDFServlet extends HttpServlet {
 			num = Long.parseLong(params[params.length-1]);
 
 		} catch(Exception e){
+			resp.sendRedirect("/");
 			return;
 		}
 		
@@ -62,6 +63,10 @@ public class PDFServlet extends HttpServlet {
 			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);	
 			// Hace que no salga el primer valor de tweets, que no es significativo
+			if (list.size() == 0 || list.size() == 1) {
+				resp.sendRedirect("/");
+				return;
+			}
 			if(list.size()>1)list.remove(list.size()-1);
 			// Número de monitorizaciones (menos la primera)
 			int size = list.size();
