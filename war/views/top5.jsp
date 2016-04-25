@@ -42,7 +42,7 @@
  
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> --> 
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
@@ -73,6 +73,13 @@
 					<tbody>
 						<c:forEach var="programa" items="${top5Bean}">
 							<tr>
+							<!-- Quiero sustituir el primer "td" por esto, pero no me sale... //TODO NAOMI
+								<td>
+									<a href=<c:out value="${"/grafica/" + programa.primaryKey}"/>>
+										<c:out value="${programa.titulo}"/>
+									</a>
+								</td> 
+							-->
 							<td><c:out value="${programa.titulo}"/></td>
 							<td><c:out value="${programa.episodeCode}"/></td>
 							<td><c:out value="${programa.hashtag}"/></td>

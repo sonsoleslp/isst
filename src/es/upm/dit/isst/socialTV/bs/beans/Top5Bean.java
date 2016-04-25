@@ -1,7 +1,6 @@
 package es.upm.dit.isst.socialTV.bs.beans;
 
 import java.io.Serializable;
-import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 
 /**
  * JavaBean que para pasar los atributos del Top 5 de programas
@@ -12,6 +11,7 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 @SuppressWarnings("serial")
 public class Top5Bean implements Serializable {
 	
+	private Long primaryKey;
 	private String titulo;
 	private String episodeCode;
 	private String hashtag;
@@ -28,7 +28,8 @@ public class Top5Bean implements Serializable {
 	/**
 	 * Constructor
 	 */
-	public Top5Bean(String titulo, String episodeCode, String hashtag, String emision, int numTweets) {
+	public Top5Bean(Long primaryKey, String titulo, String episodeCode, String hashtag, String emision, int numTweets) {
+		this.primaryKey = primaryKey;
 		this.titulo = titulo;
 		this.episodeCode = episodeCode;
 		this.hashtag = hashtag;
@@ -39,6 +40,14 @@ public class Top5Bean implements Serializable {
 	/**
 	 * Setter y getters
 	 */
+	public Long getPrimaryKey() {
+		return primaryKey;
+	}
+
+	public void setPrimaryKey(Long primaryKey) {
+		this.primaryKey = primaryKey;
+	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
