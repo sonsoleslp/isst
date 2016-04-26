@@ -83,29 +83,7 @@ public class ConsultaAPITwitter {
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
 
-		if (!list.isEmpty()){
-			// El primero es el último cronológicamente
-			Status temp = list.get(0);
-			prog.setLastId(temp.getId());
-			prog.setLastTweet(temp.getText());
-			count += list.size();
-			prog.setCount(count);
-		}
-
-		for(Status tweet : list){
-			
-			Place place = tweet.getPlace();
-			if (place != null){
-				prog.setProvince(place.getName());
-				continue;
-			}
-			GeoLocation geo = tweet.getGeoLocation();
-			if (geo != null){
-				prog.setProvince(spain.whichProvince(geo.getLongitude(), geo.getLatitude()));
-				continue;
-			}
-		}
-
+		// Update data
 		// Asignar hora al dato de audiencia
 		if (TimeZone.getDefault().getID().equals("UTC")){
 			Calendar cal = Calendar.getInstance();
@@ -115,8 +93,35 @@ public class ConsultaAPITwitter {
 		}else{
 			datos.apuntaDato(prog.getPrimaryKey(), new Date(), list.size());
 		}
+		// Count - Province
+		if (!list.isEmpty()){
+			// El primero es el último cronológicamente
+			Status temp = list.get(0);
+			prog.setLastId(temp.getId());
+			prog.setLastTweet(temp.getText());
 
-		dao.updateProgramaTV(prog);
+			if (list.size()>2){
+				// Quitar el primero
+				list.remove(list.size()-1);
+				count += list.size();
+				// Set Province
+				for(Status tweet : list){
+					GeoLocation geo = tweet.getGeoLocation();
+					if (geo != null){
+						prog.setProvince(spain.whichProvince(geo.getLongitude(), geo.getLatitude()));
+						continue;
+					}
+					Place place = tweet.getPlace();
+					if (place != null){
+						prog.setProvince(place.getName());
+						continue;
+					}
+				}
+				prog.setCount(count);
+			}
+			
+			dao.updateProgramaTV(prog);
+		}
 	}
 
 	// API de busqueda en Twitter. Ultimos 4 dias
