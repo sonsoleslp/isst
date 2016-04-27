@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ProgramaTVDAO {
 	//POST
-	public void crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag);
+	public ProgramaTV crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag);
 
 	//GET
 	public ProgramaTV programaPorId(Long primaryKey);
@@ -20,7 +20,7 @@ public interface ProgramaTVDAO {
 
 	
 	//DELETE
-	public void deleteProgramaTV(ProgramaTV prog);
+	public void deleteProgramaTV(Long prog);
 	public void deleteAll();
 	
 

@@ -5,13 +5,14 @@ import java.util.List;
 
 public interface DatoAudienciaDAO {
 	//POST
-	public void apuntaDato(Long foreignKey, Date fecha, Integer count);
+	public DatoAudiencia apuntaDato(Long foreignKey, Date fecha, Integer count);
 
 	//GET
 	public List<DatoAudiencia> getAudienceForEpisodeWithId(Long primaryKey);
 
 	//DELETE
-	public void deleteDato(DatoAudiencia dato);
+	public void deleteAudienceForEpisodeWithId(Long primaryKey);
+	public void deleteDato(Long dato);
 	public void deleteAll();
 	
 }

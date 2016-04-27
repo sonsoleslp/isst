@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
+
 public class ProgramaTVImpl implements ProgramaTVDAO {
 	private static ProgramaTVImpl instance;
 	private ProgramaTVImpl () {
@@ -19,13 +20,14 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 			instance = new ProgramaTVImpl();
 		return instance;
 	}
-	public void crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag) {
+	public ProgramaTV crearMonitorizacion(String titulo, String episodeCode, Date fechaInicio, Date fechaFin, String hashtag) {
 		String init = format(fechaInicio);
 		String end = format(fechaFin);
 		ProgramaTV prog = new ProgramaTV(titulo, episodeCode, init,end, hashtag);
 		EntityManager em = EMFService.get().createEntityManager();
 		em.persist(prog);
 		em.close();
+		return prog;
 	}
 	public ProgramaTV programaPorId(Long primaryKey) {
 		EntityManager em = EMFService.get().createEntityManager();
@@ -68,10 +70,11 @@ public class ProgramaTVImpl implements ProgramaTVDAO {
 		em.merge(prog);
 		em.close();
 	}
-	public void deleteProgramaTV(ProgramaTV prog) {
+	public void deleteProgramaTV(Long prog) {
 
 		EntityManager em = EMFService.get().createEntityManager();
-		em.remove(prog);
+		ProgramaTV programa = em.find(ProgramaTV.class, prog);
+		em.remove(programa);
 		em.close();
 	}
 

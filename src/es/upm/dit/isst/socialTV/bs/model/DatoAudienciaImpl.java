@@ -26,12 +26,13 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		return instance;
 	}
 	@Override
-	public void apuntaDato(Long foreignKey, Date fecha, Integer count) {
+	public DatoAudiencia apuntaDato(Long foreignKey, Date fecha, Integer count) {
 		String date = format(fecha);
 		EntityManager em = EMFService.get().createEntityManager();
 		DatoAudiencia dato = new DatoAudiencia(foreignKey, date, count);
 		em.persist(dato);
 		em.close();
+		return dato;
 	}
 	@Override
 	public List<DatoAudiencia> getAudienceForEpisodeWithId(Long foreignKey) {
@@ -44,10 +45,10 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		return orderByDate(datos);
 	}
 	@Override
-	public void deleteDato(DatoAudiencia dato) {
-		// TODO Auto-generated method stub
+	public void deleteDato(Long dato) {
 		EntityManager em = EMFService.get().createEntityManager();
-		em.remove(dato);
+		DatoAudiencia datoaudiencia = em.find(DatoAudiencia.class, dato);
+		em.remove(datoaudiencia);
 		em.close();
 	}
 	public String format(Date date){
@@ -89,10 +90,20 @@ public class DatoAudienciaImpl implements DatoAudienciaDAO {
 		return ordered;
 	}
 	
+	
+	@Override
+	public void deleteAudienceForEpisodeWithId(Long primaryKey){
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("DELETE FROM "+GlobalUtil.TABLE_DATO_AUDIENCIA+" e WHERE e.foreignKey = :foreignKey");
+		q.setParameter("foreignKey", primaryKey);
+		q.executeUpdate();
+		em.close();
+	}
+	
 	@Override
 	public void deleteAll(){
 		EntityManager em = EMFService.get().createEntityManager();
-		em.createQuery("DELETE FROM DatoAudiencia e").executeUpdate();
+		em.createQuery("DELETE FROM "+GlobalUtil.TABLE_DATO_AUDIENCIA+" e").executeUpdate();
 		em.close();
 	}
 

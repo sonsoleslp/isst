@@ -51,22 +51,28 @@ public class MapaServlet extends HttpServlet {
 			// Creamos el bean
 			SpainMapBean spainMapBean = new SpainMapBean();
 			
-			spainMapBean.setDateEnd(prog.getFechaFin());
-			spainMapBean.setDateStart(prog.getFechaInicio());
+			spainMapBean.setDateEnd(prog.getFechaFin().replace("T", "  "));
+			spainMapBean.setDateStart(prog.getFechaInicio().replace("T", "  "));
 			spainMapBean.setEpisodeCode(prog.getEpisodeCode());
 			spainMapBean.setHashtag(prog.getHashtag());
 			spainMapBean.setId(num);
 			spainMapBean.setTitle(prog.getTitulo());
 			spainMapBean.setProvinceName(GlobalUtil.SPAIN_PROVINCES_ARRAY);
 			int[] tweets = new int[GlobalUtil.SPAIN_PROVINCES_ARRAY.length];
-			
-			// DATOS DE PRUEBA
-			// TODO : @PacoArd
-			for(int i=0; i<tweets.length; i++) {
-				tweets[i] = 3*i;
+		
+			int max = 0;
+			int min = Integer.MAX_VALUE;
+			for (int i = 0; i < GlobalUtil.SPAIN_PROVINCES_ARRAY.length ; i++){
+				String province = GlobalUtil.SPAIN_PROVINCES_ARRAY[i];
+				tweets[i] = prog.getProvince(province);
+				if(tweets[i]>max) max = tweets[i];
+				if(tweets[i]<min) min = tweets[i];
 			}
-			spainMapBean.setProvinceTweets(tweets);
 			
+			
+			spainMapBean.setProvinceTweets(tweets);
+			spainMapBean.setMax(max);
+			spainMapBean.setMin(min);
 			// Pasamos el bean a la vista
 			session.setAttribute(GlobalUtil.SPAIN_MAP_BEAN, spainMapBean);
 		

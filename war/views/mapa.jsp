@@ -32,7 +32,9 @@
 <script>
 	var tweets = ['${fn:join(spainMapBean.provinceTweets, "', '")}'];
 	var provincias = ['${fn:join(spainMapBean.provinceName, "', '")}'];
-	mapa(provincias, tweets);
+	var max = 	<c:out value="${spainMapBean.max}" />
+	var min = 	<c:out value="${spainMapBean.min}" />
+	mapa(provincias, tweets, max, min);
 </script>
 
 <body id="bodycalendar">
@@ -127,6 +129,9 @@
             </script>
 			<script type="text/javascript">
 			console.log("antes del new)");
+			
+
+			
 			    new SpainMap({
 			      id: 'map',
 			      width: '90%',
@@ -152,26 +157,7 @@
 		</div>
 	</div>
 	<script src="js/classie.js"></script>
-	<script>
-		var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
-      		showRight = document.getElementById( 'showRight' ),
-			body = document.body;
 
-  
-		showRight.onclick = function() {
-			classie.toggle( this, 'active' );
-			classie.toggle( menuRight, 'cbp-spmenu-open' );
-			disableOther( 'showRight' );
-			$( '#menuicon' ).toggleClass('invisible');
-			$( '#closeicon' ).toggleClass('invisible');
-		};
-
-		function disableOther( button ) {
-			if( button !== 'showRight' ) {
-				classie.toggle( showRight, 'disabled' );
-			}      
-		}
-    </script>
 
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/chartist.min.js"></script>

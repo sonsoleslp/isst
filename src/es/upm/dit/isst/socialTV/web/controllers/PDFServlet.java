@@ -262,7 +262,7 @@ public class PDFServlet extends HttpServlet {
 			} 
 			output.reset();
 	
-
+			
 			document.close();
 
 			ServletOutputStream outputStream = resp.getOutputStream();
