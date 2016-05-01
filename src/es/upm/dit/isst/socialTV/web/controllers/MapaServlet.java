@@ -26,6 +26,12 @@ public class MapaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Comprobar permisos
+		if (!GlobalUtil.checkLogin(request)) {
+			GlobalUtil.redirigirLogin(request, response, GlobalUtil.LOGIN_ERROR_MESSAGE);
+			return;
+		}
+
 		// Recuperamos la sesion
 		HttpSession session = request.getSession();
 		

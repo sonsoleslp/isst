@@ -1,5 +1,13 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
 /**
  * @author Paco
  *
@@ -14,8 +22,6 @@ public class GlobalUtil {
 	public static final String SPAIN_MAP_BEAN = "spainMapBean";
 	public static final String ALL_PROGS_BEAN = "allProgramsBean";
 
-	//Esto puede ser útil por si nos da por cambiar el nombre a alguna tabla, 
-	//y así sólo tener que cambiarlo aquí
 	/**	NOMBRES DE LAS TABLAS DE BASES DE DATOS **/
 	public static final String TABLE_PROGRAMA_TV = "ProgramaTV"; 
 	public static final String TABLE_DATO_AUDIENCIA = "DatoAudiencia"; 
@@ -24,11 +30,6 @@ public class GlobalUtil {
 	/** CONSTANTES DE LA APLICACION **/
 	public static final int NUM_PROGRAMAS_TOP = 5;
 	public static final String FORMAT_DATE = "yyyy-MM-dd'T'HH:mm";
-	
-	/**
-	 * Igual te sirve para el Mapa, Naomi.
-	 * Se puede hacer que el SpainMapBean tenga este valor siempre.
-	 */
 	public static final String[] SPAIN_PROVINCES_ARRAY= {
 			"Alava","Albacete","Alicante","Almeria","Asturias","Avila","Badajoz","Barcelona","Burgos","Caceres",
 			 "Cadiz","Cantabria","Castellon","Ciudad Real","Cordoba","A Coruna","Cuenca","Girona","Granada","Guadalajara",
@@ -36,8 +37,18 @@ public class GlobalUtil {
 			 "Palencia","Las Palmas","Pontevedra", "Ourense", "La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
 			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
 	};
+	public static final Set<String> ADMINISTRATORS = new HashSet<String>(Arrays.asList(
+		     new String[] {
+		 			"poynting.slp@gmail.com",
+					"naomi.glanga@gmail.com",
+					"ajalza94@gmail.com",
+					"pacoard@gmail.com",
+					"sonsoleslp@gmail.com"
+			}
+		));
+	public static final String LOGIN_ERROR_MESSAGE = "Ha habido un error con tus credenciales";
+	public static final String ACCESS_DENIED = "No se le permite acceder a este recurso";
 	
-
 	/**
 	 * Método para imprimir arrays de la forma "[a, b, c... ]"
 	 * 
@@ -74,5 +85,67 @@ public class GlobalUtil {
 	    result += "]";
 
 	    return result;
+	}
+	
+	/**
+	 * Comprueba el login de la sesión. 
+	 * 		=> True si el login es válido
+	 * 		=> False si el login no es válido de acuerdo con el rol.
+	 * 
+	 * @param req HttpServletRequest
+	 * @param res HttpServletResponse
+	 * @param rol String
+	 */
+	public static boolean checkLogin(HttpServletRequest req) {
+		
+		if (req.getUserPrincipal() == null){
+			return false;
+		}
+		String user = req.getUserPrincipal().getName();
+		
+		//Validar el login
+		if (ADMINISTRATORS.contains(user)) {
+			return true;
+		} else if (!"".equals(user)) { //un usuario cualquiera
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Comprueba el login de admin sólo. 
+	 * 		=> True si el login es válido
+	 * 		=> False si el login no es válido de acuerdo con el rol.
+	 * 
+	 * @param req HttpServletRequest
+	 * @param res HttpServletResponse
+	 * @param rol String
+	 */
+	public static boolean checkLoginAdmin(HttpServletRequest req) {
+		if (req.getUserPrincipal() == null){
+			return false;
+		}
+		String user = req.getUserPrincipal().getName();
+		//Validar el login
+		if (ADMINISTRATORS.contains(user)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Redirige a la página de inicio con un mensaje de error
+	 * 
+	 * @param req HttpServletRequest
+	 * @param res HttpServletResponse
+	 * @param error String
+	 */
+	public static void redirigirLogin(HttpServletRequest req, HttpServletResponse res, String error) {
+		try {
+			req.getSession().setAttribute("errorMsg", error);
+			res.sendRedirect("/welcome");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

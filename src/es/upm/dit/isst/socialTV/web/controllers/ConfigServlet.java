@@ -33,11 +33,21 @@ public class ConfigServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			render(req,resp, "");
+		//Comprobar permisos
+		if (!GlobalUtil.checkLoginAdmin(req)) {
+			GlobalUtil.redirigirLogin(req, resp, GlobalUtil.ACCESS_DENIED);
+			return;
+		}	
+		render(req,resp, "");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//Comprobar permisos
+		if (!GlobalUtil.checkLoginAdmin(req)) {
+			GlobalUtil.redirigirLogin(req, resp, GlobalUtil.ACCESS_DENIED);
+			return;
+		}
 		SimpleDateFormat format = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
 		if (req.getParameter("fecha_inicio").isEmpty()){
 			render(req,resp,"Error. La fecha de inicio está vacía.");

@@ -41,6 +41,11 @@ public class GraphServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Comprobar permisos
+		if (!GlobalUtil.checkLogin(request)) {
+			GlobalUtil.redirigirLogin(request, response, GlobalUtil.LOGIN_ERROR_MESSAGE);
+			return;
+		}
 		HttpSession session = request.getSession();
 		//Separo la URL por /
 		String[] params = request.getRequestURL().toString().split("/"); 

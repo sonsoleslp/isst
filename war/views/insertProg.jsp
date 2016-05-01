@@ -56,13 +56,13 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#" style="margin: 2px; padding: 0;"><img
+			<a class="navbar-brand" href="/" style="margin: 2px; padding: 0;"><img
 				src="img/logo.png" height="40px"></a> <a class="navbar-brand"
-				href="index.html">SocialTV</a>
+				href="/">SocialTV</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="index.html#"><i class="fa fa-home"></i> Home</a></li>
+				<li><a href="/"><i class="fa fa-home"></i> Home</a></li>
 				<li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
 				<li><a href="/calendar"><i class="fa fa-line-chart"></i>
 						Calendar</a></li>
@@ -71,9 +71,12 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<!--  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
+				<li>
+		        	<a href="${urlLog_in_out}">
+		        		<span class="glyphicon glyphicon-log-in"></span>
+		        		<c:out value="${urlLinktext}"/>
+		        	</a>
+	        	</li>
 			</ul>
 		</div>
 	</div>

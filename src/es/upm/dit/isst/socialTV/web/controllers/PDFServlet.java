@@ -41,6 +41,11 @@ public class PDFServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//Comprobar permisos
+		if (!GlobalUtil.checkLogin(req)) {
+			GlobalUtil.redirigirLogin(req, resp, GlobalUtil.LOGIN_ERROR_MESSAGE);
+			return;
+		}
 
 		//Separo la URL por /
 		String[] params = req.getRequestURL().toString().split("/"); 

@@ -27,7 +27,11 @@ public class Top5Servlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//Comprobar permisos
+		if (!GlobalUtil.checkLogin(request)) {
+			GlobalUtil.redirigirLogin(request, response, GlobalUtil.LOGIN_ERROR_MESSAGE);
+			return;
+		}
 		HttpSession session = request.getSession();
 		
 		//Obtener el Top5 de bases de datos

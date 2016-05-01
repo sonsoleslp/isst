@@ -29,6 +29,11 @@ public class CalendarServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//Comprobar permisos
+		if (!GlobalUtil.checkLogin(req)) {
+			GlobalUtil.redirigirLogin(req, resp, GlobalUtil.LOGIN_ERROR_MESSAGE);
+			return;
+		}
 		HttpSession session = req.getSession();
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ArrayList <ProgramaTV> progs = new ArrayList<ProgramaTV>(dao.todosLosProgramas());
