@@ -28,15 +28,16 @@
     <![endif]-->
     
     <!-- Error de login -->
-    <% if (!"".equals((String)session.getAttribute("errorMsg"))) {%>
+    <c:if test="${not empty errorMsg }">
+ 
 	    <script>
 	    	alert("${errorMsg}");
 	    </script>
-    <%
+   	 <%
     	//quitar la alerta para que no salga otra vez
-    	session.setAttribute("errorMsg", "");
-    } %>
-
+    	session.setAttribute("errorMsg", null);
+     %>
+	</c:if>
     <title>SocialTV</title>
 
     <link rel="stylesheet" href="/css/font-awesome.min.css">

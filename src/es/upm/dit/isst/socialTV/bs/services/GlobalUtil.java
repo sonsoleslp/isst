@@ -42,8 +42,7 @@ public class GlobalUtil {
 		 			"poynting.slp@gmail.com",
 					"naomi.glanga@gmail.com",
 					"ajalza94@gmail.com",
-					"pacoard@gmail.com",
-					"sonsoleslp@gmail.com"
+					"pacoard@gmail.com"
 			}
 		));
 	public static final String LOGIN_ERROR_MESSAGE = "Ha habido un error con tus credenciales";
