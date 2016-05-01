@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.socialTV.bs.model.DatoAudiencia;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
+import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
+import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
-public class DeleteProgramsServlet extends HttpServlet {
+public class DeleteProgramByIdServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(Cron5MinServlet.class.getName());
@@ -26,9 +30,22 @@ public class DeleteProgramsServlet extends HttpServlet {
 			return;
 		}
 		logger.info("DELETE PROGRAMASTV");
-		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
-		dao.deleteAll();
-		resp.sendRedirect("/");
+		String[] params = req.getRequestURL().toString().split("/"); 
+		Long num = (long) 0;	
+		//Compruebo si el último trozo es una cadena numérica
+		try {
+			num = Long.parseLong(params[params.length-1]);
+
+		} catch(Exception e){
+			return;
+		}
+		
+		ProgramaTVDAO ptv = ProgramaTVImpl.getInstance();
+		ProgramaTV prog = ptv.programaPorId(num);
+		DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
+		ptv.deleteProgramaTV(num);
+		dao.deleteAudienceForEpisodeWithId(num);
+		resp.sendRedirect("/apitest");
 	}
 	
 }

@@ -12,6 +12,7 @@ import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaDAO;
 import es.upm.dit.isst.socialTV.bs.model.DatoAudienciaImpl;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
+import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 public class DeleteDatosAudiencia  extends HttpServlet {
 
@@ -20,7 +21,11 @@ public class DeleteDatosAudiencia  extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		//Comprobar permisos
+		if (!GlobalUtil.checkLoginAdmin(req)) {
+			GlobalUtil.redirigirLogin(req, resp, GlobalUtil.ACCESS_DENIED);
+			return;
+		}
 		logger.info("DELETE DatosAudiencia");
 		DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
 		dao.deleteAll();

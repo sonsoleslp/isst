@@ -4,10 +4,11 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	<welcome-file-list>
-	    <welcome-file>welcome</welcome-file>
-    	<!-- <welcome-file>index.jsp</welcome-file> -->
-  	</welcome-file-list>
+    <welcome-file-list>
+ 	    <welcome-file>welcome</welcome-file>
+     	<!-- <welcome-file>index.jsp</welcome-file> -->
+   	</welcome-file-list>
+     
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.LoginServlet</servlet-class>
@@ -72,7 +73,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>Calendar</servlet-name>
         <url-pattern>/calendar</url-pattern>
     </servlet-mapping>
-        <servlet>
+     <servlet>
+        <servlet-name>DeleteProgById</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.DeleteProgramByIdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteProgById</servlet-name>
+        <url-pattern>/delete/*</url-pattern>
+    </servlet-mapping> 
+    <servlet>
         <servlet-name>BorraProgs</servlet-name>
         <servlet-class>es.upm.dit.isst.socialTV.web.controllers.DeleteProgramsServlet</servlet-class>
     </servlet>

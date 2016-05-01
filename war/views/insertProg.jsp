@@ -86,7 +86,7 @@
 	<div class="container-fluid">
 
 		<div class="row">
-			<div class="text-center col-xs-12 col-md-6  col-lg-6 ">
+			<div class="text-center col-xs-12 col-md-6  col-lg-5 ">
 				<br>
 				<br>
 				<br>
@@ -165,7 +165,7 @@
 
 
 			</div>
-			<div class="text-center col-xs-12 col-md-6  col-lg-6 ">
+			<div class="text-center col-xs-12 col-md-6  col-lg-7 ">
 				<br>
 				<br>
 				<br>
@@ -179,20 +179,23 @@
 
 						<table style="border: 0;" class="table table-striped">
 							<tr>
-								<td><b>#</b></td>
+								<td>Ver</td>
 								<td><b>Titulo</b></td>
 								<td><b>Hashtag</b></td>
 								<td><b>Count</b></td>
 								<td><b>LastTweet</b></td>
+								<td>Eliminar</td>
 							</tr>
 							<c:forEach items="${allProgramsBean.progs}" var="prog">
 								<tr>
 									<td><a
-										href="/grafica/<c:out value="${prog.primaryKey }"/>">Ver</a></td>
+										href="/grafica/<c:out value="${prog.primaryKey }"/>"><i class="fa fa-eye fa-2x"></i></a></td>
 									<td><c:out value="${prog.titulo }" /></td>
 									<td><c:out value="${prog.hashtag }" /></td>
 									<td><c:out value="${prog.count }" /></td>
 									<td><c:out value="${prog.lastTweet }" /></td>
+									<td><a
+										href="/delete/<c:out value="${prog.primaryKey }"/>"><i class="fa fa-trash fa-2x"></i></a></td>
 								</tr>
 							</c:forEach>
 						</table>

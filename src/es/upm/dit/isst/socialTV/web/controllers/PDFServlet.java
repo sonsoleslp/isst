@@ -68,7 +68,7 @@ public class PDFServlet extends HttpServlet {
 			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);	
 			// Hace que no salga el primer valor de tweets, que no es significativo
-			if (list.size() == 0 || list.size() == 1) {
+			if (list.size() <= 2) {
 				resp.sendRedirect("/");
 				return;
 			}
