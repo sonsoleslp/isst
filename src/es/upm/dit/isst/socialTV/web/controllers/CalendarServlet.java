@@ -23,6 +23,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
+/**
+ * 
+ * @author Paco
+ *
+ */
 public class CalendarServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

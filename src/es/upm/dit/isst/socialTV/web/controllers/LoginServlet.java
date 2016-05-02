@@ -18,7 +18,6 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
  * Servlet de control de Login
- * 
  * @author Paco
  *
  */

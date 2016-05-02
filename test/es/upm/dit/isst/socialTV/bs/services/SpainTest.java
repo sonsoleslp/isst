@@ -5,7 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * Clase de Prueba de Spain.java
+ * @author Sonsoles
+ *
+ */
 public class SpainTest {
 
 	@Before

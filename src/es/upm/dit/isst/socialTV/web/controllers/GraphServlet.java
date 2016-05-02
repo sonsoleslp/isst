@@ -33,6 +33,8 @@ import java.util.logging.Logger;
 
 /**
  * Servlet implementation class MapaServlet
+ * @author Paco
+ *
  */
 public class GraphServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

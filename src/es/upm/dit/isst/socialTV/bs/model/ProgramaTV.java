@@ -25,10 +25,18 @@ public class ProgramaTV implements Serializable {
 	private String fechaInicio;
 	private String fechaFin;
 	private String hashtag;
+	/**
+	 * Cuenta total de Tweets
+	 */
 	private int count;
 	private long lastId;
+	/**
+	 * Referencia del último tweet recibido
+	 */
 	private String lastTweet;
-	
+	/**
+	 * Contador para cada provincia
+	 */
     private int Alava = 0;
 	private int Alicante = 0;
 	private int Almeria = 0;
@@ -85,12 +93,12 @@ public class ProgramaTV implements Serializable {
 	
 	/**
 	 * Constructor
-	 * @param titulo
-	 * @param episodeCode
-	 * @param fechainicio
-	 * @param horaInicio
-	 * @param duracion
-	 * @param hashtag
+	 * @param titulo Título del programa
+	 * @param episodeCode Código del Episodio (ej. T01E03)
+	 * @param fechaInicio Fecha y hora de Inicio
+	 * @param fechaFin Fecha y hora de Fin
+	 * @param hashtag Hashtag que se monitorizará
+	 * @return Objeto ProgramaTV
 	 */
 	public ProgramaTV(String titulo, String episodeCode, String fechaInicio, String fechaFin, String hashtag){
 		this.titulo = titulo;

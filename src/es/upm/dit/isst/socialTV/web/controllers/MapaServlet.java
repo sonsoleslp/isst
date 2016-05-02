@@ -12,7 +12,6 @@ import es.upm.dit.isst.socialTV.bs.beans.SpainMapBean;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
-import es.upm.dit.isst.socialTV.bs.services.CalculoImpactoMapa;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 
@@ -35,7 +34,7 @@ public class MapaServlet extends HttpServlet {
 		// Recuperamos la sesion
 		HttpSession session = request.getSession();
 		
-		CalculoImpactoMapa cim = new CalculoImpactoMapa();
+//		CalculoImpactoMapa cim = new CalculoImpactoMapa();
 		
 		//Separo la URL por /
 		String[] params = request.getRequestURL().toString().split("/"); 

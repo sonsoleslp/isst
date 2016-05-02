@@ -18,6 +18,7 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
  * Servlet implementation class MapaServlet
+ * @author Paco
  */
 public class Top5Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -14,6 +14,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
+/**
+ * Servlet para borrar todos los datos de audiencia
+ * @author Sonsoles
+ *
+ */
 public class DeleteDatosAudiencia  extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

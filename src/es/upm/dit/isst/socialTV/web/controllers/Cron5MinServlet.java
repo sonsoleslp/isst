@@ -22,7 +22,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
-
+/**
+ * 
+ * @author Antonio
+ *
+ */
 public class Cron5MinServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

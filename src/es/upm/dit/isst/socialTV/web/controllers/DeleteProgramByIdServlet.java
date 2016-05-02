@@ -17,6 +17,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
+/**
+ * Servlet para borrar el programa especificado
+ * @author Sonsoles
+ *
+ */
 public class DeleteProgramByIdServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -10,7 +10,11 @@ import org.junit.Test;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-
+/**
+ * Clase de prueba de DatoAudienciaImpl
+ * @author Sonsoles
+ *
+ */
 public class DatoAudienciaImplTest {
 	private final LocalServiceTestHelper helper =
 		      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());

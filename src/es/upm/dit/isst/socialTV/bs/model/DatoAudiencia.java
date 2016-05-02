@@ -12,9 +12,9 @@ import javax.persistence.Id;
 import twitter4j.Status;
 
 /**
- * Definición de la Tabla DatoAudiencia
+ * Definición de la Tabla DatoAudiencia en la que se recoge cada monitorizacion
  * 
- * @author SonsolesLP
+ * @author Sonsoles
  *
  */
 @Entity
@@ -31,9 +31,9 @@ public class DatoAudiencia implements Serializable {
 	
 	/**
 	 * Constructor DatoAudiencia
-	 * @param foreignKey
-	 * @param hora
-	 * @param count
+	 * @param foreignKey Programa que se está monitorizando
+	 * @param hora Instante de la toma de datos
+	 * @param count Número de tweets
 	 */
 
 	public DatoAudiencia(Long foreignKey, String fecha, Integer count){

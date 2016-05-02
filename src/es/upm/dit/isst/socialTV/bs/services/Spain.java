@@ -6,10 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.print.attribute.standard.PrinterLocation;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -22,6 +20,12 @@ import org.json.JSONObject;
 import org.json.JSONWriter;
 import org.mapfish.geo.*;
 
+/**
+ * Clase que crea una lista de las provincias de España como polígonos a partir de un fichero GeoJSON
+ * y comprueba a qué provincia pertenece una determinada coordenada
+ * @author Sonsoles
+ *
+ */
 public class Spain {
 	private static Spain instance = null;
 	public static ArrayList<MultiPolygon> mp = new  ArrayList<MultiPolygon>();
@@ -31,6 +35,12 @@ public class Spain {
 	public Spain(){
 
 	}
+	
+	/**
+	 * Método para obtener la instancia del objeto Singleton o crearla si no existe
+	 * @return instancia del objeto España
+	 */
+	
 	public static Spain getInstance() {
 		if (instance == null){
 			instance = new Spain();
@@ -38,7 +48,12 @@ public class Spain {
 		}
 		return instance;
 	}
-	
+	/**
+	 * Comprueba a que provincia pertenece una coordenada 
+	 * @param lng Longitud de la coordenada
+	 * @param lat Latitud de la coordenada
+	 * @return El nombre de la provincia
+	 */
 	public String whichProvince(double lng, double lat){
 		int ind = 0;
 
@@ -52,6 +67,10 @@ public class Spain {
 		return "Other";
 	}
 	
+	/**
+	 * Parsea el GeoJSON para crear un polígono por cada provincia
+	 * Sólo se ejecuta al inicializar el Singleton
+	 */
 	public void fill(){
 		System.out.println("Filling");
 		try {

@@ -34,7 +34,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
-
+/**
+ * Servlet que genera un informe en PDF de la monitorización especificada
+ * @author Sonsoles
+ *
+ */
 public class PDFServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

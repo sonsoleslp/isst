@@ -12,7 +12,7 @@ import javax.persistence.Query;
 
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 /**	
- * Implementación de DatoAudienciaDAO
+ * Implementación de las funciones definidas en DatoAudienciaDAO
  * @author Sonsoles
  *
  */

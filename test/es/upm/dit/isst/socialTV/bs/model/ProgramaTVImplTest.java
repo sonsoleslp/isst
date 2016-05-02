@@ -14,7 +14,11 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
-
+/**
+ * Clase de prueba de ProgramaTVImpl.java
+ * @author Sonsoles
+ *
+ */
 public class ProgramaTVImplTest {
 
 	private final LocalServiceTestHelper helper =

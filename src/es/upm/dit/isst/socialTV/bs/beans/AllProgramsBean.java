@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
-
+/**
+ * Bean para presentar todos los programas de TV. 
+ * Se emplea en la vista de configuración y en el calendario
+ * @author Sonsoles
+ *
+ */
 public class AllProgramsBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

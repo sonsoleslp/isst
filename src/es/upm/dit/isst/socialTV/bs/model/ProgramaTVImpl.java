@@ -10,7 +10,11 @@ import javax.persistence.Query;
 
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
-
+/**
+ * Implementación de las funciones definidas en la interfaz ProgramaTVDAO
+ * @author Sonsoles
+ *
+ */
 public class ProgramaTVImpl implements ProgramaTVDAO {
 	private static ProgramaTVImpl instance;
 	private ProgramaTVImpl () {
