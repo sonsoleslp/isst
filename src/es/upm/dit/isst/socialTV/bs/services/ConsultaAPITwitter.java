@@ -89,20 +89,18 @@ public class ConsultaAPITwitter {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
 			cal.add(Calendar.HOUR_OF_DAY, +2);
-			datos.apuntaDato(prog.getPrimaryKey(), cal.getTime(), list.size());
+			fecha = cal.getTime();
 		}else{
-			datos.apuntaDato(prog.getPrimaryKey(), new Date(), list.size());
+			fecha = new Date();
 		}
+		datos.apuntaDato(prog.getPrimaryKey(), fecha, list.size());
 		// Count - Province
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
 			Status temp = list.get(0);
 			prog.setLastId(temp.getId());
 			prog.setLastTweet(temp.getText());
-
-			if (list.size()>2){
-				// Quitar el primero
-				list.remove(list.size()-1);
+			if (prog.getLastId() != FIRST_ID){
 				count += list.size();
 				// Set Province
 				for(Status tweet : list){
@@ -117,9 +115,8 @@ public class ConsultaAPITwitter {
 						continue;
 					}
 				}
-				prog.setCount(count);
 			}
-			
+			prog.setCount(count);
 			dao.updateProgramaTV(prog);
 		}
 	}
