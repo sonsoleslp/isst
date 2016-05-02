@@ -71,9 +71,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
     <% if (!"".equals(session.getAttribute("user"))) { %>
       <ul class="nav navbar-nav">
-       <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+       <li class="active"><a href="/"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="/top"><i class="fa fa-star-o"></i> Top 5</a></li>
-        <li class="active"><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
+        <li><a href="/calendar"><i class="fa fa-line-chart"></i> Calendar</a></li> 
          <% if ("admin".equals(session.getAttribute("rol"))) { %>
          <li><a href="/apitest"><i class="fa fa-wrench"></i> Config</a></li> 
  		<% }%>
