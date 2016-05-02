@@ -182,8 +182,8 @@
 								<td>Ver</td>
 								<td><b>Titulo</b></td>
 								<td><b>Hashtag</b></td>
-								<td><b>Count</b></td>
-								<td><b>LastTweet</b></td>
+								<td><b>Cuenta</b></td>
+								<td><b>Último Tweet</b></td>
 								<td>Eliminar</td>
 							</tr>
 							<c:forEach items="${allProgramsBean.progs}" var="prog">
