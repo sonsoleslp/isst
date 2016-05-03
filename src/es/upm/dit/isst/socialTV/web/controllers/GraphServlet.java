@@ -67,11 +67,11 @@ public class GraphServlet extends HttpServlet {
 
 			DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
 			// Extraigo la audiencia de dicho programa
-			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);	
+			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);
 			// Hace que no salga el primer valor de tweets, que no es significativo
 			if(list.size()>1)list.remove(list.size()-1);
 			// Número de monitorizaciones (menos la primera)
-			int size = list.size();
+			int size = list.size()-1;
 			//Array de minutos de medición
 			String[] horas = new String[size];
 			//Array de medidas
@@ -80,12 +80,15 @@ public class GraphServlet extends HttpServlet {
 			
 			// Recorro los resultados para rellenar los arrays
 			for(DatoAudiencia dato : list){
-				// TODO Ordenar por fecha
-				String date = dato.getFecha();
-				horas[size -1 - index] =  date.length() > 5? date.substring(date.toString().length() - 5) : date;
-				int cuenta = dato.getCount();
-				numTweets[size-1-index]= cuenta;
-				index++;
+				if(index < size){
+					System.out.println(dato);
+					// TODO Ordenar por fecha
+					String date = dato.getFecha();
+					horas[size -1 - index] =  date.length() > 5? date.substring(date.toString().length() - 5) : date;
+					int cuenta = dato.getCount();
+					numTweets[size-1-index]= cuenta;
+					index++;
+				}
 			}
 
 		// Paso todos los valores al Bean	

@@ -227,13 +227,14 @@ body{background-color: transparent;}
 table{}
 
 html{
-    background-image: url(../img/notebook.png);
+   /* background-image: url(../img/notebook.png);*/
     /*background-image:url(http://orig12.deviantart.net/ef42/f/2015/341/d/6/flat_landscape__winter_edition__by_jovicasmileski-d9jbz70.jpg);*/
     /*background-image: url(http://i.istockimg.com/file_thumbview_approve/38737172/3/stock-illustration-38737172-seamless-flamingo-bird-pattern.jpg);*/
     /*background-image: url(https://cdn.designmaz.net/wp-content/uploads/2014/10/google-inspired.jpg); */
   /* background-repeat:none;
   background-size: cover;
   background-position: bottom;*/
+  background-color:#D9D9D9;
   min-height: 100%;
 }
 
