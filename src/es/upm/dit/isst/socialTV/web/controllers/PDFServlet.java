@@ -3,6 +3,7 @@ package es.upm.dit.isst.socialTV.web.controllers;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,7 +12,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.w3c.tidy.Tidy;
 
@@ -23,7 +23,6 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.CMYKColor;
 import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPatternPainter;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
@@ -97,7 +96,7 @@ public class PDFServlet extends HttpServlet {
 			
 			//File commons
 		
-			String header = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>";
+			String header = "<!DOCTYPE html><html><head><meta charset='UTF-8'/></head><body><style> font-family:sans-serif;</style>";
 			String footer = "</body></html>";
 			
 			String fechaInicio = prog.getFechaInicio();
@@ -115,7 +114,7 @@ public class PDFServlet extends HttpServlet {
 			doc1 += "<p><b>Inicio:   </b>  "+fechaInicio + " </p>";
 			doc1 += "<p><b>Fin:   </b>   "+fechaFin + "</p>";
 			doc1 += "<p><b>Menciones en total:   </b>  "+prog.getCount()+"</p>";
-
+			doc1 = header + doc1 + footer;
 			//Page 2
 			
 			String doc2 = "<h2>Evolucion temporal</h2>";
@@ -124,7 +123,7 @@ public class PDFServlet extends HttpServlet {
 				doc2+="<tr><td>"+horas[i]+"</td><td>"+numTweets[i]+"</td></tr>";
 			}
 			doc2 +=  "</table></div>";
-			
+			doc2 = header + doc2 + footer;
 			
 			//Page 3
 			String doc3 = "<h2>Impacto provincial</h2>";
@@ -133,12 +132,9 @@ public class PDFServlet extends HttpServlet {
 				String province = GlobalUtil.SPAIN_PROVINCES_ARRAY[i];
 				doc3 += "<tr><td>"+province+"</td><td>"+prog.getProvince(province)+"</td></tr>";
 			}
-			doc3 += "</table></div>";
+			doc3 += "</table></div>";		
+			doc3 = header + doc3 + footer;
 			
-			
-
-			
-
 			// Generate PDF
 			Document document = new Document();
 			PdfWriter writer = null;
@@ -151,12 +147,12 @@ public class PDFServlet extends HttpServlet {
 				e1.printStackTrace();
 			}
 			document.open();
-			
+
 			
 			// Generate Page 1      
 		      
 			try {
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc1, output));
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document,  this.parseHTML(doc1, output), Charset.forName("UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
@@ -235,6 +231,7 @@ public class PDFServlet extends HttpServlet {
 
 	        canvas.lineTo(559, 100);
 	        canvas.lineTo(46, 100);
+	        canvas.setRGBColorStroke(85, 172, 238);
 	        canvas.setRGBColorFill(85, 172, 238);
 	        canvas.fill();
 	        canvas.closePathStroke();
@@ -254,7 +251,7 @@ public class PDFServlet extends HttpServlet {
 		    document.newPage();
 		      
 			try {
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc2, output));
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc2, output), Charset.forName("UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
@@ -265,7 +262,7 @@ public class PDFServlet extends HttpServlet {
 			// Generate Page 3     
 		      
 			try {
-				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc3, output));
+				XMLWorkerHelper.getInstance().parseXHtml(writer, document, this.parseHTML(doc3, output), Charset.forName("UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
