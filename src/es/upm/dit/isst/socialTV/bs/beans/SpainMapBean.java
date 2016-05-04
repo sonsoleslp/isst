@@ -31,6 +31,8 @@ public class SpainMapBean implements Serializable {
 	private String episodeCode;
 	private String dateStart;
 	private String dateEnd;
+	private int count;
+
 
 
 	/**
@@ -122,4 +124,11 @@ public class SpainMapBean implements Serializable {
 		this.provinceTweets = Arrays.toString(provinceTweets).split("[\\[\\]]")[1].split(", ");
 	}
 	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 }

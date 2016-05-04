@@ -74,7 +74,12 @@ pageEncoding="utf-8"%>
 				</h2>
 				<h3>
 				<c:out value="${graphBean.dateStart}"/> - <c:out value="${graphBean.dateEnd}"/>
-				<br><br>
+				
+				</h3>
+				<h3>
+				<i style="color:#1685D0;" class="fa fa-balance-scale"></i>
+				<c:out value="${graphBean.count}"/> tweets<br><br>
+			
 				</h3>
 				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-map-marker"></i>  Datos
 								regionales</button></a>

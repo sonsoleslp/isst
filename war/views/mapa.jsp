@@ -105,8 +105,10 @@
 					<c:out value="${spainMapBean.dateStart}" />
 					-
 					<c:out value="${spainMapBean.dateEnd}" />
-					<br>
-					<br>
+				</h3>
+				<h3>
+				<i style="color:#1685D0;" class="fa fa-balance-scale"></i>
+				<c:out value="${graphBean.count}"/> tweets<br><br>
 				</h3>
 				<a href="/grafica/<c:out value="${spainMapBean.id}"/>">
 				<button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-area-chart"></i>  Evoluci&oacute;n Temporal</button></a>

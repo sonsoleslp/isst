@@ -117,7 +117,7 @@ public class PDFServlet extends HttpServlet {
 			doc1 = header + doc1 + footer;
 			//Page 2
 			
-			String doc2 = "<h2>Evolucion temporal</h2>";
+			String doc2 = "<h2>Evolución temporal</h2>";
 			doc2+= "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Hora</th><th>Menciones</th></tr>";
 			for (int i = 1; i < numTweets.length; i++){
 				doc2+="<tr><td>"+horas[i]+"</td><td>"+numTweets[i]+"</td></tr>";
@@ -150,7 +150,7 @@ public class PDFServlet extends HttpServlet {
 
 			
 			// Generate Page 1      
-		      
+		
 			try {
 				XMLWorkerHelper.getInstance().parseXHtml(writer, document,  this.parseHTML(doc1, output), Charset.forName("UTF-8"));
 			} catch (IOException e) {
@@ -292,7 +292,7 @@ public class PDFServlet extends HttpServlet {
 	
 
 	public ByteArrayInputStream parseHTML(String file, ByteArrayOutputStream output){
-		ByteArrayInputStream input = new ByteArrayInputStream(file.getBytes());
+		ByteArrayInputStream input = new ByteArrayInputStream(file.getBytes(Charset.forName("UTF-8")));
 		
 		// HTML to XHTML
 		Tidy tidy = new Tidy();

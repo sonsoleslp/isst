@@ -60,6 +60,7 @@ public class MapaServlet extends HttpServlet {
 			spainMapBean.setDateStart(prog.getFechaInicio().replace("T", "  "));
 			spainMapBean.setEpisodeCode(prog.getEpisodeCode());
 			spainMapBean.setHashtag(prog.getHashtag());
+			spainMapBean.setCount(prog.getCount());
 			spainMapBean.setId(num);
 			spainMapBean.setTitle(prog.getTitulo());
 			spainMapBean.setProvinceName(GlobalUtil.SPAIN_PROVINCES_ARRAY);
@@ -78,6 +79,7 @@ public class MapaServlet extends HttpServlet {
 			spainMapBean.setProvinceTweets(tweets);
 			spainMapBean.setMax(max);
 			spainMapBean.setMin(min);
+	
 			// Pasamos el bean a la vista
 			session.setAttribute(GlobalUtil.SPAIN_MAP_BEAN, spainMapBean);
 		

@@ -111,6 +111,7 @@ public class GraphServlet extends HttpServlet {
 		gb.setEpisodeCode(prog.getEpisodeCode());
 		gb.setDateStart(prog.getFechaInicio().replace("T", " "));
 		gb.setDateEnd(prog.getFechaFin().replace("T", " "));
+		gb.setCount(prog.getCount());
 			
 		session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
 		

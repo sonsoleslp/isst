@@ -21,6 +21,7 @@ public class GraphBean implements Serializable {
 	private String title;
 	private String hashtag;
 	private Long id;
+	private int count;
 	private String episodeCode;
 	private String dateStart;
 	private String dateEnd;
@@ -103,4 +104,15 @@ public class GraphBean implements Serializable {
 	public void setDateEnd(String dateEnd) {
 		this.dateEnd = dateEnd.replace('T', ' ');
 	}	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public void setNumTweets(String[] numTweets) {
+		this.numTweets = numTweets;
+	}
 }
