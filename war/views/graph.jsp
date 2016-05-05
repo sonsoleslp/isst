@@ -73,7 +73,7 @@ pageEncoding="utf-8"%>
 					<c:out value="${graphBean.hashtag}"/>
 				</h2>
 				<h3>
-				<c:out value="${graphBean.dateStart}"/> - <c:out value="${graphBean.dateEnd}"/>
+				<i style="color:#1685D0;" class="fa fa-hourglass-start"></i> <c:out value="${graphBean.dateStart}"/> - <i style="color:#1685D0;" class="fa fa-hourglass-end"></i> <c:out value="${graphBean.dateEnd}"/>
 				
 				</h3>
 				<h3>

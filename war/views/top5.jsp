@@ -67,13 +67,22 @@
 								<span style="color: orange;" class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								Serie
 							</th>
-							<th>Episodio</th>
-							<th># Hashtag</th>
+							<th>
+								<i style="color:#1685D0;" class="fa fa-tv"></i>
+								Episodio
+							</th>
+							<th>
+								<i style="color:#1685D0;" class="fa fa-hashtag"></i>
+								 Hashtag
+							</th>
 							<th>
 								<span style="color: grey;" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 								Emisión
 							</th>
-							<th>Menciones</th>
+							
+							<th>
+								<i style="color:#1685D0;" class="fa fa-balance-scale"></i> Menciones
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,7 +93,6 @@
 								<a href="/grafica/${programa.primaryKey}"/> 
 								<c:out value="${programa.titulo}" /></a>
 							</td>
-							<td><c:out value="${programa.titulo}"/></td>
 							<td><c:out value="${programa.episodeCode}"/></td>
 							<td><c:out value="${programa.hashtag}"/></td>
 							<td><c:out value="${programa.emision}"/></td>

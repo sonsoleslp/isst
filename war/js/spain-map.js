@@ -272,8 +272,8 @@ function mapa(provincias, tweets, max, min){
 			var R, attr, load, mapBBox, province, _i, _len;
 			R = Raphael(config.id, config.width, config.height);
 			attr = {
-					"fill": '#eee',
-					"stroke": config.strokeColor || "#fff",
+					"fill": '#aaa',
+					"stroke": config.strokeColor || "#aaa",
 					"stroke-width": config.strokeWidth || "0.75"
 			};
 			load = function(province) {
@@ -288,7 +288,7 @@ function mapa(provincias, tweets, max, min){
 				path[0].style.cursor = "pointer";
 				path[0].onmouseover = function(e) {
 					path.attr({
-						fill: 'white' //config.selectedColor
+						fill: '#aaa' //config.selectedColor
 					});
 					R.safari();
 					if (config.onMouseOver) {

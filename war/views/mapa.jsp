@@ -102,9 +102,8 @@
 					<c:out value="${spainMapBean.hashtag}" />
 				</h2>
 				<h3>
-					<c:out value="${spainMapBean.dateStart}" />
-					-
-					<c:out value="${spainMapBean.dateEnd}" />
+					<i style="color:#1685D0;" class="fa fa-hourglass-start"></i> <c:out value="${graphBean.dateStart}"/> - <i style="color:#1685D0;" class="fa fa-hourglass-end"></i> <c:out value="${graphBean.dateEnd}"/>
+
 				</h3>
 				<h3>
 				<i style="color:#1685D0;" class="fa fa-balance-scale"></i>
@@ -146,7 +145,7 @@
 			      fillColor: "#eeeeee",
 			      strokeColor: "#cccccc",
 			      strokeWidth: 0.7,
-			      selectedColor: "#66bbdd",
+			      selectedColor: "#aaa",
 			      animationDuration: 200,
 			      onClick: function(province, event) {
 			        document.getElementById('mapa').innerHTML= '<span class="wow slideInDown" >En <b>'+ province.name+'</b> ha habido <b>'+ province.value+ '</b> tweets.</span>'
