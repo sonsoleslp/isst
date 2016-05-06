@@ -47,6 +47,8 @@ public class GlobalUtil {
 	public static final String LOGIN_ERROR_MESSAGE = "Ha habido un error con tus credenciales";
 	public static final String ACCESS_DENIED = "No se le permite acceder a este recurso";
 	public static final String PROGRAMATV_DENIED = "Aún no se dispone de los datos suficientes para mostrar este recurso.";
+	
+	public static final String DEMOSTRING = "#DemoSocialTVISST";
 	/**
 	 * Método para imprimir arrays de la forma "[a, b, c... ]"
 	 * 

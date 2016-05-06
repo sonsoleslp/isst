@@ -105,4 +105,20 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>PDFReport</servlet-name>
         <url-pattern>/report/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ActivateDemo</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.ActivateDemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivateDemo</servlet-name>
+        <url-pattern>/demo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Demo</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CronDemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo</servlet-name>
+        <url-pattern>/cron/demo</url-pattern>
+    </servlet-mapping>
 </web-app>

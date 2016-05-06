@@ -131,9 +131,12 @@ public class ConsultaAPITwitter {
 		// 100 tweets MAX_SEARCH
 		query.setCount(MAX_SEARCH);
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String fecha = formatter.format(date);
-		query.setSince(fecha);
+		if (date != null){
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String fecha = formatter.format(date);
+			query.setSince(fecha);
+		}
+		
 
 		if (sinceId != FIRST_ID){
 			query.sinceId(sinceId);
@@ -153,12 +156,13 @@ public class ConsultaAPITwitter {
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
-		logger.info(RATE_APP+": "+req.get(RATE_APP).getLimit()+", "+req.get(RATE_APP).getRemaining());
-		logger.info(RATE_SEARCH+": "+req.get(RATE_SEARCH).getLimit()+", "+req.get(RATE_SEARCH).getRemaining());
+		logger.info(RATE_APP+": Max: "+req.get(RATE_APP).getLimit()+", You: "+req.get(RATE_APP).getRemaining());
+		logger.info(RATE_SEARCH+": Max "+req.get(RATE_SEARCH).getLimit()+", You: "+req.get(RATE_SEARCH).getRemaining());
 		return result.getTweets();
 	}
 
-	// Una peticion por minuto
+	/*
+	Una peticion por minuto
 	public Map<String, Integer> getTrends(int place){
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		Trends trends = null;
@@ -188,12 +192,9 @@ public class ConsultaAPITwitter {
 		for (int i=0; i<json_array.size(); i++){
 			JsonObject json = json_array.getJsonObject(i);
 			if (!json.isNull(NAME_FIELD) && !json.isNull(VOLUME_FIELD)){
-				/*
-				 * Array in order
 				int index = insertOrder(volume, json.getInt(VOLUME_FIELD));
 				trends_name.add(index,json.getString(NAME_FIELD));
 				volume.add(index, json.getInt(VOLUME_FIELD));
-				 */
 				result.put(json.getString(NAME_FIELD), json.getInt(VOLUME_FIELD));
 			}
 		}
@@ -205,6 +206,7 @@ public class ConsultaAPITwitter {
 		}
 		return volumes.size();
 	}
+	*/
 }
 
 

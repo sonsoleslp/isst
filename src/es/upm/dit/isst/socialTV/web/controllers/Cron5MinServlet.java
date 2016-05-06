@@ -31,12 +31,13 @@ public class Cron5MinServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(Cron5MinServlet.class.getName());
+	private static final ConsultaAPITwitter consulta = new ConsultaAPITwitter();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		logger.info("Cron Job every 5 min");
-		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
+		
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 
 		// Todos los programas
