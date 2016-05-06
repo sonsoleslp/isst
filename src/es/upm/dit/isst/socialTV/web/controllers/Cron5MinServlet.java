@@ -36,7 +36,7 @@ public class Cron5MinServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		logger.info("Cron Job every 5 min");
+		logger.info("Cron Job every minute");
 		
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 
@@ -48,7 +48,6 @@ public class Cron5MinServlet extends HttpServlet {
 		Date ahora = null;
 		if (TimeZone.getDefault().getID().equals("UTC")){
 			// UTC from Google to GMT+2
-			logger.info("Google UTC");
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
 			cal.add(Calendar.HOUR_OF_DAY, +2);
