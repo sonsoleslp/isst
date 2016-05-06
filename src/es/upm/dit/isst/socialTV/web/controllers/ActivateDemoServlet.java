@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -21,6 +22,8 @@ public class ActivateDemoServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ConsultaAPITwitter consulta = new ConsultaAPITwitter();
+		consulta.crearConsulta("Demo Presentación","Demo Episodio", new Date(), new Date(2016,6,15), GlobalUtil.DEMOSTRING);
 		logger.info("Demo ACTIVADO");
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
