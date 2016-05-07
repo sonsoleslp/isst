@@ -80,12 +80,16 @@ pageEncoding="utf-8"%>
 				<c:out value="${graphBean.count}"/> tweets<br><br>
 			
 				</h3>
-				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-map-marker"></i>  Datos
-								regionales</button></a>
+				<a href="/mapa/<c:out value="${graphBean.id}"/>">
+					<button class="btn btn-default">
+					<i style="color:#1685D0;" class="fa fa-map-marker"></i> 
+					  Datos regionales
+					</button></a>
 				<a href="/report/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i  style="color:#1685D0;"  class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
 				
 				<a href="/compare/${graphBean.id}">
 					<button id="compareButton" class="btn btn-default"> 
+						<i style="color:#1685D0;" class="fa fa-tachometer"></i> 
 						Comparar emisiones simult&aacute;neas
 					</button>
 				</a>
@@ -98,12 +102,11 @@ pageEncoding="utf-8"%>
 			
 			<div id="leyenda" >
 				<ul>
-					<c:forEach var="programa" items="${compareGraphBean}">
-						<button>
-							<li id="<c:out value='${programa.title}' />" class="compGraphics">
-								<c:out value='${programa.title}' />
-							</li>
-						</button>
+					<c:forEach var="programa" items="${compareGraphBean}" varStatus="loop">
+						<li id="prog_<c:out value='${programa.id}' />" class="compGraphics">
+							<i id="icon_<c:out value='${programa.id}' />"  class="fa fa-toggle-off"></i> <c:out value='${programa.title}' />
+						</li>
+			
 					</c:forEach>
 				</ul>
 			</div>
@@ -155,7 +158,7 @@ pageEncoding="utf-8"%>
 		var series = [];
 		
 		<c:forEach var="programa" items="${compareGraphBean}">
-		series["${programa.title}"]  = [
+		series["prog_${programa.id}"]  = [
 			<c:forEach items="${programa.numTweets}"  varStatus="loop">  
 				{
 					meta: 'Hora:      ${programa.strHoras[loop.index]}    Tweets:',
@@ -211,7 +214,7 @@ pageEncoding="utf-8"%>
         if(data.type === 'line' || data.type === 'area') {
           data.element.animate({
             d: {
-              begin: 2000 * data.index,
+              begin: 100 * data.index,
               dur: 2000,
               from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
               to: data.path.clone().stringify(),
@@ -224,6 +227,11 @@ pageEncoding="utf-8"%>
       <%-- Actualizamos los valores a mostrar --%>
  		$(".compGraphics").click(function(e) {
  			// Activamos o desactivamos el elemento
+ 			
+ 			var icon = $('#icon_'+$(this).attr("id").substr(5))
+ 			icon.toggleClass('fa-toggle-off');
+ 			icon.toggleClass('fa-toggle-on');
+ 			
  			if(this.className.indexOf('activeGraph') > -1) {
  				$(this).removeClass('activeGraph');
  			} else {
@@ -236,6 +244,7 @@ pageEncoding="utf-8"%>
 			data["series"] = [series["actual"]];
 			var pos = 1;
 			// Pasamos las series actual, y active
+			
 			$(".activeGraph").each( function () {
 				data["series"][pos] = series[$(this).attr("id")];
 				pos++;
