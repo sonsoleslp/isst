@@ -18,7 +18,6 @@ pageEncoding="utf-8"%>
 <link href='../css/fullcalendar.css' rel='stylesheet' />
 <link href='../css/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src="../js/moment.min.js"></script>
-<script src="../js/jquery.min.js"></script>
 
 <link href="../css/chartist.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/animate.css">
@@ -66,7 +65,7 @@ pageEncoding="utf-8"%>
 	<div class="row">
 		<div class="col-xs-12 col-lg-8 col-lg-push-2 ">
 			<div class="wow slideInLeft" style="float: left;">
-				<h1 style="font-size:36px;">
+				<h1 id="titulo" style="font-size:36px;">
 					<c:out value="${graphBean.title}"/><span style="font-family:'Source Sans Pro';">(<c:out value="${graphBean.episodeCode}"/>)</span>
 				</h1>
 				<h2 style="color: #1685CD;">
@@ -84,21 +83,37 @@ pageEncoding="utf-8"%>
 				<a href="/mapa/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-map-marker"></i>  Datos
 								regionales</button></a>
 				<a href="/report/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i  style="color:#1685D0;"  class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
+				
+				<a href="/compare/${graphBean.id}">
+					<button id="compareButton" class="btn btn-default"> 
+						Comparar emisiones simult&aacute;neas
+					</button>
+				</a>
 			</div>
 
 			<img style="width: 150px; float: right;"
 				class="mediafoto wow slideInRight" src="/img/bird.png"> <br
 				style="clear: both;">
 			<hr style="background-color: grey; height: 2px;">
+			
+			<div id="leyenda" >
+				<ul>
+					<c:forEach var="programa" items="${compareGraphBean}">
+						<button>
+							<li id="<c:out value='${programa.title}' />" class="compGraphics">
+								<c:out value='${programa.title}' />
+							</li>
+						</button>
+					</c:forEach>
+				</ul>
+			</div>
+			
 			<div class="ct-chart ct-golden-section" id="chart1"></div>
 		</div>
 	</div>
 	</div>
 	<script src="../js/classie.js"></script>
-
-	<script src="../js/classie.js"></script>
 	
-	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/chartist.min.js"></script>
 	<script src="../js/chartist-plugin-tooltip.js"></script>
@@ -136,19 +151,49 @@ pageEncoding="utf-8"%>
     opacity: 1; }
     </style>
 	<script>
-      
-      var chart = new Chartist.Line('.ct-chart', {
-    	  <c:if test="${fn:length(graphBean.numTweets)<25}">    labels: ['${fn:join(graphBean.strHoras, "', '")}'],</c:if>
-          series: [[
-        			<c:forEach items="${graphBean.numTweets}"  varStatus="loop">  
-    				{meta: 'Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',
-    				 value: '${graphBean.numTweets[loop.index]}'
-    				}
-    				<c:if test="${!status.last}">    
-    				  ,    
-    				</c:if>  
-    				</c:forEach> 
-			]]
+		<%-- Guardamos los valores de los programas simultaneos --%>
+		var series = [];
+		
+		<c:forEach var="programa" items="${compareGraphBean}">
+		series["${programa.title}"]  = [
+			<c:forEach items="${programa.numTweets}"  varStatus="loop">  
+				{
+					meta: 'Hora:      ${programa.strHoras[loop.index]}    Tweets:',
+					value: '${programa.numTweets[loop.index]}'
+				}
+				<%-- Adding commas except last element --%>
+				<c:if test="${!status.last}">    
+				,    
+				</c:if>
+			</c:forEach>
+			];			
+		</c:forEach>
+		
+		<%-- Guardamos los valores del programa actual --%>
+		series["actual"]  = [
+			<c:forEach items="${graphBean.numTweets}"  varStatus="loop">  
+				{
+					meta: 'Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',
+					value: '${graphBean.numTweets[loop.index]}'
+				}
+				<%-- Adding commas except last element --%>
+				<c:if test="${!status.last}">    
+				,    
+				</c:if>
+			</c:forEach>
+			];
+		
+		<%-- Guardamos las labels --%>
+		var labels = ['${fn:join(graphBean.strHoras, "', '")}'];
+
+		<%-- Cargamos el chart con los valores del programa actual --%>
+		var chart = new Chartist.Line('.ct-chart', {
+			<c:if test="${fn:length(graphBean.numTweets)<25}">    
+			labels: labels,
+			</c:if>
+			series: [
+				series["actual"]
+			]
         }, {
          
           low: 0,
@@ -175,18 +220,38 @@ pageEncoding="utf-8"%>
           });
         }
       });
+      
+      <%-- Actualizamos los valores a mostrar --%>
+ 		$(".compGraphics").click(function(e) {
+ 			// Activamos o desactivamos el elemento
+ 			if(this.className.indexOf('activeGraph') > -1) {
+ 				$(this).removeClass('activeGraph');
+ 			} else {
+ 				$(this).addClass('activeGraph');
+ 			}
+ 			
+ 			// Guardamos el data a pasar a la grafica
+			var data = {};
+			data["labels"] = labels;
+			data["series"] = [series["actual"]];
+			var pos = 1;
+			// Pasamos las series actual, y active
+			$(".activeGraph").each( function () {
+				data["series"][pos] = series[$(this).attr("id")];
+				pos++;
+			});
+			chart.update(data);
+		}); 
 
-       
 
-       </script>
+	</script>
 	<script src="../js/wow.min.js"></script>
 	<script>
             new WOW().init();
-            </script>
+    </script>
 
 	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/underscore.min.js"></script>
 	<script src="../js/moment.min.js"></script>
-
+	<script src="../js/utils.js"></script>
 </body>
 </html>

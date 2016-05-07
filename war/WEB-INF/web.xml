@@ -121,4 +121,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>Demo</servlet-name>
         <url-pattern>/cron/demo</url-pattern>
     </servlet-mapping>
+        <servlet>
+        <servlet-name>CompareGraphics</servlet-name>
+        <servlet-class>es.upm.dit.isst.socialTV.web.controllers.CompareGraphicsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CompareGraphics</servlet-name>
+        <url-pattern>/compare/*</url-pattern>
+    </servlet-mapping>
 </web-app>

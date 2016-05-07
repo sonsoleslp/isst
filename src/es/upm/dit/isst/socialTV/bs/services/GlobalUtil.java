@@ -20,6 +20,7 @@ public class GlobalUtil {
 	public static final String GRAPH_BEAN = "graphBean";
 	public static final String SPAIN_MAP_BEAN = "spainMapBean";
 	public static final String ALL_PROGS_BEAN = "allProgramsBean";
+	public static final String COMPARE_GRAPH_BEAN = "compareGraphBean";
 
 	/**	NOMBRES DE LAS TABLAS DE BASES DE DATOS **/
 	public static final String TABLE_PROGRAMA_TV = "ProgramaTV"; 

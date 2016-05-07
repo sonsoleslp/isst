@@ -433,3 +433,10 @@ table {
   border-radius: 6px !important;
 }
 
+.activeGraph {
+	color: blue;
+}
+
+.compGraphics {
+	list-style: none;
+}
