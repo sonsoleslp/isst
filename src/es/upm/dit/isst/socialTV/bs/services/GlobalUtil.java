@@ -1,6 +1,9 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -148,5 +151,24 @@ public class GlobalUtil {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	/**
+	 * Convierte de String a Date
+	 * @param strDate
+	 * @return
+	 */
+	public static Date str2Date(String strDate) {
+		Date date = null;
+		try {
+			DateFormat dateFormat = new SimpleDateFormat(GlobalUtil.FORMAT_DATE);
+			date = dateFormat.parse(strDate);
+		} catch (Exception e) {
+			try {
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				date = dateFormat.parse(strDate);
+			} catch (Exception ex) {}
+		}
+		return date;
 	}
 }

@@ -240,7 +240,9 @@ pageEncoding="utf-8"%>
  			
  			// Guardamos el data a pasar a la grafica
 			var data = {};
+			<c:if test="${fn:length(graphBean.numTweets)<25}">
 			data["labels"] = labels;
+			</c:if>
 			data["series"] = [series["actual"]];
 			var pos = 1;
 			// Pasamos las series actual, y active
