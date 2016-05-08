@@ -81,15 +81,12 @@ public class CompareGraphicsServlet extends HttpServlet {
         List<GraphBean> gbList = new ArrayList<GraphBean>(getProgramasSimultaneos(gb.getDateStart(), gb.getDateEnd(), gb.getId()));
         String[] horas = getLabels(gbList, gb);
         
-//        String[] valores = rellenarConNull(gb, horas);
-//        gb.setNumTweets(new int[horas.length]);
         gb.setNumTweets(rellenarConNull(gb, horas));
         gb.setStrHoras(horas);
         for(GraphBean gbSimul: gbList) {
         	gbSimul.setNumTweets(rellenarConNull(gbSimul, horas));
         	gbSimul.setStrHoras(horas);
         }
-//        gb.setTitle(String.valueOf(valores.length)+"/"+String.valueOf(horas.length));
         request.setAttribute(GlobalUtil.COMPARE_GRAPH_BEAN, gbList);
         session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
         
