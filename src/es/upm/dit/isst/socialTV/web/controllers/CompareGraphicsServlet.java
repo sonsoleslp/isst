@@ -2,9 +2,11 @@ package es.upm.dit.isst.socialTV.web.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -74,13 +76,22 @@ public class CompareGraphicsServlet extends HttpServlet {
                 response.sendRedirect("/");
             }
         }
-
-        //TODO cambiar array de horas
-        session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
         
         // Guardamos los datos en el bean
         List<GraphBean> gbList = new ArrayList<GraphBean>(getProgramasSimultaneos(gb.getDateStart(), gb.getDateEnd(), gb.getId()));
+        String[] horas = getLabels(gbList, gb);
+        
+//        String[] valores = rellenarConNull(gb, horas);
+//        gb.setNumTweets(new int[horas.length]);
+        gb.setNumTweets(rellenarConNull(gb, horas));
+        gb.setStrHoras(horas);
+        for(GraphBean gbSimul: gbList) {
+        	gbSimul.setNumTweets(rellenarConNull(gbSimul, horas));
+        	gbSimul.setStrHoras(horas);
+        }
+//        gb.setTitle(String.valueOf(valores.length)+"/"+String.valueOf(horas.length));
         request.setAttribute(GlobalUtil.COMPARE_GRAPH_BEAN, gbList);
+        session.setAttribute(GlobalUtil.GRAPH_BEAN, gb);
         
         // Devolvemos la vista de la gráfica
         RequestDispatcher rd = request.getRequestDispatcher("/views/graph.jsp");
@@ -181,6 +192,31 @@ public class CompareGraphicsServlet extends HttpServlet {
         Date finProgDate = GlobalUtil.str2Date(finProg);
         
         return (iniProgDate.after(iniDate) || iniProgDate.equals(iniDate)) && (finProgDate.before(finDate) || finProgDate.equals(finDate));
+    }
+    
+    private String[] getLabels(List<GraphBean> gbList, GraphBean gbAct) {
+    	TreeSet<String> hashedArray = new TreeSet<String>();
+    	gbList.add(gbAct);
+    	for(GraphBean gb : gbList) {
+    		if(gb.getStrHoras()!= null) {
+    			for (String entry : gb.getStrHoras()) {
+    	    		hashedArray.add(entry);
+    	    	}
+    	    }
+    	}
+    	gbList.remove(gbAct);
+    	return (String[])hashedArray.toArray(new String[hashedArray.size()]);
+    }
+    
+    private String[] rellenarConNull(GraphBean gb, String[] horas) {
+    	List<String> gbValores = new ArrayList<String>(Arrays.asList(gb.getNumTweets()));
+    	List<String> gbHoras = new ArrayList<String>(Arrays.asList(gb.getStrHoras()));
+    	for(int i = 0; i<horas.length; i++) {
+    		if(!gbHoras.contains(horas[i])) {
+    			gbValores.add(i, null);
+    		}
+    	}
+    	return (String[])gbValores.toArray(new String[horas.length]);
     }
 
 }
