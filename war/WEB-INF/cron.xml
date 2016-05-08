@@ -3,7 +3,7 @@
   <cron>
     <url>/cron/5min</url>
     <description>Numero tweets de emision cada 5 minutos</description>
-    <schedule>every 1 minutes</schedule>
+    <schedule>every 2 minutes</schedule>
   </cron>
   <cron>
     <url>/cron/demo</url>

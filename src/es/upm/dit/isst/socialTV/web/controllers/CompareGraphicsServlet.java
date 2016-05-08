@@ -109,13 +109,13 @@ public class CompareGraphicsServlet extends HttpServlet {
         List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(prog.getPrimaryKey());
         // Hace que no salga el primer valor de tweets, que no es significativo
 
-        if (list.size()<3) {
+        if (list.size()<1) {
             return null;
         }
 
-        if(list.size()>1)list.remove(list.size()-1);
+//        if(list.size()>1)list.remove(list.size()-1);
         // Número de monitorizaciones (menos la primera)
-        int size = list.size()-1;
+        int size = list.size();
         //Array de minutos de medición
         String[] horas = new String[size];
         //Array de medidas

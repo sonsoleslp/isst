@@ -70,12 +70,12 @@ public class PDFServlet extends HttpServlet {
 			DatoAudienciaDAO dao = DatoAudienciaImpl.getInstance();
 			// Extraigo la audiencia de dicho programa
 			List<DatoAudiencia> list = dao.getAudienceForEpisodeWithId(num);	
-			if (list.size() <= 2) {
+			if (list.size() < 2) {
 				resp.sendRedirect("/");
 				return;
 			}
 			// Hace que no salga el primer valor de tweets, que no es significativo
-			if(list.size()>1)list.remove(list.size()-1);
+//			if(list.size()>1)list.remove(list.size()-1);
 			// Número de monitorizaciones (menos la primera)
 			int size = list.size();
 			//Array de minutos de medición
@@ -119,7 +119,7 @@ public class PDFServlet extends HttpServlet {
 			
 			String doc2 = "<h2>Evolución temporal</h2>";
 			doc2+= "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Hora</th><th>Menciones</th></tr>";
-			for (int i = 1; i < numTweets.length; i++){
+			for (int i = 0; i < numTweets.length; i++){
 				doc2+="<tr><td>"+horas[i]+"</td><td>"+numTweets[i]+"</td></tr>";
 			}
 			doc2 +=  "</table></div>";
@@ -169,7 +169,7 @@ public class PDFServlet extends HttpServlet {
 	        float canvasRight=559;
 	       
 	        System.out.println(numTweets.length);
-	        int numero = numTweets.length-2;
+	        int numero = numTweets.length-1;
 	        if (numero==0) numero = 1;
 	        float xSpacing= (canvasRight-canvasLeft+1)/(numero);
 	        Logger.getLogger(PDFServlet.class.getName()).info(""+xSpacing);;
@@ -180,7 +180,7 @@ public class PDFServlet extends HttpServlet {
 	        
 	        //Find max value and paint x grid
 	        int max = numTweets[1];
-	        for (int i = 1; i < numTweets.length; i++){
+	        for (int i = 0; i < numTweets.length; i++){
 	            canvas.moveTo(xCumulative,canvasBottom);
 	        	canvas.lineTo(xCumulative,canvasTop);
 	 	        canvas.closePathStroke();
@@ -219,7 +219,7 @@ public class PDFServlet extends HttpServlet {
 	        canvas.setLineDash(0);
 	        canvas.setColorStroke(magentaColor);
 	        canvas.moveTo(canvasLeft,canvasBottom);
-	        for (int i = 1; i < numTweets.length; i++){
+	        for (int i = 0; i < numTweets.length; i++){
 	        	
 				canvas.lineTo(xCumulative, canvasBottom+ numTweets[i]*canvasHeight/max);
 				canvas.beginText();

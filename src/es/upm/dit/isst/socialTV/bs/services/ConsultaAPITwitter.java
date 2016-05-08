@@ -48,6 +48,8 @@ public class ConsultaAPITwitter {
 	private static final String VOLUME_FIELD = "tweet_volume";
 	private static final int MAX_SEARCH = 100;
 	private static final int FIRST_ID = -1;
+	private static final int NO_TWEETS = 0;
+
 	// 180 peticiones cada 15 minutos para search = 12 por minuto
 	private static final int MAX_CALLS = 12;
 	// WOEID Spain
@@ -93,7 +95,11 @@ public class ConsultaAPITwitter {
 		}else{
 			fecha = new Date();
 		}
-		datos.apuntaDato(prog.getPrimaryKey(), fecha, list.size());
+		if (prog.getLastId() != FIRST_ID){
+			datos.apuntaDato(prog.getPrimaryKey(), fecha, list.size());
+		}
+		
+		Long prevId = prog.getLastId();
 		// Count - Province
 		if (!list.isEmpty()){
 			// El primero es el último cronológicamente
@@ -115,8 +121,12 @@ public class ConsultaAPITwitter {
 						continue;
 					}
 				}
+			} else {
+				prog.setLastId(NO_TWEETS);
 			}
-			prog.setCount(count);
+			if (prevId != FIRST_ID){
+				prog.setCount(count);
+			}
 			dao.updateProgramaTV(prog);
 		}
 	}
