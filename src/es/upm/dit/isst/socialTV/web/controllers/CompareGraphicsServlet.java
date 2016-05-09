@@ -164,7 +164,10 @@ public class CompareGraphicsServlet extends HttpServlet {
             }
             
             if(isInRange(fechaIni, fechaFin, programa.getFechaInicio(), programa.getFechaFin())) {
-                gbList.add(getGraphBeanFromProgram(programa));
+                GraphBean gb = getGraphBeanFromProgram(programa);
+                if(gb !=null) {
+                	gbList.add(gb);
+                }	
             }
         }
         

@@ -87,7 +87,7 @@ pageEncoding="utf-8"%>
 					</button></a>
 				<a href="/report/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i  style="color:#1685D0;"  class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
 				
-				<a href="/compare/${graphBean.id}">
+				<a id="${graphBean.id}" href="/compare/${graphBean.id}">
 					<button id="compareButton" class="btn btn-default"> 
 						<i style="color:#1685D0;" class="fa fa-tachometer"></i> 
 						Comparar emisiones simult&aacute;neas
