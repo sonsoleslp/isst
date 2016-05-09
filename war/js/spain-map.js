@@ -332,7 +332,7 @@ function mapa(provincias, tweets, max, min){
 	}).call(this);
 }
 
-function colorea(value,max,min) {#005DA4
+function colorea(value,max,min) { 
 	var val = parseInt(value)
 	var maximum = max;
 	var minimum = min;
