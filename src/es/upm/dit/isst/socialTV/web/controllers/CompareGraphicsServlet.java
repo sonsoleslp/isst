@@ -46,35 +46,32 @@ public class CompareGraphicsServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        // Recuperamos el bean de la grafica para evitar toda la logica de BBDD
-        GraphBean gb = (GraphBean)session.getAttribute(GlobalUtil.GRAPH_BEAN);
+        //Recuperamos el id de la url
+        //Separo la URL por /
+        String[] params = request.getRequestURL().toString().split("/"); 
+        Long num = (long) 0;    
+        //Compruebo si el último trozo es una cadena numérica
+        try {
+        	num = Long.parseLong(params[params.length-1]);
+        } catch(Exception e){
+        	return;
+        }
 
-        // Si es nulo, recuperamos el programa por medio del id 
-        if (gb == null) {
-            //Recuperamos el id de la url
-            //Separo la URL por /
-            String[] params = request.getRequestURL().toString().split("/"); 
-            Long num = (long) 0;    
-            //Compruebo si el último trozo es una cadena numérica
-            try {
-                num = Long.parseLong(params[params.length-1]);
-            } catch(Exception e){
-                return;
-            }
-            
-            // Recuperamos el programa correspondiente
-            ProgramaTVDAO ptv = ProgramaTVImpl.getInstance();
-            ProgramaTV prog = ptv.programaPorId(num);
+        // Recuperamos el programa correspondiente
+        ProgramaTVDAO ptv = ProgramaTVImpl.getInstance();
+        ProgramaTV prog = ptv.programaPorId(num);
 
-            // Si existe ese programa en BBDD
-            if( prog!=null){
-                // Guardamos los valores en el bean
-                gb = getGraphBeanFromProgram(prog);
-            }
-            // Si sigue siendo nulo, no existe el programa y salimos
-            if(gb == null) {
-                response.sendRedirect("/");
-            }
+        // Guardamos los datos en el bean
+        GraphBean gb = new GraphBean();
+        
+        // Si existe ese programa en BBDD
+        if( prog!=null){
+        	// Guardamos los valores en el bean
+        	gb = getGraphBeanFromProgram(prog);
+        }
+        // Si sigue siendo nulo, no existe el programa y salimos
+        if(gb == null) {
+        	response.sendRedirect("/");
         }
         
         // Guardamos los datos en el bean
@@ -113,7 +110,6 @@ public class CompareGraphicsServlet extends HttpServlet {
             return null;
         }
 
-//        if(list.size()>1)list.remove(list.size()-1);
         // Número de monitorizaciones (menos la primera)
         int size = list.size();
         //Array de minutos de medición
