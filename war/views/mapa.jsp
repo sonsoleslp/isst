@@ -134,8 +134,7 @@
             new WOW().init();
             </script>
 			<script type="text/javascript">
-			console.log("antes del new)");
-			
+ 			
 
 			
 			    new SpainMap({
@@ -147,17 +146,14 @@
 			      strokeWidth: 0.7,
 			      selectedColor: "#aaa",
 			      animationDuration: 200,
-			      onClick: function(province, event) {
-			        document.getElementById('mapa').innerHTML= '<span class="wow slideInDown" >En <b>'+ province.name+'</b> ha habido <b>'+ province.value+ '</b> tweets.</span>'
-			       
-			       
-			      }
-			      //onMouseOver: function(province, event) {
-			      //  console.log('Navigating through ' + province.name);
-			      //},
-			      //onMouseOut: function(province, event) {
-			      //  console.log('Leaving ' + province.name);
-			      //}
+			      onMouseOver: function(province, event) {
+			    	 $('#mapa').show()
+			        document.getElementById('mapa').innerHTML= '<span style="left:'+event.clientX+'; top: '+event.clientY+' ;" class="toolMap wow slideInDown" > En <b>' + province.name+'</b> ha habido <b> '+ province.value+ '</b> tweets.</span>'       
+			      },
+
+			      onMouseOut: function(province, event) {
+			    	 $('#mapa').hide()
+			     }
 			    });
   			</script>
 		</div>

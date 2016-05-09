@@ -336,11 +336,12 @@ function colorea(value,max,min) {
 	var val = parseInt(value)
 	var maximum = max;
 	var minimum = min;
-	var interval = (maximum - minimum)/4;
-	if( value <= (minimum + interval)) return '#A5E0E8';
-	if( value < (minimum + 2*interval)) return '#01BEE8';
-	if( value < (minimum + 3*interval)) return '#00829C';
-	else return '#003C6B';
+	var interval = (maximum - minimum)/5;
+	if( value <= (minimum + interval)) return '#F4F5F6';
+	if( value < (minimum + 2*interval)) return '#8AC6F4';
+	if( value < (minimum + 3*interval)) return '#55ACEE';
+	if( value < (minimum + 4*interval)) return '#55ACEE';	
+	else return '#0F568D';
 }
 
 function asignarTweets(provincias, tweets) {

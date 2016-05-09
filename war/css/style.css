@@ -454,3 +454,11 @@ table {
 	color:red;
 	transition: all 0.3s ease-in;
 }
+
+.toolMap{
+	position:fixed;
+	z-index:9999;
+	background-color:white;
+	width:80px;
+	padding:7px;
+}
