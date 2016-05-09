@@ -332,7 +332,7 @@ function mapa(provincias, tweets, max, min){
 	}).call(this);
 }
 
-function colorea(value,max,min) {
+function colorea(value,max,min) {#005DA4
 	var val = parseInt(value)
 	var maximum = max;
 	var minimum = min;
@@ -340,8 +340,8 @@ function colorea(value,max,min) {
 	if( value <= (minimum + interval)) return '#F4F5F6';
 	if( value < (minimum + 2*interval)) return '#8AC6F4';
 	if( value < (minimum + 3*interval)) return '#55ACEE';
-	if( value < (minimum + 4*interval)) return '#55ACEE';	
-	else return '#0F568D';
+	if( value < (minimum + 4*interval)) return '#005DA4';	
+	else return '#124974';
 }
 
 function asignarTweets(provincias, tweets) {

@@ -85,8 +85,8 @@
 
 	<div class="container-fluid">
 
-		<div class="row">
-			<div class="text-center col-xs-12 col-md-6  col-lg-5 ">
+		<div  class="row">
+			<div class="text-center col-xs-12 col-md-5  col-lg-5 ">
 				<br>
 				<br>
 				<br>
@@ -147,25 +147,22 @@
 											name="fecha_fin" placeholder="Fecha de fin">
 									</div>
 								</div>
-
 							</div>
-
-
-
-
 							<input class="btn btn-lg btn-primary btn-block" type="submit"
 								value="Crear" />
 
 							<!-- Button trigger modal -->
 
 						</form>
-						<br>
+						
+					</div>
+					<div class="panel-footer">
 					</div>
 				</div>
 
 
 			</div>
-			<div class="text-center col-xs-12 col-md-6  col-lg-7 ">
+			<div class="text-center col-xs-12 col-md-7  col-lg-7 ">
 				<br>
 				<br>
 				<br>
@@ -175,7 +172,7 @@
 							style="font-family: 'Pacifico'; font-size: 16px;">Monitorizaciones
 							programadas</h3>
 					</div>
-					<div class="panel-body">
+					<div id="panelMonitor"  class="panel-body">
 
 						<table style="border: 0;" class="table table-striped">
 							<tr>
@@ -199,6 +196,8 @@
 								</tr>
 							</c:forEach>
 						</table>
+					</div>
+					<div class="panel-footer">
 					</div>
 				</div>
 			</div>

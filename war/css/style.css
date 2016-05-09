@@ -462,3 +462,9 @@ table {
 	width:80px;
 	padding:7px;
 }
+
+#panelMonitor {
+	max-height:700px; 
+	max-height:70vh; 
+	overflow:auto;
+}
