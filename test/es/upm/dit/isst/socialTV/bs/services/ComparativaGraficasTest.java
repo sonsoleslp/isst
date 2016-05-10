@@ -1,6 +1,8 @@
 package es.upm.dit.isst.socialTV.bs.services;
 
 import java.util.regex.Pattern;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -34,7 +36,8 @@ public class ComparativaGraficasTest {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     
     //ID de una monitorización que sé que tiene un mapa decente. En este caso es de #CarreraMujer
-    idMonitorizacion = "4908916764835840";
+    //idMonitorizacion = "5667908084563968"; //aquí se ve que pulsa los tres que hay
+    idMonitorizacion = "4908916764835840"; //aquí sólo hay una gráfica para comparar pero queda bien
     
     //Credenciales que no pienso subir
     gmailAddress = ""; //+ "@gmail.com";
@@ -57,6 +60,18 @@ public class ComparativaGraficasTest {
    
     // Abrir directamente una monitorización que sabemos que tiene decente el mapa
     driver.get(baseUrl + "/compare/" + idMonitorizacion);
+    
+    //Seleccionar todos las gráficas que se puedan superponer
+    List<WebElement> toggles = driver.findElements(By.xpath("//div[@id='leyenda']/ul/li"));
+    
+    if (toggles.size() == 0) {
+    	fail("No hay gráficas para superponer");
+    }
+    
+    Iterator<WebElement> iterator = toggles.iterator();
+	while (iterator.hasNext()) {
+		iterator.next().click();
+	}
   }
 
   @After
