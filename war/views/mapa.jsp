@@ -118,7 +118,7 @@
 			</div>
 			
 			<img style="width: 150px; float: right;"
-					class="mediafoto wow slideInRight" src="/img/bird.png"> <br
+					class="visible-lg-block mediafoto wow slideInRight" src="/img/bird.png"> <br
 					style="clear: both;">
 				<hr style="background-color: grey; height: 2px;">
 			</div>
