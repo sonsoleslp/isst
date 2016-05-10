@@ -127,7 +127,7 @@ public class PDFServlet extends HttpServlet {
 			
 			//Page 3
 			String doc3 = "<h2>Impacto provincial</h2>";
-			doc3 += "<div style=\"margin:auto;\"><table width=\"100%\" style=\"width:100%;\"><tr><th>Provincia</th><th>Menciones</th></tr>";
+			doc3 += "<div style=\"margin:auto;\"><table width=\"100%\" style=\"font-size:12px; width:100%;\"><tr><th>Provincia</th><th>Menciones</th></tr>";
 			for (int i = 0; i < GlobalUtil.SPAIN_PROVINCES_ARRAY.length ; i++){
 				String province = GlobalUtil.SPAIN_PROVINCES_ARRAY[i];
 				doc3 += "<tr><td>"+province+"</td><td>"+prog.getProvince(province)+"</td></tr>";

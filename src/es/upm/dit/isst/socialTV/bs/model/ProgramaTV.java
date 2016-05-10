@@ -51,6 +51,7 @@ public class ProgramaTV implements Serializable {
 	private int Cantabria = 0;
 	private int Castellon = 0;
 	private int CiudadReal = 0;
+	private int Ceuta = 0;
 	private int Cordoba = 0;
 	private int Coruna = 0;
 	private int Cuenca = 0;
@@ -67,6 +68,7 @@ public class ProgramaTV implements Serializable {
 	private int Lugo = 0;
 	private int Madrid = 0;
 	private int Malaga = 0;
+	private int Melilla = 0;
 	private int Murcia = 0;
 	private int Navarra = 0;
 	private int Palencia = 0;
@@ -111,6 +113,8 @@ public class ProgramaTV implements Serializable {
 		this.lastTweet = "";
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "ProgramaTV [primaryKey=" + primaryKey + ", titulo=" + titulo + ", episodeCode=" + episodeCode
@@ -119,17 +123,19 @@ public class ProgramaTV implements Serializable {
 				+ Alicante + ", Almeria=" + Almeria + ", Asturias=" + Asturias + ", Albacete=" + Albacete + ", Avila="
 				+ Avila + ", Badajoz=" + Badajoz + ", Barcelona=" + Barcelona + ", Burgos=" + Burgos + ", Caceres="
 				+ Caceres + ", Cadiz=" + Cadiz + ", Cantabria=" + Cantabria + ", Castellon=" + Castellon
-				+ ", CiudadReal=" + CiudadReal + ", Cordoba=" + Cordoba + ", Coruna=" + Coruna + ", Cuenca=" + Cuenca
-				+ ", Girona=" + Girona + ", Granada=" + Granada + ", Guadalajara=" + Guadalajara + ", Guipuzcoa="
-				+ Guipuzcoa + ", Huelva=" + Huelva + ", Huesca=" + Huesca + ", Baleares=" + Baleares + ", Jaen=" + Jaen
-				+ ", Leon=" + Leon + ", Lleida=" + Lleida + ", Lugo=" + Lugo + ", Madrid=" + Madrid + ", Malaga="
-				+ Malaga + ", Murcia=" + Murcia + ", Navarra=" + Navarra + ", Palencia=" + Palencia + ", LasPalmas="
-				+ LasPalmas + ", Pontevedra=" + Pontevedra + ", Ourense=" + Ourense + ", LaRioja=" + LaRioja
-				+ ", Salamanca=" + Salamanca + ", Segovia=" + Segovia + ", Sevilla=" + Sevilla + ", Soria=" + Soria
-				+ ", Tarragona=" + Tarragona + ", Tenerife=" + Tenerife + ", Teruel=" + Teruel + ", Toledo=" + Toledo
-				+ ", Valencia=" + Valencia + ", Valladolid=" + Valladolid + ", Vizcaya=" + Vizcaya + ", Zamora="
-				+ Zamora + ", Zaragoza=" + Zaragoza + "]";
+				+ ", CiudadReal=" + CiudadReal + ", Ceuta=" + Ceuta + ", Cordoba=" + Cordoba + ", Coruna=" + Coruna
+				+ ", Cuenca=" + Cuenca + ", Girona=" + Girona + ", Granada=" + Granada + ", Guadalajara=" + Guadalajara
+				+ ", Guipuzcoa=" + Guipuzcoa + ", Huelva=" + Huelva + ", Huesca=" + Huesca + ", Baleares=" + Baleares
+				+ ", Jaen=" + Jaen + ", Leon=" + Leon + ", Lleida=" + Lleida + ", Lugo=" + Lugo + ", Madrid=" + Madrid
+				+ ", Malaga=" + Malaga + ", Melilla=" + Melilla + ", Murcia=" + Murcia + ", Navarra=" + Navarra
+				+ ", Palencia=" + Palencia + ", LasPalmas=" + LasPalmas + ", Pontevedra=" + Pontevedra + ", Ourense="
+				+ Ourense + ", LaRioja=" + LaRioja + ", Salamanca=" + Salamanca + ", Segovia=" + Segovia + ", Sevilla="
+				+ Sevilla + ", Soria=" + Soria + ", Tarragona=" + Tarragona + ", Tenerife=" + Tenerife + ", Teruel="
+				+ Teruel + ", Toledo=" + Toledo + ", Valencia=" + Valencia + ", Valladolid=" + Valladolid + ", Vizcaya="
+				+ Vizcaya + ", Zamora=" + Zamora + ", Zaragoza=" + Zaragoza + "]";
 	}
+
+
 
 	public String getFechaInicio() {
 		return fechaInicio;
@@ -366,6 +372,8 @@ public class ProgramaTV implements Serializable {
 		case "Castellón":
 		case "Castelló":
 			this.Castellon++; break;
+		case "Ceuta":
+			this.Ceuta++; break;			
 		case "Ciudad Real":
 			this.CiudadReal++; break;
 		case "Cordoba":
@@ -408,6 +416,8 @@ public class ProgramaTV implements Serializable {
 			this.Madrid++; break;
 		case "Malaga":
 			this.Malaga++; break;
+		case "Melilla":
+			this.Melilla++; break;
 		case "Murcia":
 			this.Murcia++; break;
 		case "Navarra":

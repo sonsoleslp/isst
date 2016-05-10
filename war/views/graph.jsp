@@ -80,19 +80,17 @@ pageEncoding="utf-8"%>
 				<c:out value="${graphBean.count}"/> tweets<br><br>
 			
 				</h3>
-				<a href="/mapa/<c:out value="${graphBean.id}"/>">
-					<button class="btn btn-default">
-					<i style="color:#1685D0;" class="fa fa-map-marker"></i> 
-					  Datos regionales
+				<a title="Datos regionales" href="/mapa/<c:out value="${graphBean.id}"/>">
+					<button class="roundButton btn btn-default">
+					<i style="color:#1685D0;" class="fa fa-2x fa-map-marker"></i> 
 					</button></a>
-				<a href="/report/<c:out value="${graphBean.id}"/>"><button class="btn btn-default"><i  style="color:#1685D0;"  class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
+					<a title="Informe pdf" href="/report/<c:out value="${spainMapBean.id}"/>">
+				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-file-pdf-o"></i>  </button></a>								
+				<a title=" Evoluci&oacute;n Temporal" href="/grafica/<c:out value="${spainMapBean.id}"/>">
+				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-area-chart"></i> </button></a>
+							<a title="Comparar emisiones simult&aacute;neas" id="${spainMapBean.id}" href="/compare/${graphBean.id}">
+				<button id="compareButton" class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-tachometer"></i></button></a>
 				
-				<a id="${graphBean.id}" href="/compare/${graphBean.id}">
-					<button id="compareButton" class="btn btn-default"> 
-						<i style="color:#1685D0;" class="fa fa-tachometer"></i> 
-						Comparar emisiones simult&aacute;neas
-					</button>
-				</a>
 			</div>
 
 			<img style="width: 150px; float: right;"
@@ -104,7 +102,7 @@ pageEncoding="utf-8"%>
 				<ul>
 					<c:forEach var="programa" items="${compareGraphBean}" varStatus="loop">
 						<li id="prog_<c:out value='${programa.id}' />" class="compGraphics">
-							<i id="icon_<c:out value='${programa.id}' />"  class="fa fa-toggle-off"></i> <c:out value='${programa.title}' />
+							<i id="icon_<c:out value='${programa.id}' />"  class="interruptor fa fa-toggle-off"></i> <c:out value='${programa.title}' />
 						</li>
 			
 					</c:forEach>
@@ -121,37 +119,7 @@ pageEncoding="utf-8"%>
 	<script src="../js/chartist.min.js"></script>
 	<script src="../js/chartist-plugin-tooltip.js"></script>
 	<style>
-	.chartist-tooltip {
-  position: absolute;
 
-  display: inline-block;
-  opacity: 0;
-  width: 6em;
-  padding: .5em;
-  background: white;
-  color: #453D3F;
-  font-family: Oxygen,Helvetica,Arial,sans-serif;
-  font-weight: 700;
-  text-align: center;
-  pointer-events: none;
-  z-index: 1;
- 
-  -webkit-transition: opacity .2s linear;
-  -moz-transition: opacity .2s linear;
-  -o-transition: opacity .2s linear;
-  transition: opacity .2s linear; }
- /*  .chartist-tooltip:before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    margin-left: -15px;
-    border: 15px solid transparent;
-    border-top-color: white; } */
-  .chartist-tooltip.tooltip-show {
-    opacity: 1; }
     </style>
 	<script>
 		<%-- Guardamos los valores de los programas simultaneos --%>

@@ -38,7 +38,7 @@ public class GlobalUtil {
 			 "Cadiz","Cantabria","Castellon","Ciudad Real","Cordoba","A Coruna","Cuenca","Girona","Granada","Guadalajara",
 			 "Guipuzcoa","Huelva","Huesca","Baleares","Jaen","Leon","Lleida","Lugo","Madrid","Malaga","Murcia","Navarra",
 			 "Palencia","Las Palmas","Pontevedra", "Ourense", "La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
-			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"
+			 "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza","Ceuta","Melilla"
 	};
 	public static final Set<String> ADMINISTRATORS = new HashSet<String>(Arrays.asList(
 		     new String[] {

@@ -102,18 +102,19 @@
 					<c:out value="${spainMapBean.hashtag}" />
 				</h2>
 				<h3>
-					<i style="color:#1685D0;" class="fa fa-hourglass-start"></i> <c:out value="${spainMapbean.dateStart}"/> - <i style="color:#1685D0;" class="fa fa-hourglass-end"></i> <c:out value="${spainMapbean.dateEnd}"/>
+					<i style="color:#1685D0;" class="fa fa-hourglass-start"></i> <c:out value="${spainMapBean.dateStart}"/> - <i style="color:#1685D0;" class="fa fa-hourglass-end"></i> <c:out value="${spainMapBean.dateEnd}"/>
 
 				</h3>
 				<h3>
 				<i style="color:#1685D0;" class="fa fa-balance-scale"></i>
 				<c:out value="${spainMapBean.count}"/> tweets<br><br>
 				</h3>
-				<a href="/grafica/<c:out value="${spainMapBean.id}"/>">
-				<button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-area-chart"></i>  Evoluci&oacute;n Temporal</button></a>
-				<a href="/report/<c:out value="${spainMapBean.id}"/>">
-				<button class="btn btn-default"><i style="color:#1685D0;" class="fa fa-file-pdf-o"></i>  Informe pdf</button></a>								
-				
+				<a title=" Evoluci&oacute;n Temporal" href="/grafica/<c:out value="${spainMapBean.id}"/>">
+				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-area-chart"></i> </button></a>
+				<a title="Informe pdf" href="/report/<c:out value="${spainMapBean.id}"/>">
+				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-file-pdf-o"></i>  </button></a>								
+				<a title="Comparar emisiones simult&aacute;neas" id="${spainMapBean.id}" href="/compare/${graphBean.id}">
+				<button id="compareButton" class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-tachometer"></i></button></a>
 			</div>
 			
 			<img style="width: 150px; float: right;"
@@ -128,6 +129,7 @@
 					provincia para ver su nº de Tweets</span>
 			</div>
 			<div id="map" class="wow fadeInUp"></div>
+			<br><br><br>
 			<script src="js/jquery.min.js"></script>
 			<script src="js/wow.min.js"></script>
 			<script>
