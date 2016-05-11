@@ -81,15 +81,17 @@ pageEncoding="utf-8"%>
 			
 				</h3>
 				<a title="Datos regionales" href="/mapa/<c:out value="${graphBean.id}"/>">
-					<button class="roundButton btn btn-default">
-					<i style="color:#1685D0;" class="fa fa-2x fa-map-marker"></i> 
-					</button></a>
-					<a title="Informe pdf" href="/report/<c:out value="${spainMapBean.id}"/>">
-				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-file-pdf-o"></i>  </button></a>								
-				<a title=" Evoluci&oacute;n Temporal" href="/grafica/<c:out value="${spainMapBean.id}"/>">
-				<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-area-chart"></i> </button></a>
-							<a title="Comparar emisiones simult&aacute;neas" id="${spainMapBean.id}" href="/compare/${graphBean.id}">
-				<button id="compareButton" class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-tachometer"></i></button></a>
+					<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-map-marker"></i></button>
+				</a>
+				<a title="Informe pdf" href="/report/<c:out value="${graphBean.id}"/>">
+					<button class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-file-pdf-o"></i></button>
+				</a>								
+				<a title=" Evoluci&oacute;n Temporal" href="/grafica/<c:out value="${graphBean.id}"/>">
+					<button id="graphicButton" class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-area-chart"></i></button>
+				</a>
+				<a title="Comparar emisiones simult&aacute;neas" href="/compare/${graphBean.id}">
+					<button id="compareButton" class="roundButton btn btn-default"><i style="color:#1685D0;" class="fa fa-2x fa-tachometer"></i></button>
+				</a>
 				
 			</div>
 

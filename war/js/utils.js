@@ -1,7 +1,10 @@
-$("#compareButton").click(function(e) {
+window.onload = function () {
 	if(window.location.pathname.indexOf('compare') > -1) {
-//		$("#leyenda").toggle();
-		e.preventDefault();
-		window.location = "/grafica/"+$(this).parent().attr("id");
+		$("#compareButton").addClass("oculto");
+		$("#graphicButton").removeClass("oculto");
+	} else if (window.location.pathname.indexOf('grafica') > -1){
+		$("#graphicButton").addClass("oculto");
+		$("#compareButton").removeClass("oculto");
 	}
-});
+};
+
