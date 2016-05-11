@@ -234,11 +234,8 @@ public class ProgramaTV implements Serializable {
 		case "Cadiz":
 			return this.Cadiz;
 		case "Cantabria":
-		case "Santander":
 			return this.Cantabria;
 		case "Castellon":
-		case "Castelló":
-		case "Castellón":
 			return this.Castellon;
 		case "Ciudad Real":
 			return this.CiudadReal;
@@ -329,6 +326,10 @@ public class ProgramaTV implements Serializable {
 			return this.Zamora;
 		case "Zaragoza":
 			return this.Zaragoza;
+		case "Ceuta":
+			return this.Ceuta;
+		case "Melilla":
+			return this.Melilla;
 		default:
 			return 0;
 		}
@@ -344,26 +345,37 @@ public class ProgramaTV implements Serializable {
 	    
 		switch(province){
 		case "Alava":
+		case "Vitoria":
 			this.Alava++; break;
 		case "Alicante":
+		case "Alacant":
+		case "Elche":
 		    this.Alicante++; break;
 		case "Almeria":
 			this.Almeria++; break;
 		case "Asturias":
+		case "Oviedo":
+		case "Gijon":
 			this.Asturias++; break;
 		case "Albacete":
 			this.Albacete++; break;
 		case "Avila":
 			this.Avila++; break;
 		case "Badajoz":
+		case "Merida":
 			this.Badajoz++; break;
 		case "Barcelona":
+		case "Badalona":
+		case "Tarrasa":
+		case "Hospitalet de Llobregat":
+		case "Sabadell":
 			this.Barcelona++; break;
 		case "Burgos":
 			this.Burgos++; break;
 		case "Caceres":
 			this.Caceres++; break;
 		case "Cadiz":
+		case "Jerez de la Frontera":
 			this.Cadiz++; break;
 		case "Cantabria":
 		case "Santander":
@@ -371,6 +383,7 @@ public class ProgramaTV implements Serializable {
 		case "Castellon":
 		case "Castellón":
 		case "Castelló":
+		case "Castellon de la Plana":
 			this.Castellon++; break;
 		case "Ceuta":
 			this.Ceuta++; break;			
@@ -382,6 +395,7 @@ public class ProgramaTV implements Serializable {
 		case "A Coruna":
 		case "Coruña":
 		case "A Coruña":
+		case "Santiago de Compostela":
 			this.Coruna++; break;
 		case "Cuenca":
 			this.Cuenca++; break;
@@ -394,14 +408,22 @@ public class ProgramaTV implements Serializable {
 			this.Guadalajara++; break;
 		case "Guipuzcoa":
 		case "Gipuzkoa":
+		case "San Sebastian":
 			this.Guipuzcoa++; break;
 		case "Huelva":
 			this.Huelva++; break;
 		case "Huesca":
 			this.Huesca++; break;
 		case "Baleares":
+		case "Palma":
+		case "Eivissa":
+		case "Ciutadella de Menorca":
 		case "Islas Baleares":
 		case "Illes Balears":
+		case "Palma de Mallorca":
+		case "Mallorca":
+		case "Menorca":
+		case "Ibiza":
 			this.Baleares++; break;
 		case "Jaen":
 			this.Jaen++; break;
@@ -413,14 +435,23 @@ public class ProgramaTV implements Serializable {
 		case "Lugo":
 			this.Lugo++; break;
 		case "Madrid":
+		case "Mostoles":
+		case "Alcorcon":
+		case "Fuenlabrada":
+		case "Leganes":
+		case "Getafe":
+		case "Alcala de Henares":
 			this.Madrid++; break;
 		case "Malaga":
+		case "Marbella":
 			this.Malaga++; break;
 		case "Melilla":
 			this.Melilla++; break;
 		case "Murcia":
+		case "Cartagena":
 			this.Murcia++; break;
 		case "Navarra":
+		case "Pamplona":
 			this.Navarra++; break;
 		case "Palencia":
 			this.Palencia++; break;
@@ -430,26 +461,30 @@ public class ProgramaTV implements Serializable {
 		case "Las Palmas De Gran Canaria":
 			this.LasPalmas++; break;
 		case "Pontevedra":
+		case "Vigo":
 			this.Pontevedra++; break;
 		case "Ourense":
 		case "Orense":
 			this.Ourense++; break;
 		case "La Rioja":
-		case "Logroño":
+		case "Logrono":
 			this.LaRioja++; break;
 		case "Salamanca":
 			this.Salamanca++; break;
 		case "Segovia":
 			this.Segovia++; break;
 		case "Sevilla":
+		case "Seville":
 			this.Sevilla++; break;
 		case "Soria":
 			this.Soria++; break;
 		case "Tarragona":
 			this.Tarragona++; break;
 		case "Santa Cruz De Tenerife":
-		case "Santa Cruz de Tenerife":
 		case "Tenerife":
+		case "Lanzarote":
+		case "Fuerteventura":
+		case "San Cristobal de la Laguna":
 			this.Tenerife++; break;
 		case "Teruel":
 			this.Teruel++; break;
@@ -461,11 +496,13 @@ public class ProgramaTV implements Serializable {
 			this.Valladolid++; break;
 		case "Vizcaya":
 		case "Bizkaia":
+		case "Bilbao":
 			this.Vizcaya++; break;
 		case "Zamora":
 			this.Zamora++; break;
 		case "Zaragoza":
 			this.Zaragoza++; break;
+ 
 		default:
 			
 		}

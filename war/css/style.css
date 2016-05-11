@@ -522,5 +522,6 @@ table {
     margin-left: -15px;
     border: 15px solid transparent;
     border-top-color: white; } */
+    
   .chartist-tooltip.tooltip-show {
     opacity: 1; }
