@@ -117,6 +117,8 @@ public class ConsultaAPITwitter {
 					}
 					Place place = tweet.getPlace();
 					if (place != null){
+						System.out.println(place.getName());
+					
 						prog.setProvince(place.getName());
 						continue;
 					}

@@ -525,3 +525,10 @@ table {
     
   .chartist-tooltip.tooltip-show {
     opacity: 1; }
+    
+    
+    .oculto {
+ 		display:none;
+ 		
+    }
+ 
