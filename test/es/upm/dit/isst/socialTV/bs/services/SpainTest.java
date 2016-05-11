@@ -76,7 +76,8 @@ public class SpainTest {
 		assertEquals("Vizcaya", spain.whichProvince( -2.918636, 43.258520));
 		assertEquals("Zamora", spain.whichProvince(-5.747197, 41.505417));
 		assertEquals("Zaragoza", spain.whichProvince( -0.886547, 41.678755));
-	
+		assertEquals("Ceuta", spain.whichProvince(-5.321283, 35.889508));
+		assertEquals("Melilla", spain.whichProvince( -2.946501, 35.291665));
 	}
 
 }
