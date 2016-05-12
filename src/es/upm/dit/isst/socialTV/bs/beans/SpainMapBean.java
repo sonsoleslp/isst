@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * JavaBean contenedor de la información necesaria para ver el impacto
- * en Twitter por provincias
+ * en Twitter por provincias.
  * 
  * @author Paco
  *

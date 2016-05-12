@@ -23,6 +23,7 @@ import org.mapfish.geo.*;
 /**
  * Clase que crea una lista de las provincias de España como polígonos a partir de un fichero GeoJSON
  * y comprueba a qué provincia pertenece una determinada coordenada
+ * 
  * @author Sonsoles
  *
  */

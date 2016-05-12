@@ -18,7 +18,8 @@ import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
- * Servlet para borrar el programa especificado
+ * Servlet para borrar el programa especificado.
+ * 
  * @author Sonsoles
  *
  */

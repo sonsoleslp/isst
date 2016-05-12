@@ -12,8 +12,10 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
+
 /**
- * Servlet para borrar todos los programas
+ * Servlet para borrar todos los programas.
+ * 
  * @author Sonsoles
  *
  */

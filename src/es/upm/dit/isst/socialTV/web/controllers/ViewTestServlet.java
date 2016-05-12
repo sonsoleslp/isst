@@ -17,6 +17,12 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTV;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 
+/**
+ * Servlet de prueba del correcto funcionamiento de la API de Twitter.
+ * 
+ * @author Antonio
+ *
+ */
 public class ViewTestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

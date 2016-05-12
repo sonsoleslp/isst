@@ -22,7 +22,10 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
+
 /**
+ * Servlet llamado cada 5 minutos para registrar datos de Twitter asociados a cada
+ * monitorización programada.
  * 
  * @author Antonio
  *

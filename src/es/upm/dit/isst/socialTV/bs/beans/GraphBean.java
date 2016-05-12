@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import com.sun.istack.internal.logging.Logger;
 
 /**
- * JavaBean con las horas y número de tweets para la gráfica de evolución temporal
+ * JavaBean con las horas y número de tweets para la gráfica de evolución temporal.
  * 
  * @author Paco
  *

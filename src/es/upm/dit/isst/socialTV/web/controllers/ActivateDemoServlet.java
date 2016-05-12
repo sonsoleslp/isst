@@ -16,6 +16,12 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 
+/**
+ * Servlet para activar la demo usada en la presentación del proyecto
+ * 
+ * @author Antonio
+ *
+ */
 public class ActivateDemoServlet extends HttpServlet {
 
 	private static final Logger logger = Logger.getLogger(ActivateDemoServlet.class.getName());
@@ -33,7 +39,6 @@ public class ActivateDemoServlet extends HttpServlet {
 		try {
 			twitter.updateStatus(GlobalUtil.DEMOSTRING);
 		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

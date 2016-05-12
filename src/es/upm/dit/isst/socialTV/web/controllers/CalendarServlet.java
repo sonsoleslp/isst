@@ -24,6 +24,9 @@ import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
+ * Servlet que atiende a la petición del calendario de monitorizaciones.
+ * Obtiene de bases de datos los programas guardados y los pasa a la vista
+ * JSP en un bean.
  * 
  * @author Paco
  *

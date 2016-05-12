@@ -17,7 +17,8 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 
 /**
- * Servlet implementation class MapaServlet
+ * Servlet que devuelve a la vista asociada los 5 programas con más tweets en bases de datos.
+ * 
  * @author Paco
  */
 public class Top5Servlet extends HttpServlet {

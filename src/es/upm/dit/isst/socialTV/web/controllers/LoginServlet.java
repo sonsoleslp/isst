@@ -17,7 +17,8 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 
 /**
- * Servlet de control de Login
+ * Servlet de control de Login.
+ * 
  * @author Paco
  *
  */
@@ -65,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doGet(request,response);
 	}
 
 }

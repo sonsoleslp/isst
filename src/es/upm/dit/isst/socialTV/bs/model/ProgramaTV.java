@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Definición de la Tabla ProgramaTV
+ * Definición de la Tabla ProgramaTV.
  * 
  * @author Sonsoles
  *

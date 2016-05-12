@@ -32,7 +32,8 @@ import java.util.logging.Logger;
 
 
 /**
- * Servlet implementation class MapaServlet
+ * Servlet que devuelve la gráfica temporal del programa seleccionado.
+ * 
  * @author Paco
  *
  */

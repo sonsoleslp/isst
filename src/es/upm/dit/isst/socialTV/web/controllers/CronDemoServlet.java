@@ -19,6 +19,12 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 
+/**
+ * Servlet de recogida de tweets programado cada 5 minutos, para la presentación del proyecto.
+ * 
+ * @author Antonio
+ *
+ */
 public class CronDemoServlet extends HttpServlet {
 	
 	private static final int MAXTWEETSPERROUND = 2;
@@ -36,7 +42,6 @@ public class CronDemoServlet extends HttpServlet {
 			try {
 				TimeUnit.SECONDS.sleep(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -47,7 +52,6 @@ public class CronDemoServlet extends HttpServlet {
 	    try {
 			twitter.updateStatus(text);
 		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

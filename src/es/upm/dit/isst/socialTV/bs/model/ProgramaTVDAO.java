@@ -1,8 +1,10 @@
 package es.upm.dit.isst.socialTV.bs.model;
 import java.util.Date;
 import java.util.List;
+
 /**
  * Interfaz para interactuar con la DB programas de TV
+ * 
  * @author Sonsoles
  *
  */

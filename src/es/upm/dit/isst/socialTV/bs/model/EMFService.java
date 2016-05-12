@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 
 /**
  * Manejar transacciones con la DB
+ * 
  * @author Sonsoles
  *
  */

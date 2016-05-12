@@ -12,6 +12,7 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 
 /**
  * Bean empleado para recoger los datos de la API de twitter
+ * 
  * @author Naomi
  *
  */

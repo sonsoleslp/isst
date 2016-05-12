@@ -28,6 +28,7 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
  * Servlet que atiende las peticiones de comparativa de las graficas
+ * 
  * @author Naomi
  *
  */

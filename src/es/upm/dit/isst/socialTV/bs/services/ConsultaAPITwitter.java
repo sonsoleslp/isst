@@ -39,6 +39,7 @@ import twitter4j.Trends;
  * Dado un hashtag el endpoint search te da los hashtags del tweet y su texto
  * El endpoint trends/place (15xmin) te da el volumen de tweets en las ultimas
  * 24 horas especificando provincia
+ * 
  * @author Antonio
  *
  */

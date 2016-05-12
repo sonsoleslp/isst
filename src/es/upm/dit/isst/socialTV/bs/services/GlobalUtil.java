@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Clase para definir variables y métodos estáticos, útiles para todo el proyecto.
+ * 
  * @author Paco
+ * 
  */
 public class GlobalUtil {
 

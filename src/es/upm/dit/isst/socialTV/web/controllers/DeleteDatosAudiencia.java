@@ -15,7 +15,8 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 /**
- * Servlet para borrar todos los datos de audiencia
+ * Servlet para borrar todos los datos de audiencia.
+ * 
  * @author Sonsoles
  *
  */

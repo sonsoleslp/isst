@@ -3,7 +3,7 @@ package es.upm.dit.isst.socialTV.bs.beans;
 import java.io.Serializable;
 
 /**
- * JavaBean que para pasar los atributos del Top 5 de programas
+ * JavaBean que contiene los datos del Top 5 de programas.
  * 
  * @author Paco
  *

@@ -16,7 +16,10 @@ import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
 
 
 /**
- * Servlet implementation class MapaServlet
+ * Servlet de respuesta a la petición del mapa asociado a un programa.
+ * 
+ * @author Paco
+ *
  */
 public class MapaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -24,7 +24,11 @@ import es.upm.dit.isst.socialTV.bs.model.ProgramaTVDAO;
 import es.upm.dit.isst.socialTV.bs.model.ProgramaTVImpl;
 import es.upm.dit.isst.socialTV.bs.services.ConsultaAPITwitter;
 import es.upm.dit.isst.socialTV.bs.services.GlobalUtil;
+
 /**
+ * Servlet que presenta la página de configuración de monitorizaciones, con acceso
+ * restringido a usuarios administradores.
+ * Recoge el registro de una monitorización en el método doPost.
  * 
  * @author Antonio
  *
