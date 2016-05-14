@@ -12,7 +12,7 @@ import com.sun.istack.internal.logging.Logger;
  * @author Paco
  *
  */
-@SuppressWarnings("serial") //pa que no salga un warning porculero
+@SuppressWarnings("serial")
 public class GraphBean implements Serializable {
 
 	private String[] strHoras;
