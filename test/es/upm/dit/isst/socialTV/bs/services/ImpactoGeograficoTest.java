@@ -33,13 +33,13 @@ public class ImpactoGeograficoTest {
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "https://1-dot-socialtv-1275.appspot.com/";
+    baseUrl = "https://1-dot-socialtv-1275.appspot.com";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     
-    //ID de una monitorización que sé que tiene un mapa decente. En este caso es de #CarreraMujer
-    idMonitorizacion = "4908916764835840";
+    //DATOS DE ENTRADA
     
-    //Credenciales que no pienso subir
+    idMonitorizacion = "6026535974731776"; //ID de una monitorización que haya ocurrido más o menos a la vez que otras
+    //Credenciales de google para loggearse
     gmailAddress = ""; //+ "@gmail.com";
     password = "";
   }
