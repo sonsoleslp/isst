@@ -56,7 +56,6 @@ public class Cron5MinServlet extends HttpServlet {
 			cal.add(Calendar.HOUR_OF_DAY, +2);
 			ahora = cal.getTime();
 		}else{
-			logger.info("Spain TimeZone");
 			ahora = new Date();
 		}
 
@@ -74,11 +73,11 @@ public class Cron5MinServlet extends HttpServlet {
 
 			if (ahora.after(init) && ahora.before(end)){
 				logger.info("Updating tweets for "+prog.getTitulo());
-				consulta.updateTweets(prog.getPrimaryKey());
+				consulta.updateTweets(prog.getPrimaryKey(), ahora);
 			}
 		}
 
-		// Check audiencia Demo
+		/* Check audiencia Demo
 		List <ProgramaTV> lista = dao.ProgramasPorHashtag("#AppITSS");
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
 		for (ProgramaTV prog: lista){
@@ -87,5 +86,6 @@ public class Cron5MinServlet extends HttpServlet {
 				System.out.println(prog.getTitulo()+", "+dato.getFecha() +", "+dato.getCount());
 			}
 		}
+		*/
 	}
 }

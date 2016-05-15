@@ -71,7 +71,7 @@ public class ConsultaAPITwitter {
 		dao.crearMonitorizacion(titulo, episodeCode, fechaInicio, fechaFin, hashtag);
 	}
 
-	public void updateTweets(Long id){
+	public void updateTweets(Long id, Date date){
 		ProgramaTVDAO dao = ProgramaTVImpl.getInstance();
 		ProgramaTV prog = dao.programaPorId(id);
 		DatoAudienciaDAO datos = DatoAudienciaImpl.getInstance();
@@ -86,18 +86,8 @@ public class ConsultaAPITwitter {
 		}
 		List <Status> list = search(prog.getHashtag(), fecha, prog.getLastId());
 
-		// Update data
-		// Asignar hora al dato de audiencia
-		if (TimeZone.getDefault().getID().equals("UTC")){
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(new Date());
-			cal.add(Calendar.HOUR_OF_DAY, +2);
-			fecha = cal.getTime();
-		}else{
-			fecha = new Date();
-		}
 		if (prog.getLastId() != FIRST_ID){
-			datos.apuntaDato(prog.getPrimaryKey(), fecha, list.size());
+			datos.apuntaDato(prog.getPrimaryKey(), date, list.size());
 		}
 		
 		Long prevId = prog.getLastId();
@@ -173,53 +163,6 @@ public class ConsultaAPITwitter {
 		logger.info(RATE_SEARCH+": Max "+req.get(RATE_SEARCH).getLimit()+", You: "+req.get(RATE_SEARCH).getRemaining());
 		return result.getTweets();
 	}
-
-	/*
-	Una peticion por minuto
-	public Map<String, Integer> getTrends(int place){
-		Map<String, Integer> result = new HashMap<String, Integer>();
-		Trends trends = null;
-		try {
-			trends=twitter.getPlaceTrends(place);
-		} catch (TwitterException e) {
-			System.out.println("Error en getTrends(): "+e.getMessage());
-			e.printStackTrace();
-		}
-		// Get JSON
-		String rawJSON = TwitterObjectFactory.getRawJSON(trends);
-		JsonReader jsonReader = Json.createReader(new StringReader(rawJSON));
-		JsonArray json_array = jsonReader.readArray();
-		jsonReader.close();
-		JsonObject json_temp =json_array.getJsonObject(0);
-		json_array = json_temp.getJsonArray("trends");
-		for (int i=0; i<json_array.size(); i++){
-			JsonObject json = json_array.getJsonObject(i);
-			if (!json.isNull(NAME_FIELD) && !json.isNull(VOLUME_FIELD)){
-				System.out.println(json.getString(NAME_FIELD)+" "+json.getInt(VOLUME_FIELD));
-			}
-		}
-		//ArrayList <String> trends_name= new ArrayList<String>();
-		//ArrayList <Integer> volume = new ArrayList <Integer>();
-
-		// Quit irrelevant trends
-		for (int i=0; i<json_array.size(); i++){
-			JsonObject json = json_array.getJsonObject(i);
-			if (!json.isNull(NAME_FIELD) && !json.isNull(VOLUME_FIELD)){
-				int index = insertOrder(volume, json.getInt(VOLUME_FIELD));
-				trends_name.add(index,json.getString(NAME_FIELD));
-				volume.add(index, json.getInt(VOLUME_FIELD));
-				result.put(json.getString(NAME_FIELD), json.getInt(VOLUME_FIELD));
-			}
-		}
-		return result;
-	}
-	public int insertOrder(ArrayList<Integer>volumes,int volume){
-		for (int i = 0; i < volumes.size(); i++) {
-			if (volumes.get(i) < volume) return i;        
-		}
-		return volumes.size();
-	}
-	*/
 }
 
 
