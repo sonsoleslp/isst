@@ -224,9 +224,11 @@ public class PDFServlet extends HttpServlet {
 	        for (int i = 0; i < numTweets.length; i++){
 	        	
 				canvas.lineTo(xCumulative, canvasBottom+ numTweets[i]*canvasHeight/max);
-				canvas.beginText();
-				canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], 4 + xCumulative, 70, 90);//Height text :70, Rotation:90
-				canvas.endText();
+				if(numTweets.length <25){
+					canvas.beginText();
+					canvas.showTextAligned(Element.ALIGN_LEFT, ""+horas[i], 4 + xCumulative, 70, 90);//Height text :70, Rotation:90
+					canvas.endText();
+				}
 				xCumulative += xSpacing;
 			}
 	        
