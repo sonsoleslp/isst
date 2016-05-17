@@ -131,7 +131,7 @@ pageEncoding="utf-8"%>
 		series["prog_${programa.id}"]  = [
 			<c:forEach items="${programa.numTweets}"  varStatus="loop">  
 				{
-					meta: 'Hora:      ${programa.strHoras[loop.index]}    Tweets:',
+					meta:  '${programa.title}         Hora:      ${programa.strHoras[loop.index]}    Tweets:',
 					value: '${programa.numTweets[loop.index]}'
 				}
 				<%-- Adding commas except last element --%>
@@ -146,7 +146,7 @@ pageEncoding="utf-8"%>
 		series["actual"]  = [
 			<c:forEach items="${graphBean.numTweets}"  varStatus="loop">  
 				{
-					meta: 'Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',
+					meta: '${programa.title}          Hora:      ${graphBean.strHoras[loop.index]}    Tweets:',
 					value: '${graphBean.numTweets[loop.index]}'
 				}
 				<%-- Adding commas except last element --%>
