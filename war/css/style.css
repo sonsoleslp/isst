@@ -506,6 +506,8 @@ table {
 	text-align: center;
 	pointer-events: none;
 	z-index: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	-webkit-transition: opacity .2s linear;
 	-moz-transition: opacity .2s linear;
 	-o-transition: opacity .2s linear;
